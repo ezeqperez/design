@@ -6,6 +6,7 @@ import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
+import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
@@ -26,6 +27,15 @@ public class MenuWindow extends SimpleWindow<CuentasProceso>{
 		new Button(mainPanel)
 				.setCaption("Cargar archivo")
 				.onClick(()-> getModelObject().cargarCuentas());
+
+		new Label(mainPanel).setText("Buscar cuentas por periodo");
+		new TextBox(mainPanel)
+				.setWidth(50)
+				.bindValueToProperty("periodo");
+		new Button(mainPanel)
+				.setCaption("Buscar Cuentas")
+				.onClick(()-> getModelObject().buscarPorPeriodo());
+
 
 
 	}

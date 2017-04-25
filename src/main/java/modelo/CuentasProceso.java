@@ -1,14 +1,18 @@
 package modelo;
 
 
-import java.util.List;
+import org.uqbar.commons.utils.Observable;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Observable
 public class CuentasProceso {
     //Esta clase procesa las cuentas levantadas desde el archivo.
 
     CuentasUpload cuentasUpload;
     List<Cuenta> listaDeCuentas;
-
+    String periodo;
 
     public void cargarEmpresas(){
         Empresa empresa = new Empresa();
@@ -28,6 +32,13 @@ public class CuentasProceso {
         }
     }
 
+    public void buscarPorPeriodo(){
+        List<Cuenta> result =listaDeCuentas.stream().filter(cuenta -> cuenta.getPeriodo().equals(this.periodo)).collect(Collectors.toList());
+        System.out.println("asd");
+    }
+
+
+
 
     //Getters y setters
     public CuentasUpload getCuentasUpload() {
@@ -45,4 +56,13 @@ public class CuentasProceso {
     public void setListaDeCuentas(List<Cuenta> listaDeCuentas) {
         this.listaDeCuentas = listaDeCuentas;
     }
+
+    public String getPeriodo() {
+        return periodo;
+    }
+
+    public void setPeriodo(String periodo) {
+        this.periodo = periodo;
+    }
+
 }
