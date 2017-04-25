@@ -38,5 +38,15 @@ public class JsonParser {
         }
         return null;
     }
+    public  Cuenta jsonACuenta(JSONObject json){
+        try{
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.readValue(json.toString(), Cuenta.class);
+        }catch (IOException e){
+            System.out.println("Se rompio");
+        }
+        return null;
+    }
+
 
 }

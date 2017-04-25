@@ -25,7 +25,7 @@ public class MenuWindow extends SimpleWindow<CuentasProceso>{
 
 		new Button(mainPanel)
 				.setCaption("Cargar archivo")
-				.onClick(()-> getModelObject().cargarCuenta());
+				.onClick(()-> getModelObject().cargarCuentas());
 
 
 	}

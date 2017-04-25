@@ -1,18 +1,27 @@
 package modelo;
 
 public class Cuenta {
-    private String nombre;
+    private String empresa;
+    private String cuenta;
     private String periodo;
     private String valores;
 
 
-    //Getters y Setters
-    public String getNombre() {
-        return nombre;
+    //Getters y setters
+    public String getEmpresa() {
+        return empresa;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setEmpresa(String empresa) {
+        this.empresa = empresa;
+    }
+
+    public String getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(String cuenta) {
+        this.cuenta = cuenta;
     }
 
     public String getPeriodo() {
