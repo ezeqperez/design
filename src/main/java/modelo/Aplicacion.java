@@ -14,10 +14,10 @@ public class Aplicacion extends Application {
 
 	@Override
 	protected Window<?> createMainWindow() {
-		CuentasProceso cuentasProceso = new CuentasProceso();
-		cuentasProceso.setCuentasUpload(new CuentasUpload());
-		cuentasProceso.setListaDeCuentas(new ArrayList<Cuenta>());
-		return new MenuWindow(this, cuentasProceso);
+		CuentasViewModel cuentasViewModel = new CuentasViewModel();
+		cuentasViewModel.setCuentasUpload(new CuentasUpload());
+		cuentasViewModel.setListaDeCuentas(new ArrayList<Cuenta>());
+		return new MenuWindow(this, cuentasViewModel);
 	}
 
 }

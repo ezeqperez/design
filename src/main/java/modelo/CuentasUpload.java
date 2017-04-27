@@ -10,41 +10,34 @@ import java.util.List;
 
 public class CuentasUpload {
 
-    //dejo este para no romper nada
-    public Empresa procesarArchivo() {
+    //TODO: Manejar la excepcion, si la arrojo se me quejaba alguien (ahora no recuerdo)
+    public List<Cuenta> procesarArchivo() {
+        List<Cuenta> listaDeCuentas = new ArrayList<Cuenta>();
+        //El parser es quien se encarga de cargar el archivo desde la ruta especificada
         JSONParser parser = new JSONParser();
 
-        try {
-            Object obj = parser.parse(new FileReader("C:\\test.json"));
-
-            JSONObject jsonObject = (JSONObject) obj;
-            return new JsonParser().jsonAEmpresa(jsonObject);
-
-        } catch (Exception e) {
-            System.out.println("eeee");
-        }
-        return null;
-    }
-
-    public List<Cuenta> procesarArchivoCuenta() {
-        JSONParser parser = new JSONParser();
+        //El jsonParser va ser quien se encarga de transformar el json cargado a una cuenta,
+        //que va a ser devuelta al viewModel
         JsonParser jsonParser = new JsonParser();
+
+        //TODO: Ver como hacerlo mas lindo / con mas sentido
 
         try {
             Object obj = parser.parse(new FileReader("C:\\cuentas.json"));
 
+            //Creo un array porque mi archivo tiene una lista de cuentas a cargar
             JSONArray jsonArray= (JSONArray) obj;
-            List<Cuenta> listaDeCuentas = new ArrayList<Cuenta>();
 
+
+            //TODO: Armar algo como if(!jsonArray.isEmpty()){}, para controlar que no recorramos una lista vacia
             jsonArray.forEach(item -> {
                 JSONObject json = (JSONObject) item;
                 listaDeCuentas.add(jsonParser.jsonACuenta(json));
             });
-        return listaDeCuentas;
 
         } catch (Exception e) {
-            System.out.println("eeee");
+
         }
-        return null;
+        return listaDeCuentas;
     }
 }
