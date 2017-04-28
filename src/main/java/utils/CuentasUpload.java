@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import modelo.Cuenta;
@@ -44,7 +44,7 @@ public class CuentasUpload {
 				listaDeCuentas.add(jsonParser.jsonACuenta(json));
 			});
 		} catch (IOException e) {
-			// TODO: aca queremos avisarle al usuario que se cargó mal y que lo
+			// TODO: aca queremos avisarle al usuario que se cargï¿½ mal y que lo
 			// debe
 			// volver a intentar.
 		}

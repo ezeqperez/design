@@ -46,7 +46,6 @@ public class MenuWindow extends SimpleWindow<CuentasViewModel> {
 	}
     
     public void mostrarError(String mensaje){
-    	getModelObject().cargarCuentas();
     	ErrorWindow dialog = new ErrorWindow(getOwner(), getModelObject(), mensaje);
 		dialog.open();
     }
