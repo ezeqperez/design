@@ -6,6 +6,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import modelo.Cuenta;
 import org.json.simple.JSONObject;
+import org.uqbar.commons.model.UserException;
 
 public class JsonParser {
     //Transforma una cuenta en un string
@@ -14,15 +15,13 @@ public class JsonParser {
         return mapper.writeValueAsString(cuenta);
     }
 
-    //TODO: Y si se arma uno generico que reciba una clase por parametro?
     public  Cuenta jsonACuenta(JSONObject json){
-        try{
+        try {
             ObjectMapper mapper = new ObjectMapper();
             return mapper.readValue(json.toString(), Cuenta.class);
         }catch (IOException e){
-            System.out.println("Se rompio");
+            throw new UserException("El formato del json esta corrupto, reemplaze el archivo e intente nuevamente");
         }
-        return null;
     }
 
 }

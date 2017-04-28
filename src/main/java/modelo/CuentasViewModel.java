@@ -19,22 +19,12 @@ public class CuentasViewModel {
 		this.cuentasFiltradas = new ArrayList<Cuenta>();
 	}
 
-	public CuentasViewModel(CuentasUploader cuentasUploader, List<Cuenta> listaDeCuentas){
-		this.cuentasUploader= cuentasUploader;
-		this.listaDeCuentas= listaDeCuentas;
-		this.cuentasFiltradas = new ArrayList<Cuenta>();
-	}
 
 
 
 	private CuentasUploader cuentasUploader; // Dependencia
 	private List<Cuenta> listaDeCuentas; // Total de cuentas procesadas
-	private List<Cuenta> cuentasFiltradas; // Cuentas que
-															// cumplen el filtro
-															// de empresa y
-															// periodo
-	// TODO: Las cuentas filtradas son las que se tienen que mostrar en una
-	// vista nueva
+	private List<Cuenta> cuentasFiltradas; // Cuentas que cumplen el filtro de empresa y de periodo
 
 	private String empresaFilter;
 	private String periodoFilter;

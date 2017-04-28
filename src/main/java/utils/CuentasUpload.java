@@ -15,6 +15,8 @@ import java.util.Objects;
 public class CuentasUpload implements CuentasUploader{
 	private String ruta = "C:\\test.json";
 
+
+
 	public List<Cuenta> procesarArchivo(){
 		List<Cuenta> listaDeCuentas = new ArrayList<Cuenta>();
 		// El parser es quien se encarga de cargar el archivo desde la ruta
@@ -30,20 +32,17 @@ public class CuentasUpload implements CuentasUploader{
 		try {
 			obj = parser.parse(new FileReader(ruta));
 			JSONArray jsonArray = (JSONArray) obj;
-			Objects.requireNonNull(jsonArray);
 			jsonArray.forEach(item -> {
 				JSONObject json = (JSONObject) item;
 				listaDeCuentas.add(jsonParser.jsonACuenta(json));
 			});
 		}catch (IOException e) {
-			throw new UserException("No se encontró el archivo");
+			throw new UserException("No se encontro el archivo");
 		}catch (org.json.simple.parser.ParseException e) {
 			throw new UserException("El archivo no se pudo cargar, por favor verifique que el formato sea el correcto");
-		}catch (NullPointerException e){
-			throw new UserException("El archivo estaba vacio");
 		}
-		return listaDeCuentas;
-	}
+			return listaDeCuentas;
+		}
 
 	public String getRuta() {
 		return ruta;

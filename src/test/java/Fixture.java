@@ -9,8 +9,8 @@ import java.util.List;
  * Created by Ezequiel on 24/4/2017.
  */
 public class Fixture {
-    public String jsonMalo(){
-        String obj = "{\n" +
+    public String jsonNoArray(){
+        String json = "{\n" +
                 "\"empresa\" : \"Juan\",\n" +
                 "\"cuenta\": \"100005454\",\n" +
                 "\"periodo\": \"2017\",\n" +
@@ -28,7 +28,54 @@ public class Fixture {
                 "\"periodo\": \"2016\",\n" +
                 "\"monto\": 50009456789\n" +
                 "}";
-        return obj;
+        return json;
+    }
+
+    public String jsonMalo(){
+        String json = "{\n" +
+                "\"empresa\" : \"Juan\",\n" +
+                "\"cuenta\": \"100005454\",\n" +
+                "\"periodo\": \"2017\",\n" +
+                "\"monto\": 123456789\n" +
+                "\"empresa\" : \"Eze\",\n" +
+                "},\n" +
+                "},\n" +
+                "},\n" +
+                "\"cuenta\": \"500005454\",\n" +
+                "\"periodo\": \"2016\",\n" +
+                "\"monto\": 50009456789\n" +
+                "}";
+        return json;
+    }
+
+    public String jsonOk(){
+        String json = "[\n" +
+                "\t{\n" +
+                "    \"empresa\" : \"Facebook\",\n" +
+                "    \"cuenta\": \"EBITDA\",\n" +
+                "    \"periodo\": \"2017\",\n" +
+                "    \"monto\": 123456.45\n" +
+                "    },\n" +
+                "    {\n" +
+                "    \"empresa\" : \"Facebook\",\n" +
+                "    \"cuenta\": \"FDS\",\n" +
+                "    \"periodo\": \"2017\",\n" +
+                "    \"monto\": 156789.64\n" +
+                "    },\n" +
+                "    {\n" +
+                "    \"empresa\" : \"Facebook\",\n" +
+                "    \"cuenta\": \"EBITDA\",\n" +
+                "    \"periodo\": \"2016\",\n" +
+                "    \"monto\": 27832.23\n" +
+                "    }\n" +
+                "    {\n" +
+                "    \"empresa\" : \"Facebook\",\n" +
+                "    \"cuenta\": \"FDS\",\n" +
+                "    \"periodo\": \"2017\",\n" +
+                "    \"monto\": 156789.64\n" +
+                "    }\n" +
+                "]";
+        return json;
     }
 
     public Cuenta cuentaFacebook(String periodo){

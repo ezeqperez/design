@@ -36,9 +36,6 @@ public class SearchCuentasWindow extends SimpleWindow<CuentasViewModel> {
 		new Label(mainPanel).setText("Filtrar por periodo");
 		new TextBox(mainPanel).setWidth(50).bindValueToProperty("periodoFilter");
 
-		// TODO: Puedo antes de mandar el mensaje al modelObject, preguntar por
-		// si "empresa" y "periodo" son null? ..RtaJuli: no, en el view model
-		// chequeas que no sean null para aplicar el filtro
 		new Button(mainPanel).setCaption("Buscar Cuentas").onClick(() -> aplicarFiltros());
 
 		Table<Cuenta> tabla = new Table<Cuenta>(this, Cuenta.class);
