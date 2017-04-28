@@ -1,8 +1,7 @@
 package modelo;
 import java.util.Date;
 
-import org.joda.*;
-import org.joda.time.DateTime;
+import org.eclipse.swt.widgets.DateTime;
 
 
 public class Periodo {

@@ -3,7 +3,6 @@ package modelo;
 import org.uqbar.commons.utils.Observable;
 
 import utils.CuentasUpload;
-import vista.ErrorWindow;
 
 import java.util.List;
 import java.util.Objects;
@@ -43,7 +42,6 @@ public class CuentasViewModel {
 					.filter(cuenta -> Objects.equals(cuenta.getPeriodo(), this.periodoFilter)
 							&& Objects.equals(cuenta.getEmpresa(), this.empresaFilter))
 					.collect(Collectors.toList());
-			System.out.println("asd");
 		} else {
 			// TODO: algun cartel que diga que estos campos no pueden estar
 			// vacios?
