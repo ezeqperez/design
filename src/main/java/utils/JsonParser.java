@@ -1,10 +1,11 @@
-package modelo;
+package utils;
 
-import org.codehaus.jackson.map.DeserializationConfig;
+import java.io.IOException;
+
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.simple.JSONObject;
 
-import java.io.IOException;
+import modelo.Cuenta;
 
 public class JsonParser {
     //Transforma una cuenta en un string
