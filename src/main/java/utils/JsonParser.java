@@ -3,7 +3,6 @@ package utils;
 import java.io.IOException;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.json.simple.JSONObject;
 
 import modelo.Cuenta;
 
@@ -15,7 +14,7 @@ public class JsonParser {
     }
 
     //TODO: Y si se arma uno generico que reciba una clase por parametro?
-    public  Cuenta jsonACuenta(JSONObject json){
+    public  Cuenta jsonACuenta(org.json.JSONObject json){
         try{
             ObjectMapper mapper = new ObjectMapper();
             return mapper.readValue(json.toString(), Cuenta.class);

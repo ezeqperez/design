@@ -5,45 +5,51 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import modelo.Cuenta;
 
 public class CuentasUpload {
-	private String ruta = "C:\\Users\\Julieta\\git\\2017-vn-group-01\\src\\test\\java\\resources\\test.json";
+	private String ruta = "C:\\test.json";
 
-    //TODO: Manejar la excepcion, si la arrojo se me quejaba alguien (ahora no recuerdo)
-    public List<Cuenta> procesarArchivo() throws org.json.simple.parser.ParseException {
-        List<Cuenta> listaDeCuentas = new ArrayList<Cuenta>();
-        //El parser es quien se encarga de cargar el archivo desde la ruta especificada
-        JSONParser parser = new JSONParser();
-        
-        //El jsonParser va ser quien se encarga de transformar el json cargado a una cuenta,
-        //que va a ser devuelta al viewModel
-        JsonParser jsonParser = new JsonParser();
+	// TODO: Manejar la excepcion, si la arrojo se me quejaba alguien (ahora no
+	// recuerdo)
+	public List<Cuenta> procesarArchivo() throws org.json.simple.parser.ParseException {
+		List<Cuenta> listaDeCuentas = new ArrayList<Cuenta>();
+		// El parser es quien se encarga de cargar el archivo desde la ruta
+		// especificada
+		JSONParser parser = new JSONParser();
 
-        //TODO: Ver como hacerlo mas lindo / con mas sentido
+		// El jsonParser va ser quien se encarga de transformar el json cargado
+		// a una cuenta,
+		// que va a ser devuelta al viewModel
+		 JsonParser jsonParser = new JsonParser();
 
-        try {
-            Object obj = parser.parse(new FileReader(ruta));
+		// TODO: Ver como hacerlo mas lindo / con mas sentido
 
-            //Creo un array porque mi archivo tiene una lista de cuentas a cargar
-            JSONArray jsonArray= (JSONArray) obj;
+		try {
 
+			Object obj = parser.parse(new FileReader(ruta));
 
-            //TODO: Armar algo como if(!jsonArray.isEmpty()){}, para controlar que no recorramos una lista vacia
-            jsonArray.forEach(item -> {
-                JSONObject json = (JSONObject) item;
-                listaDeCuentas.add(jsonParser.jsonACuenta(json));
-            });
+			// Creo un array porque mi archivo tiene una lista de cuentas a
+			// cargar
+			JSONArray jsonArray = (JSONArray) obj;
 
-        } catch (IOException e) {
-        	//TODO: aca queremos avisarle al usuario que se cargó mal y que lo debe volver a intentar.
-        } 
-        return listaDeCuentas;
-    }
+			// TODO: Armar algo como if(!jsonArray.isEmpty()){}, para controlar
+			// que no recorramos una lista vacia
+			jsonArray.forEach(item -> {
+				JSONObject json = (JSONObject) item;
+				listaDeCuentas.add(jsonParser.jsonACuenta(json));
+			});
+		} catch (IOException e) {
+			// TODO: aca queremos avisarle al usuario que se cargó mal y que lo
+			// debe
+			// volver a intentar.
+		}
+		return listaDeCuentas;
+	}
 
 	public String getRuta() {
 		return ruta;

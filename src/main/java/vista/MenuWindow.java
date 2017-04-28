@@ -8,11 +8,9 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 import modelo.CuentasViewModel;
-import utils.CuentasUpload;
 
 @SuppressWarnings("serial")
 public class MenuWindow extends SimpleWindow<CuentasViewModel> {
-	CuentasUpload cuentasUpload;
 
 	public MenuWindow(WindowOwner owner, CuentasViewModel cuentasViewModel) {
 		super(owner, cuentasViewModel);
@@ -30,26 +28,27 @@ public class MenuWindow extends SimpleWindow<CuentasViewModel> {
 
 		new Button(columnasPanel).setCaption("Consultar cuentas").onClick(() -> this.buscarCuentas());
 
-		new Button(columnasPanel).setCaption("Crear nuevo indicador").onClick(() -> this.avisarNoimplemento());
+		new Button(columnasPanel).setCaption("Crear nuevo indicador").onClick(() -> this.mostrarError("Todavía en construcción :|"));
 
-		new Button(columnasPanel).setCaption("Consultar indicadores").onClick(() -> this.avisarNoimplemento());
+		new Button(columnasPanel).setCaption("Consultar indicadores").onClick(() -> this.mostrarError("Todavía en construcción :|"));
 
-		new Button(columnasPanel).setCaption("Consultar gráficos").onClick(() -> this.avisarNoimplemento());
+		new Button(columnasPanel).setCaption("Consultar gráficos").onClick(() -> this.mostrarError("Todavía en construcción :|"));
 		
-		new Button(columnasPanel).setCaption("Crear nueva metodología").onClick(() -> this.avisarNoimplemento());
+		new Button(columnasPanel).setCaption("Crear nueva metodología").onClick(() -> this.mostrarError("Todavía en construcción :|"));
 		
-		new Button(columnasPanel).setCaption("Nuevo análisis").onClick(() -> this.avisarNoimplemento());
+		new Button(columnasPanel).setCaption("Nuevo análisis").onClick(() -> this.mostrarError("Todavía en construcción :|"));
 
 	}
 	
-    public void avisarNoimplemento(){
-    	ErrorWindow dialog = new ErrorWindow(getOwner(), getModelObject());
-    	dialog.setMensaje("Todavía en construcción :|");
-		dialog.open();
-    }
-    
-    public void cargarCuentas(){
+    private void cargarCuentas() {
     	getModelObject().cargarCuentas();
+    	this.mostrarError("Las cuentas se cargaron correctamente :D");
+	}
+    
+    public void mostrarError(String mensaje){
+    	getModelObject().cargarCuentas();
+    	ErrorWindow dialog = new ErrorWindow(getOwner(), getModelObject(), mensaje);
+		dialog.open();
     }
 
     public void buscarCuentas(){

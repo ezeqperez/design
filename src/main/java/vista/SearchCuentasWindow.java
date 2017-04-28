@@ -42,7 +42,7 @@ public class SearchCuentasWindow extends SimpleWindow<CuentasViewModel> {
 		new Button(mainPanel).setCaption("Buscar Cuentas").onClick(() -> aplicarFiltros());
 
 		Table<Cuenta> tabla = new Table<Cuenta>(this, Cuenta.class);
-		tabla.bindItemsToProperty("listaDeCuentas");
+		tabla.bindItemsToProperty("cuentasFiltradas");
 
 		Column<Cuenta> empresaColumn = new Column<Cuenta>(tabla);
 		empresaColumn.setTitle("Empresa");
