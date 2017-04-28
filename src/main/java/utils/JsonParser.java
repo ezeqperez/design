@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import modelo.Cuenta;
-import modelo.Empresa;
 import org.json.simple.JSONObject;
 
 public class JsonParser {
@@ -25,16 +24,5 @@ public class JsonParser {
         }
         return null;
     }
-
-    public  Empresa jsonAEmpresa(String json){
-        try{
-            ObjectMapper mapper = new ObjectMapper();
-            return mapper.readValue(json.toString(), Empresa.class);
-        }catch (IOException e){
-            System.out.println("Se rompio");
-        }
-        return null;
-    }
-
 
 }

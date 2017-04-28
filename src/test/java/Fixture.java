@@ -9,6 +9,28 @@ import java.util.List;
  * Created by Ezequiel on 24/4/2017.
  */
 public class Fixture {
+    public Object jsonMalo(){
+        Object obj = "{\n" +
+                "\"empresa\" : \"Juan\",\n" +
+                "\"cuenta\": \"100005454\",\n" +
+                "\"periodo\": \"2017\",\n" +
+                "\"monto\": 123456789\n" +
+                "},\n" +
+                "{\n" +
+                "\"empresa\" : \"Juan\",\n" +
+                "\"cuenta\": \"200005454\",\n" +
+                "\"periodo\": \"2016\",\n" +
+                "\"monto\": 156789.64\n" +
+                "},\n" +
+                "{\n" +
+                "\"empresa\" : \"Eze\",\n" +
+                "\"cuenta\": \"500005454\",\n" +
+                "\"periodo\": \"2016\",\n" +
+                "\"monto\": 50009456789\n" +
+                "}";
+        return obj;
+    }
+
     public Cuenta cuentaFacebook(String periodo){
         Cuenta cuenta = new Cuenta();
         cuenta.setEmpresa("Facebook");

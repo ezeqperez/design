@@ -1,22 +1,23 @@
 package utils;
 
+import modelo.Cuenta;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.uqbar.commons.model.UserException;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
-import modelo.Cuenta;
+import java.util.Objects;
 
 public class CuentasUpload implements CuentasUploader{
 	private String ruta = "C:\\test.json";
 
 	// TODO: Manejar la excepcion, si la arrojo se me quejaba alguien (ahora no
 	// recuerdo)
-	public List<Cuenta> procesarArchivo() throws org.json.simple.parser.ParseException {
+	public List<Cuenta> procesarArchivo(){
 		List<Cuenta> listaDeCuentas = new ArrayList<Cuenta>();
 		// El parser es quien se encarga de cargar el archivo desde la ruta
 		// especificada
@@ -27,26 +28,21 @@ public class CuentasUpload implements CuentasUploader{
 		// que va a ser devuelta al viewModel
 		 JsonParser jsonParser = new JsonParser();
 
-		// TODO: Ver como hacerlo mas lindo / con mas sentido
-
+		Object obj;
 		try {
-
-			Object obj = parser.parse(new FileReader(ruta));
-
-			// Creo un array porque mi archivo tiene una lista de cuentas a
-			// cargar
+			obj = parser.parse(new FileReader(ruta));
 			JSONArray jsonArray = (JSONArray) obj;
-
-			// TODO: Armar algo como if(!jsonArray.isEmpty()){}, para controlar
-			// que no recorramos una lista vacia
+			Objects.requireNonNull(jsonArray);
 			jsonArray.forEach(item -> {
 				JSONObject json = (JSONObject) item;
 				listaDeCuentas.add(jsonParser.jsonACuenta(json));
 			});
-		} catch (IOException e) {
-			// TODO: aca queremos avisarle al usuario que se carg� mal y que lo
-			// debe
-			// volver a intentar.
+		}catch (IOException e) {
+			throw new UserException("No se encontró el archivo");
+		}catch (org.json.simple.parser.ParseException e) {
+			throw new UserException("El archivo no se pudo cargar, por favor verifique que el formato sea el correcto");
+		}catch (NullPointerException e){
+			throw new UserException("El archivo estaba vacio");
 		}
 		return listaDeCuentas;
 	}

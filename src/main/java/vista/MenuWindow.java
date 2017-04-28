@@ -8,6 +8,7 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 import modelo.CuentasViewModel;
+import org.uqbar.commons.model.UserException;
 
 @SuppressWarnings("serial")
 public class MenuWindow extends SimpleWindow<CuentasViewModel> {
@@ -28,24 +29,28 @@ public class MenuWindow extends SimpleWindow<CuentasViewModel> {
 
 		new Button(columnasPanel).setCaption("Consultar cuentas").onClick(() -> this.buscarCuentas());
 
-		new Button(columnasPanel).setCaption("Crear nuevo indicador").onClick(() -> this.mostrarError("Todavía en construcción :|"));
+		new Button(columnasPanel).setCaption("Crear nuevo indicador").onClick(() -> this.mostrarAlerta("Todavía en construcción :|"));
 
-		new Button(columnasPanel).setCaption("Consultar indicadores").onClick(() -> this.mostrarError("Todavía en construcción :|"));
+		new Button(columnasPanel).setCaption("Consultar indicadores").onClick(() -> this.mostrarAlerta("Todavía en construcción :|"));
 
-		new Button(columnasPanel).setCaption("Consultar gráficos").onClick(() -> this.mostrarError("Todavía en construcción :|"));
+		new Button(columnasPanel).setCaption("Consultar gráficos").onClick(() -> this.mostrarAlerta("Todavía en construcción :|"));
 		
-		new Button(columnasPanel).setCaption("Crear nueva metodología").onClick(() -> this.mostrarError("Todavía en construcción :|"));
+		new Button(columnasPanel).setCaption("Crear nueva metodología").onClick(() -> this.mostrarAlerta("Todavía en construcción :|"));
 		
-		new Button(columnasPanel).setCaption("Nuevo análisis").onClick(() -> this.mostrarError("Todavía en construcción :|"));
+		new Button(columnasPanel).setCaption("Nuevo análisis").onClick(() -> this.mostrarAlerta("Todavía en construcción :|"));
 
 	}
 	
     private void cargarCuentas() {
-    	getModelObject().cargarCuentas();
-    	this.mostrarError("Las cuentas se cargaron correctamente :D");
+		try {
+			getModelObject().cargarCuentas();
+			this.mostrarAlerta("Las cuentas se cargaron correctamente :D");
+		}catch (org.json.simple.parser.ParseException e){
+			throw new UserException("Hubo un problema al cargar el archivo");
+		}
 	}
     
-    public void mostrarError(String mensaje){
+    public void mostrarAlerta(String mensaje){
     	AlertWindow dialog = new AlertWindow(getOwner(), getModelObject(), mensaje);
 		dialog.open();
     }

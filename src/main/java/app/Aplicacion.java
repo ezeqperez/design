@@ -19,7 +19,7 @@ public class Aplicacion extends Application {
 	@Override
 	protected Window<?> createMainWindow() {
 		
-		CuentasViewModel cuentasViewModel = new CuentasViewModel(new CuentasUpload(), new ArrayList<Cuenta>());
+		CuentasViewModel cuentasViewModel = new CuentasViewModel(new CuentasUpload());
 
 		return new MenuWindow(this, cuentasViewModel);
 	}

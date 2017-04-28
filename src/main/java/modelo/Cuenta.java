@@ -1,8 +1,8 @@
 package modelo;
 
-import java.math.BigDecimal;
-
 import org.uqbar.commons.utils.Observable;
+
+import java.math.BigDecimal;
 
 @Observable
 public class Cuenta {

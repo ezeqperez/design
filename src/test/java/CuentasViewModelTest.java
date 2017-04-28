@@ -2,6 +2,7 @@ import modelo.Cuenta;
 import modelo.CuentasViewModel;
 import org.junit.Assert;
 import org.junit.Test;
+import org.uqbar.commons.model.UserException;
 import utils.CuentasUpload;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 public class CuentasViewModelTest {
     Fixture fixture = new Fixture();
     @Test
-    public void testProcesarTresCuentas(){
+    public void testProcesarTresCuentas() throws org.json.simple.parser.ParseException{
         CuentasViewModel viewModel = new CuentasViewModel(fixture.uploadDeTresCuentas(), new ArrayList<Cuenta>());
 
         viewModel.cargarCuentas();
@@ -18,7 +19,7 @@ public class CuentasViewModelTest {
     }
 
     @Test
-    public void seCarganOkLasCuentas(){
+    public void seCarganOkLasCuentas()throws org.json.simple.parser.ParseException{
         CuentasViewModel viewModel = new CuentasViewModel(fixture.uploadDeTresCuentas(), new ArrayList<Cuenta>());
 
         viewModel.cargarCuentas();
@@ -38,7 +39,7 @@ public class CuentasViewModelTest {
     }
 
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = UserException.class)
     public void sinPeriodoSeteadoRompe(){
         CuentasViewModel viewModel = new CuentasViewModel(new CuentasUpload(), fixture.tresCuentas());
 
