@@ -16,7 +16,6 @@ public class MenuWindow extends SimpleWindow<CuentasViewModel> {
 	public MenuWindow(WindowOwner owner, CuentasViewModel cuentasViewModel) {
 		super(owner, cuentasViewModel);
 	}
-
 	@Override
 	protected void createFormPanel(Panel mainPanel) {
 		this.setTitle("¡Bienvenido!");
@@ -44,7 +43,7 @@ public class MenuWindow extends SimpleWindow<CuentasViewModel> {
     private void cargarCuentas() {
 		try {
 			getModelObject().cargarCuentas();
-			this.mostrarAlerta("Las cuentas se cargaron correctamente :D");
+			mostrarAlerta("Las cuentas se cargaron correctamente :D");
 		}catch (org.json.simple.parser.ParseException e){
 			throw new UserException("Hubo un problema al cargar el archivo");
 		}

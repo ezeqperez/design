@@ -20,7 +20,6 @@ public class Aplicacion extends Application {
 	protected Window<?> createMainWindow() {
 		
 		CuentasViewModel cuentasViewModel = new CuentasViewModel(new CuentasUpload());
-
 		return new MenuWindow(this, cuentasViewModel);
 	}
 

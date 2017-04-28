@@ -5,6 +5,7 @@ import modelo.Cuenta;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.uqbar.commons.model.UserException;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,11 +16,17 @@ import java.util.List;
 public class CuentasUploadMockRuta implements CuentasUploader {
     List<Cuenta> listaDeCuentas = new ArrayList<Cuenta>();
     Object obj;
+    String jsonMalo;
 
-    public List<Cuenta> procesarArchivo(){
+    public List<Cuenta> procesarArchivo() {
         List<Cuenta> listaDeCuentas = new ArrayList<Cuenta>();
         JSONParser parser = new JSONParser();
         JsonParser jsonParser = new JsonParser();
+        try {
+            obj = parser.parse(jsonMalo);
+        }catch(org.json.simple.parser.ParseException e){
+            throw new UserException("Json mal formateado");
+        }
 
 
         JSONArray jsonArray = (JSONArray) obj;
@@ -40,14 +47,16 @@ public class CuentasUploadMockRuta implements CuentasUploader {
 
     }
 
-    public Object getObj() {
-        return obj;
-    }
-
-    public void setObj(Object obj) {
-        this.obj = obj;
-    }
     public void setListaDeCuentas(List<Cuenta> listaDeCuentas) {
         this.listaDeCuentas = listaDeCuentas;
+    }
+
+
+    public String getJsonMalo() {
+        return jsonMalo;
+    }
+
+    public void setJsonMalo(String jsonMalo) {
+        this.jsonMalo = jsonMalo;
     }
 }

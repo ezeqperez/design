@@ -9,8 +9,8 @@ import java.util.List;
  * Created by Ezequiel on 24/4/2017.
  */
 public class Fixture {
-    public Object jsonMalo(){
-        Object obj = "{\n" +
+    public String jsonMalo(){
+        String obj = "{\n" +
                 "\"empresa\" : \"Juan\",\n" +
                 "\"cuenta\": \"100005454\",\n" +
                 "\"periodo\": \"2017\",\n" +

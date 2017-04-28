@@ -39,14 +39,10 @@ public class CuentasViewModel {
 	private String empresaFilter;
 	private String periodoFilter;
 
-	// TODO: Ver como manejar las excepciones, si las arrojo, se me queja la
-	// vista
+
 
 	public void cargarCuentas() throws org.json.simple.parser.ParseException{
-
-			listaDeCuentas.addAll(cuentasUploader.procesarArchivo());
-
-			// TODO: Mostrar error al cargar archivo.
+		listaDeCuentas.addAll(cuentasUploader.procesarArchivo());
 	}
 
 	public void filtrarCuentas() {
@@ -67,15 +63,12 @@ public class CuentasViewModel {
 	public CuentasUploader getCuentasUploader() {
 		return cuentasUploader;
 	}
-
 	public void setCuentasUploader(CuentasUploader cuentasUploader) {
 		this.cuentasUploader = cuentasUploader;
 	}
-
 	public List<Cuenta> getListaDeCuentas() {
 		return listaDeCuentas;
 	}
-
 	public void setListaDeCuentas(List<Cuenta> listaDeCuentas) {
 		this.listaDeCuentas = listaDeCuentas;
 	}

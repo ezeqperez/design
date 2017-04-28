@@ -15,8 +15,6 @@ import java.util.Objects;
 public class CuentasUpload implements CuentasUploader{
 	private String ruta = "C:\\test.json";
 
-	// TODO: Manejar la excepcion, si la arrojo se me quejaba alguien (ahora no
-	// recuerdo)
 	public List<Cuenta> procesarArchivo(){
 		List<Cuenta> listaDeCuentas = new ArrayList<Cuenta>();
 		// El parser es quien se encarga de cargar el archivo desde la ruta

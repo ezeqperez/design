@@ -19,7 +19,7 @@ public class CuentasUploadTest {
 	public void jsonMalFormateado(){
 		//TODO: ver de cargar el string
 		CuentasUploadMockRuta cuentasUpload = new CuentasUploadMockRuta();
-		cuentasUpload.setObj(fixture.jsonMalo());
+		cuentasUpload.setJsonMalo(fixture.jsonMalo());
 		cuentasUpload.procesarArchivo();
 	}
 
