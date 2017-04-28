@@ -11,7 +11,7 @@ import org.json.simple.parser.JSONParser;
 
 import modelo.Cuenta;
 
-public class CuentasUpload {
+public class CuentasUpload implements CuentasUploader{
 	private String ruta = "C:\\test.json";
 
 	// TODO: Manejar la excepcion, si la arrojo se me quejaba alguien (ahora no

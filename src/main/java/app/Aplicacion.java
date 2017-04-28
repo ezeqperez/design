@@ -19,9 +19,8 @@ public class Aplicacion extends Application {
 	@Override
 	protected Window<?> createMainWindow() {
 		
-		CuentasViewModel cuentasViewModel = new CuentasViewModel();
-		cuentasViewModel.setCuentasUpload(new CuentasUpload()); //TODO delegar esta linea y la siguiente en CuentasUpload.
-		cuentasViewModel.setListaDeCuentas(new ArrayList<Cuenta>());
+		CuentasViewModel cuentasViewModel = new CuentasViewModel(new CuentasUpload(), new ArrayList<Cuenta>());
+
 		return new MenuWindow(this, cuentasViewModel);
 	}
 

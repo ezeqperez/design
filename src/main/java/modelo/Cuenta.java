@@ -7,7 +7,7 @@ import org.uqbar.commons.utils.Observable;
 @Observable
 public class Cuenta {
     private String empresa;
-    private int cuenta;
+    private String cuenta;
     private String periodo;
     private BigDecimal monto;
 
@@ -17,12 +17,15 @@ public class Cuenta {
 	public void setEmpresa(String empresa) {
 		this.empresa = empresa;
 	}
-	public int getCuenta() {
+
+	public String getCuenta() {
 		return cuenta;
 	}
-	public void setCuenta(int cuenta) {
+
+	public void setCuenta(String cuenta) {
 		this.cuenta = cuenta;
 	}
+
 	public String getPeriodo() {
 		return periodo;
 	}

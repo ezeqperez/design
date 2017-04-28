@@ -2,8 +2,9 @@ package modelo;
 
 import org.uqbar.commons.utils.Observable;
 
-import utils.CuentasUpload;
+import utils.CuentasUploader;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -11,10 +12,15 @@ import java.util.stream.Collectors;
 @Observable
 public class CuentasViewModel {
 	// Esta clase procesa las cuentas que se cargan desde el archivo.
+	public CuentasViewModel(CuentasUploader cuentasUploader, List<Cuenta> listaDeCuentas){
+		this.cuentasUploader= cuentasUploader;
+		this.listaDeCuentas= listaDeCuentas;
+		this.cuentasFiltradas = new ArrayList<Cuenta>();
+	}
 
-	private CuentasUpload cuentasUpload; // Dependencia
+	private CuentasUploader cuentasUploader; // Dependencia
 	private List<Cuenta> listaDeCuentas; // Total de cuentas procesadas
-	private List<Cuenta> cuentasFiltradas = listaDeCuentas; // Cuentas que
+	private List<Cuenta> cuentasFiltradas; // Cuentas que
 															// cumplen el filtro
 															// de empresa y
 															// periodo
@@ -29,39 +35,31 @@ public class CuentasViewModel {
 
 	public void cargarCuentas() {
 		try {
-			listaDeCuentas.addAll(cuentasUpload.procesarArchivo());
+			listaDeCuentas.addAll(cuentasUploader.procesarArchivo());
 		} catch (Exception e) {
 			// TODO: Mostrar error al cargar archivo.
 		}
 	}
 
 	public void filtrarCuentas() {
-		// TODO: Sacar el if, Gaston se va a enojar
-		if (this.validarEmpresaYCuenta()) {
-			cuentasFiltradas = listaDeCuentas.stream()
-					.filter(cuenta -> Objects.equals(cuenta.getPeriodo(), this.periodoFilter)
-							&& Objects.equals(cuenta.getEmpresa(), this.empresaFilter))
-					.collect(Collectors.toList());
-		} else {
-			// TODO: algun cartel que diga que estos campos no pueden estar
-			// vacios?
-		}
+		//Esto va encerrado en un try/catch para manejar la excepcion
+		//Por ahora prefiero que la tire para el test
+		Objects.requireNonNull(this.periodoFilter);
+		Objects.requireNonNull(this.empresaFilter);
+		cuentasFiltradas = listaDeCuentas.stream()
+				.filter(cuenta -> Objects.equals(cuenta.getPeriodo(), this.periodoFilter)
+						&& Objects.equals(cuenta.getEmpresa(), this.empresaFilter))
+				.collect(Collectors.toList());
 	}
 
-	private boolean validarEmpresaYCuenta() {
-		// TODO: Feo feo, la idea es tirar una excepcion si esto no se cumple, y
-		// no hacer el if guarango de arriba
-		// PERO NO SE COMO!!!!
-		return !this.empresaFilter.isEmpty() && !this.periodoFilter.isEmpty();
-	}
 
 	// Getters y setters
-	public CuentasUpload getCuentasUpload() {
-		return cuentasUpload;
+	public CuentasUploader getCuentasUploader() {
+		return cuentasUploader;
 	}
 
-	public void setCuentasUpload(CuentasUpload cuentasUpload) {
-		this.cuentasUpload = cuentasUpload;
+	public void setCuentasUploader(CuentasUploader cuentasUploader) {
+		this.cuentasUploader = cuentasUploader;
 	}
 
 	public List<Cuenta> getListaDeCuentas() {
@@ -72,6 +70,9 @@ public class CuentasViewModel {
 		this.listaDeCuentas = listaDeCuentas;
 	}
 
+    public void addListaDeCuentas(Cuenta cuenta) {
+        this.listaDeCuentas.add(cuenta);
+    }
 	public String getEmpresaFilter() {
 		return empresaFilter;
 	}
