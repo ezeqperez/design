@@ -17,20 +17,22 @@ public class CuentasViewModel {
         this.cuentasUploader = cuentasUploader;
         this.cuentas = new ArrayList<Cuenta>();
         this.cuentasFiltradas = new ArrayList<Cuenta>();
+        this.ruta = "C:\\test.json"; //Comienza con una ruta por defecto
     }
 
+    private String ruta;  //Ruta donde se va a buscar el archivo a procesar
 
     private CuentasUploader cuentasUploader; // Dependencia
+
     private List<Cuenta> cuentas; // Total de cuentas procesadas
     private List<Cuenta> cuentasFiltradas; // Cuentas que cumplen el filtro de empresa y de periodo
-
     private String empresaFilter;
+
     private String periodoFilter;
-
-
     public void cargarCuentas() throws org.json.simple.parser.ParseException {
-        cuentas.addAll(cuentasUploader.procesarArchivo());
+        cuentas.addAll(cuentasUploader.procesarArchivo(ruta));
     }
+
 
     public void filtrarCuentas() {
         try {
@@ -46,8 +48,15 @@ public class CuentasViewModel {
         }
     }
 
-
     // Getters y setters
+    public String getRuta() {
+        return ruta;
+    }
+
+    public void setRuta(String ruta) {
+        this.ruta = ruta;
+    }
+
     public CuentasUploader getCuentasUploader() {
         return cuentasUploader;
     }

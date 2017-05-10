@@ -10,13 +10,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class CuentasUpload implements CuentasUploader {
-    private String ruta = "C:\\test.json";
 
-
-    public List<Cuenta> procesarArchivo() {
+    public List<Cuenta> procesarArchivo(String ruta) {
         List<Cuenta> cuentas = new ArrayList<Cuenta>();
         // El parser es quien se encarga de cargar el archivo desde la ruta
         // especificada
@@ -43,11 +40,4 @@ public class CuentasUpload implements CuentasUploader {
         return cuentas;
     }
 
-    public String getRuta() {
-        return ruta;
-    }
-
-    public void setRuta(String ruta) {
-        this.ruta = ruta;
-    }
 }

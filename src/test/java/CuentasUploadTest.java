@@ -20,8 +20,7 @@ public class CuentasUploadTest {
         expecterEx.expect(UserException.class);
         expecterEx.expectMessage("No se encontro el archivo");
         CuentasUpload cuentasUpload = new CuentasUpload();
-        cuentasUpload.setRuta("C://rompe.json");
-        cuentasUpload.procesarArchivo();
+        cuentasUpload.procesarArchivo("C://rompe.json");
     }
 
     @Test
@@ -29,8 +28,7 @@ public class CuentasUploadTest {
         expecterEx.expect(UserException.class);
         expecterEx.expectMessage("El archivo no se pudo cargar, por favor verifique que el formato sea el correcto");
         CuentasUpload cuentasUpload = new CuentasUpload();
-        cuentasUpload.setRuta("C:\\Users\\Ezequiel\\Intellij\\Tp1\\src\\main\\resources\\jsonVacio.json");
-        cuentasUpload.procesarArchivo();
+        cuentasUpload.procesarArchivo("C:\\Users\\Ezequiel\\Intellij\\Tp1\\src\\main\\resources\\jsonVacio.json");
     }
 
     @Test
@@ -38,8 +36,7 @@ public class CuentasUploadTest {
         expecterEx.expect(UserException.class);
         expecterEx.expectMessage("El archivo no se pudo cargar, por favor verifique que el formato sea el correcto");
         CuentasUpload cuentasUpload = new CuentasUpload();
-        cuentasUpload.setRuta("C:\\Users\\Ezequiel\\Intellij\\Tp1\\src\\main\\resources\\jsonNoArray.json");
-        cuentasUpload.procesarArchivo();
+        cuentasUpload.procesarArchivo("C:\\Users\\Ezequiel\\Intellij\\Tp1\\src\\main\\resources\\jsonNoArray.json");
     }
 
     @Test
@@ -47,15 +44,13 @@ public class CuentasUploadTest {
         expecterEx.expect(UserException.class);
         expecterEx.expectMessage("El archivo no se pudo cargar, por favor verifique que el formato sea el correcto");
         CuentasUpload cuentasUpload = new CuentasUpload();
-        cuentasUpload.setRuta("C:\\Users\\Ezequiel\\Intellij\\Tp1\\src\\main\\resources\\jsonMalo.json");
-        cuentasUpload.procesarArchivo();
+        cuentasUpload.procesarArchivo("C:\\Users\\Ezequiel\\Intellij\\Tp1\\src\\main\\resources\\jsonMalo.json");
     }
 
     @Test
     public void cargaTresEmpresas() {
         CuentasUpload cuentasUpload = new CuentasUpload();
-        cuentasUpload.setRuta("C:\\Users\\Ezequiel\\Intellij\\Tp1\\src\\main\\resources\\jsonOk.json");
-        List<Cuenta> cuentasCargadas = cuentasUpload.procesarArchivo();
+        List<Cuenta> cuentasCargadas = cuentasUpload.procesarArchivo("C:\\Users\\Ezequiel\\Intellij\\Tp1\\src\\main\\resources\\jsonOk.json");
         Assert.assertEquals(cuentasCargadas.size(), 8);
     }
 }

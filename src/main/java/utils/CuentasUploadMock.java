@@ -9,7 +9,7 @@ import java.util.List;
 public class CuentasUploadMock implements CuentasUploader {
     List<Cuenta> cuentas = new ArrayList<Cuenta>();
 
-    public List<Cuenta> procesarArchivo() {
+    public List<Cuenta> procesarArchivo(String ruta) {
         Cuenta cuenta1 = new Cuenta();
         cuenta1.setEmpresa("Facebook");
         cuenta1.setMonto(new BigDecimal(999));
@@ -23,13 +23,6 @@ public class CuentasUploadMock implements CuentasUploader {
         return tresCuentas;
     }
 
-    public String getRuta() {
-        return "ruta";
-    }
-
-    public void setRuta(String ruta) {
-
-    }
 
     public void setCuentas(List<Cuenta> cuentas) {
         this.cuentas = cuentas;

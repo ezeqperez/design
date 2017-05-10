@@ -3,6 +3,7 @@ package vista;
 import modelo.CuentasViewModel;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.widgets.Button;
+import org.uqbar.arena.widgets.FileSelector;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.SimpleWindow;
@@ -21,10 +22,15 @@ public class MenuWindow extends SimpleWindow<CuentasViewModel> {
         this.setTitle("¡Bienvenido!");
         Panel columnasPanel = new Panel(mainPanel);
         columnasPanel.setLayout(new ColumnLayout(2));
-        
+
         new Button(columnasPanel).setCaption("Cargar cuentas").onClick(() -> this.cargarCuentas());
 
         new Button(columnasPanel).setCaption("Consultar cuentas").onClick(() -> this.buscarCuentas());
+
+        new FileSelector(mainPanel)
+                .setCaption("Buscar Archivo")
+                .bindValueToProperty("ruta");
+        new Label(mainPanel).bindValueToProperty("ruta");
     }
 
     private void cargarCuentas() {
