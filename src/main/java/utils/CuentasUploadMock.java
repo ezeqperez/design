@@ -6,10 +6,10 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CuentasUploadMock implements CuentasUploader{
+public class CuentasUploadMock implements CuentasUploader {
     List<Cuenta> listaDeCuentas = new ArrayList<Cuenta>();
 
-    public List<Cuenta> procesarArchivo(){
+    public List<Cuenta> procesarArchivo() {
         Cuenta cuenta1 = new Cuenta();
         cuenta1.setEmpresa("Facebook");
         cuenta1.setMonto(new BigDecimal(999));

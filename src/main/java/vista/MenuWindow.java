@@ -13,55 +13,56 @@ import org.uqbar.commons.model.UserException;
 @SuppressWarnings("serial")
 public class MenuWindow extends SimpleWindow<CuentasViewModel> {
 
-	public MenuWindow(WindowOwner owner, CuentasViewModel cuentasViewModel) {
-		super(owner, cuentasViewModel);
-	}
-	@Override
-	protected void createFormPanel(Panel mainPanel) {
-		this.setTitle("¡Bienvenido!");
-		Panel columnasPanel = new Panel(mainPanel);
-		columnasPanel.setLayout(new ColumnLayout(2));
-		
-		new Label(mainPanel).setText("Menú principal:");
+    public MenuWindow(WindowOwner owner, CuentasViewModel cuentasViewModel) {
+        super(owner, cuentasViewModel);
+    }
 
-		new Button(columnasPanel).setCaption("Cargar cuentas").onClick(() -> this.cargarCuentas());
+    @Override
+    protected void createFormPanel(Panel mainPanel) {
+        this.setTitle("¡Bienvenido!");
+        Panel columnasPanel = new Panel(mainPanel);
+        columnasPanel.setLayout(new ColumnLayout(2));
 
-		new Button(columnasPanel).setCaption("Consultar cuentas").onClick(() -> this.buscarCuentas());
+        new Label(mainPanel).setText("Menú principal:");
 
-		new Button(columnasPanel).setCaption("Crear nuevo indicador").onClick(() -> this.mostrarAlerta("Todavía en construcción :|"));
+        new Button(columnasPanel).setCaption("Cargar cuentas").onClick(() -> this.cargarCuentas());
 
-		new Button(columnasPanel).setCaption("Consultar indicadores").onClick(() -> this.mostrarAlerta("Todavía en construcción :|"));
+        new Button(columnasPanel).setCaption("Consultar cuentas").onClick(() -> this.buscarCuentas());
 
-		new Button(columnasPanel).setCaption("Consultar gráficos").onClick(() -> this.mostrarAlerta("Todavía en construcción :|"));
-		
-		new Button(columnasPanel).setCaption("Crear nueva metodología").onClick(() -> this.mostrarAlerta("Todavía en construcción :|"));
-		
-		new Button(columnasPanel).setCaption("Nuevo análisis").onClick(() -> this.mostrarAlerta("Todavía en construcción :|"));
+        new Button(columnasPanel).setCaption("Crear nuevo indicador").onClick(() -> this.mostrarAlerta("Todavía en construcción :|"));
 
-	}
-	
+        new Button(columnasPanel).setCaption("Consultar indicadores").onClick(() -> this.mostrarAlerta("Todavía en construcción :|"));
+
+        new Button(columnasPanel).setCaption("Consultar gráficos").onClick(() -> this.mostrarAlerta("Todavía en construcción :|"));
+
+        new Button(columnasPanel).setCaption("Crear nueva metodología").onClick(() -> this.mostrarAlerta("Todavía en construcción :|"));
+
+        new Button(columnasPanel).setCaption("Nuevo análisis").onClick(() -> this.mostrarAlerta("Todavía en construcción :|"));
+
+    }
+
     private void cargarCuentas() {
-		try {
-			getModelObject().cargarCuentas();
-			mostrarAlerta("Las cuentas se cargaron correctamente :D");
-		}catch (org.json.simple.parser.ParseException e){
-			throw new UserException("Hubo un problema al cargar el archivo");
-		}
-	}
-    
-    public void mostrarAlerta(String mensaje){
-    	AlertWindow dialog = new AlertWindow(getOwner(), getModelObject(), mensaje);
-		dialog.open();
+        try {
+            getModelObject().cargarCuentas();
+            mostrarAlerta("Las cuentas se cargaron correctamente :D");
+        } catch (org.json.simple.parser.ParseException e) {
+            throw new UserException("Hubo un problema al cargar el archivo");
+        }
     }
 
-    public void buscarCuentas(){
-    	SearchCuentasWindow dialog = new SearchCuentasWindow(getOwner(), getModelObject());
-    	dialog.open();
+    public void mostrarAlerta(String mensaje) {
+        AlertWindow dialog = new AlertWindow(getOwner(), getModelObject(), mensaje);
+        dialog.open();
     }
-    
-	@Override
-	protected void addActions(Panel arg0) {
 
-	}
+    public void buscarCuentas() {
+        SearchCuentasWindow dialog = new SearchCuentasWindow(getOwner(), getModelObject());
+        dialog.open();
+    }
+
+    @Override
+    protected void addActions(Panel arg0) {
+
+    }
 
 }

@@ -12,30 +12,34 @@ public class Cuenta {
     private BigDecimal monto;
 
     public String getEmpresa() {
-		return empresa;
-	}
-	public void setEmpresa(String empresa) {
-		this.empresa = empresa;
-	}
+        return empresa;
+    }
 
-	public String getCuenta() {
-		return cuenta;
-	}
+    public void setEmpresa(String empresa) {
+        this.empresa = empresa;
+    }
 
-	public void setCuenta(String cuenta) {
-		this.cuenta = cuenta;
-	}
+    public String getCuenta() {
+        return cuenta;
+    }
 
-	public String getPeriodo() {
-		return periodo;
-	}
-	public void setPeriodo(String periodo) {
-		this.periodo = periodo;
-	}
-	public BigDecimal getMonto() {
-		return monto;
-	}
-	public void setMonto(BigDecimal monto) {
-		this.monto = monto;
-	}
+    public void setCuenta(String cuenta) {
+        this.cuenta = cuenta;
+    }
+
+    public String getPeriodo() {
+        return periodo;
+    }
+
+    public void setPeriodo(String periodo) {
+        this.periodo = periodo;
+    }
+
+    public BigDecimal getMonto() {
+        return monto;
+    }
+
+    public void setMonto(BigDecimal monto) {
+        this.monto = monto;
+    }
 }

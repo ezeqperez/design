@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Ezequiel on 24/4/2017.
  */
 public class Fixture {
-    public String jsonNoArray(){
+    public String jsonNoArray() {
         String json = "{\n" +
                 "\"empresa\" : \"Juan\",\n" +
                 "\"cuenta\": \"100005454\",\n" +
@@ -31,7 +31,7 @@ public class Fixture {
         return json;
     }
 
-    public String jsonMalo(){
+    public String jsonMalo() {
         String json = "{\n" +
                 "\"empresa\" : \"Juan\",\n" +
                 "\"cuenta\": \"100005454\",\n" +
@@ -48,7 +48,7 @@ public class Fixture {
         return json;
     }
 
-    public String jsonOk(){
+    public String jsonOk() {
         String json = "[\n" +
                 "\t{\n" +
                 "    \"empresa\" : \"Facebook\",\n" +
@@ -78,7 +78,7 @@ public class Fixture {
         return json;
     }
 
-    public Cuenta cuentaFacebook(String periodo){
+    public Cuenta cuentaFacebook(String periodo) {
         Cuenta cuenta = new Cuenta();
         cuenta.setEmpresa("Facebook");
         cuenta.setMonto(new BigDecimal(999));
@@ -86,7 +86,8 @@ public class Fixture {
         cuenta.setCuenta("ModeloInteresante");
         return cuenta;
     }
-    public Cuenta cuentaTwitter(String periodo){
+
+    public Cuenta cuentaTwitter(String periodo) {
         Cuenta cuenta = new Cuenta();
         cuenta.setEmpresa("Twitter");
         cuenta.setMonto(new BigDecimal(999));
@@ -94,7 +95,8 @@ public class Fixture {
         cuenta.setCuenta("ModeloInteresante");
         return cuenta;
     }
-    public List<Cuenta> tresCuentas(){
+
+    public List<Cuenta> tresCuentas() {
         List<Cuenta> tresCuentas = new ArrayList<Cuenta>();
         tresCuentas.add(this.cuentaFacebook("2015"));
         tresCuentas.add(this.cuentaFacebook("2016"));

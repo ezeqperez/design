@@ -16,56 +16,56 @@ import modelo.CuentasViewModel;
 @SuppressWarnings("serial")
 public class SearchCuentasWindow extends SimpleWindow<CuentasViewModel> {
 
-	public SearchCuentasWindow(WindowOwner parent, CuentasViewModel model) {
-		super(parent, model);
-	}
+    public SearchCuentasWindow(WindowOwner parent, CuentasViewModel model) {
+        super(parent, model);
+    }
 
-	@Override
-	protected void addActions(Panel actionsPanel) {
-	}
+    @Override
+    protected void addActions(Panel actionsPanel) {
+    }
 
-	@Override
-	protected void createFormPanel(Panel mainPanel) {
-		this.setTitle("Buscador de cuentas");
-		Panel columnasPanel = new Panel(mainPanel);
-		columnasPanel.setLayout(new ColumnLayout(2));
+    @Override
+    protected void createFormPanel(Panel mainPanel) {
+        this.setTitle("Buscador de cuentas");
+        Panel columnasPanel = new Panel(mainPanel);
+        columnasPanel.setLayout(new ColumnLayout(2));
 
-		new Label(mainPanel).setText("Filtrar por empresa");
-		new TextBox(mainPanel).setWidth(50).bindValueToProperty("empresaFilter");
+        new Label(mainPanel).setText("Filtrar por empresa");
+        new TextBox(mainPanel).setWidth(50).bindValueToProperty("empresaFilter");
 
-		new Label(mainPanel).setText("Filtrar por periodo");
-		new TextBox(mainPanel).setWidth(50).bindValueToProperty("periodoFilter");
+        new Label(mainPanel).setText("Filtrar por periodo");
+        new TextBox(mainPanel).setWidth(50).bindValueToProperty("periodoFilter");
 
-		new Button(mainPanel).setCaption("Buscar Cuentas").onClick(() -> aplicarFiltros());
+        new Button(mainPanel).setCaption("Buscar Cuentas").onClick(() -> aplicarFiltros());
 
-		Table<Cuenta> tabla = new Table<Cuenta>(this, Cuenta.class);
-		tabla.bindItemsToProperty("cuentasFiltradas");
+        Table<Cuenta> tabla = new Table<Cuenta>(this, Cuenta.class);
+        tabla.bindItemsToProperty("cuentasFiltradas");
 
-		Column<Cuenta> empresaColumn = new Column<Cuenta>(tabla);
-		empresaColumn.setTitle("Empresa");
-		empresaColumn.setFixedSize(40);
-		empresaColumn.bindContentsToProperty("empresa");
+        Column<Cuenta> empresaColumn = new Column<Cuenta>(tabla);
+        empresaColumn.setTitle("Empresa");
+        empresaColumn.setFixedSize(40);
+        empresaColumn.bindContentsToProperty("empresa");
 
-		Column<Cuenta> cuentaColumn = new Column<Cuenta>(tabla);
-		cuentaColumn.setTitle("Cuenta");
-		cuentaColumn.setFixedSize(40);
-		cuentaColumn.bindContentsToProperty("cuenta");
-		
-		Column<Cuenta> periodoColumn = new Column<Cuenta>(tabla);
-		periodoColumn.setTitle("Periodo");
-		periodoColumn.setFixedSize(40);
-		periodoColumn.bindContentsToProperty("periodo");
-		
-		Column<Cuenta> montoColumn = new Column<Cuenta>(tabla);
-		montoColumn.setTitle("Monto");
-		montoColumn.setFixedSize(40);
-		montoColumn.bindContentsToProperty("monto");
+        Column<Cuenta> cuentaColumn = new Column<Cuenta>(tabla);
+        cuentaColumn.setTitle("Cuenta");
+        cuentaColumn.setFixedSize(40);
+        cuentaColumn.bindContentsToProperty("cuenta");
 
-		new Button(mainPanel).setCaption("Aceptar").onClick(() -> this.close());
+        Column<Cuenta> periodoColumn = new Column<Cuenta>(tabla);
+        periodoColumn.setTitle("Periodo");
+        periodoColumn.setFixedSize(40);
+        periodoColumn.bindContentsToProperty("periodo");
 
-	}
+        Column<Cuenta> montoColumn = new Column<Cuenta>(tabla);
+        montoColumn.setTitle("Monto");
+        montoColumn.setFixedSize(40);
+        montoColumn.bindContentsToProperty("monto");
 
-	public void aplicarFiltros(){
-		getModelObject().filtrarCuentas();
-	}
+        new Button(mainPanel).setCaption("Aceptar").onClick(() -> this.close());
+
+    }
+
+    public void aplicarFiltros() {
+        getModelObject().filtrarCuentas();
+    }
 }

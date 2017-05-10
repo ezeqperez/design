@@ -11,25 +11,25 @@ import modelo.CuentasViewModel;
 @SuppressWarnings("serial")
 public class AlertWindow extends Dialog<CuentasViewModel> {
 
-	private String mensaje;
+    private String mensaje;
 
-	public AlertWindow(WindowOwner owner, CuentasViewModel model, String mensajeNuevo) {
-		super(owner, model);
-		this.setMensaje(mensajeNuevo);
-	}
+    public AlertWindow(WindowOwner owner, CuentasViewModel model, String mensajeNuevo) {
+        super(owner, model);
+        this.setMensaje(mensajeNuevo);
+    }
 
-	@Override
-	protected void createFormPanel(Panel mainPanel) {
-		new Label(mainPanel).setText(mensaje);
-		new Button(mainPanel).setCaption("Regresar").onClick(() -> this.close());
-	}
+    @Override
+    protected void createFormPanel(Panel mainPanel) {
+        new Label(mainPanel).setText(mensaje);
+        new Button(mainPanel).setCaption("Regresar").onClick(() -> this.close());
+    }
 
-	public String getMensaje() {
-		return mensaje;
-	}
+    public String getMensaje() {
+        return mensaje;
+    }
 
-	public void setMensaje(String mensaje) {
-		this.mensaje = mensaje;
-	}
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
 
 }

@@ -11,16 +11,16 @@ import utils.CuentasUpload;
 import vista.MenuWindow;
 
 public class Aplicacion extends Application {
-	
-	public static void main(String[] args) {
-		new Aplicacion().start();
-	}
 
-	@Override
-	protected Window<?> createMainWindow() {
-		
-		CuentasViewModel cuentasViewModel = new CuentasViewModel(new CuentasUpload());
-		return new MenuWindow(this, cuentasViewModel);
-	}
+    public static void main(String[] args) {
+        new Aplicacion().start();
+    }
+
+    @Override
+    protected Window<?> createMainWindow() {
+
+        CuentasViewModel cuentasViewModel = new CuentasViewModel(new CuentasUpload());
+        return new MenuWindow(this, cuentasViewModel);
+    }
 
 }

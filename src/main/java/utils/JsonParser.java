@@ -15,11 +15,11 @@ public class JsonParser {
         return mapper.writeValueAsString(cuenta);
     }
 
-    public  Cuenta jsonACuenta(JSONObject json){
+    public Cuenta jsonACuenta(JSONObject json) {
         try {
             ObjectMapper mapper = new ObjectMapper();
             return mapper.readValue(json.toString(), Cuenta.class);
-        }catch (IOException e){
+        } catch (IOException e) {
             throw new UserException("El formato del json esta corrupto, reemplaze el archivo e intente nuevamente");
         }
     }
