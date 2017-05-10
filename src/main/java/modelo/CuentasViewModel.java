@@ -15,13 +15,13 @@ public class CuentasViewModel {
     // Esta clase procesa las cuentas que se cargan desde el archivo.
     public CuentasViewModel(CuentasUploader cuentasUploader) {
         this.cuentasUploader = cuentasUploader;
-        this.listaDeCuentas = new ArrayList<Cuenta>();
+        this.cuentas = new ArrayList<Cuenta>();
         this.cuentasFiltradas = new ArrayList<Cuenta>();
     }
 
 
     private CuentasUploader cuentasUploader; // Dependencia
-    private List<Cuenta> listaDeCuentas; // Total de cuentas procesadas
+    private List<Cuenta> cuentas; // Total de cuentas procesadas
     private List<Cuenta> cuentasFiltradas; // Cuentas que cumplen el filtro de empresa y de periodo
 
     private String empresaFilter;
@@ -29,14 +29,14 @@ public class CuentasViewModel {
 
 
     public void cargarCuentas() throws org.json.simple.parser.ParseException {
-        listaDeCuentas.addAll(cuentasUploader.procesarArchivo());
+        cuentas.addAll(cuentasUploader.procesarArchivo());
     }
 
     public void filtrarCuentas() {
         try {
             Objects.requireNonNull(this.periodoFilter);
             Objects.requireNonNull(this.empresaFilter);
-            cuentasFiltradas = listaDeCuentas.stream()
+            cuentasFiltradas = cuentas.stream()
                     .filter(cuenta -> Objects.equals(cuenta.getPeriodo(), this.periodoFilter)
                             && Objects.equals(cuenta.getEmpresa(), this.empresaFilter))
                     .collect(Collectors.toList());
@@ -56,16 +56,16 @@ public class CuentasViewModel {
         this.cuentasUploader = cuentasUploader;
     }
 
-    public List<Cuenta> getListaDeCuentas() {
-        return listaDeCuentas;
+    public List<Cuenta> getCuentas() {
+        return cuentas;
     }
 
-    public void setListaDeCuentas(List<Cuenta> listaDeCuentas) {
-        this.listaDeCuentas = listaDeCuentas;
+    public void setCuentas(List<Cuenta> cuentas) {
+        this.cuentas = cuentas;
     }
 
-    public void addListaDeCuentas(Cuenta cuenta) {
-        this.listaDeCuentas.add(cuenta);
+    public void addCuentas(Cuenta cuenta) {
+        this.cuentas.add(cuenta);
     }
 
     public String getEmpresaFilter() {

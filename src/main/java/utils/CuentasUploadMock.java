@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CuentasUploadMock implements CuentasUploader {
-    List<Cuenta> listaDeCuentas = new ArrayList<Cuenta>();
+    List<Cuenta> cuentas = new ArrayList<Cuenta>();
 
     public List<Cuenta> procesarArchivo() {
         Cuenta cuenta1 = new Cuenta();
@@ -31,7 +31,7 @@ public class CuentasUploadMock implements CuentasUploader {
 
     }
 
-    public void setListaDeCuentas(List<Cuenta> listaDeCuentas) {
-        this.listaDeCuentas = listaDeCuentas;
+    public void setCuentas(List<Cuenta> cuentas) {
+        this.cuentas = cuentas;
     }
 }

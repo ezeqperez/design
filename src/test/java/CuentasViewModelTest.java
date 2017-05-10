@@ -18,7 +18,7 @@ public class CuentasViewModelTest {
         CuentasViewModel viewModel = new CuentasViewModel(fixture.uploadDeTresCuentas());
 
         viewModel.cargarCuentas();
-        Assert.assertEquals(viewModel.getListaDeCuentas().size(), 3);
+        Assert.assertEquals(viewModel.getCuentas().size(), 3);
     }
 
     @Test
@@ -26,7 +26,7 @@ public class CuentasViewModelTest {
         CuentasViewModel viewModel = new CuentasViewModel(fixture.uploadDeTresCuentas());
 
         viewModel.cargarCuentas();
-        Assert.assertTrue(viewModel.getListaDeCuentas().equals(fixture.tresCuentas()));
+        Assert.assertTrue(viewModel.getCuentas().equals(fixture.tresCuentas()));
     }
 
     @Test
@@ -34,14 +34,14 @@ public class CuentasViewModelTest {
         CuentasViewModel viewModel = new CuentasViewModel(fixture.uploadDeTresCuentas());
         viewModel.cargarCuentas();
         viewModel.cargarCuentas();
-        Assert.assertEquals(viewModel.getListaDeCuentas().size(), 6);
+        Assert.assertEquals(viewModel.getCuentas().size(), 6);
     }
 
 
     @Test
     public void filtrarUnaEmpresa() {
         CuentasViewModel viewModel = new CuentasViewModel(new CuentasUpload());
-        viewModel.setListaDeCuentas(fixture.tresCuentas());
+        viewModel.setCuentas(fixture.tresCuentas());
 
         viewModel.setPeriodoFilter("2016");
         viewModel.setEmpresaFilter("Facebook");
@@ -53,7 +53,7 @@ public class CuentasViewModelTest {
     @Test(expected = UserException.class)
     public void sinPeriodoSeteadoRompe() {
         CuentasViewModel viewModel = new CuentasViewModel(new CuentasUpload());
-        viewModel.setListaDeCuentas(fixture.tresCuentas());
+        viewModel.setCuentas(fixture.tresCuentas());
         viewModel.setEmpresaFilter("Facebook");
         viewModel.filtrarCuentas();
     }
@@ -61,7 +61,7 @@ public class CuentasViewModelTest {
     @Test
     public void laBusquedaNoRetornaNada() {
         CuentasViewModel viewModel = new CuentasViewModel(new CuentasUpload());
-        viewModel.setListaDeCuentas(fixture.tresCuentas());
+        viewModel.setCuentas(fixture.tresCuentas());
         viewModel.setEmpresaFilter("Facebook");
         viewModel.setPeriodoFilter("2000");
         viewModel.filtrarCuentas();

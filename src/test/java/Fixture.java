@@ -106,7 +106,7 @@ public class Fixture {
 
     public CuentasUploadMock uploadDeTresCuentas() {
         CuentasUploadMock uploadDeTresCuentas = new CuentasUploadMock();
-        uploadDeTresCuentas.setListaDeCuentas(this.tresCuentas());
+        uploadDeTresCuentas.setCuentas(this.tresCuentas());
         return uploadDeTresCuentas;
     }
 

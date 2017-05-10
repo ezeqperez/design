@@ -17,7 +17,7 @@ public class CuentasUpload implements CuentasUploader {
 
 
     public List<Cuenta> procesarArchivo() {
-        List<Cuenta> listaDeCuentas = new ArrayList<Cuenta>();
+        List<Cuenta> cuentas = new ArrayList<Cuenta>();
         // El parser es quien se encarga de cargar el archivo desde la ruta
         // especificada
         JSONParser parser = new JSONParser();
@@ -33,14 +33,14 @@ public class CuentasUpload implements CuentasUploader {
             JSONArray jsonArray = (JSONArray) obj;
             jsonArray.forEach(item -> {
                 JSONObject json = (JSONObject) item;
-                listaDeCuentas.add(jsonParser.jsonACuenta(json));
+                cuentas.add(jsonParser.jsonACuenta(json));
             });
         } catch (IOException e) {
             throw new UserException("No se encontro el archivo");
         } catch (org.json.simple.parser.ParseException e) {
             throw new UserException("El archivo no se pudo cargar, por favor verifique que el formato sea el correcto");
         }
-        return listaDeCuentas;
+        return cuentas;
     }
 
     public String getRuta() {
