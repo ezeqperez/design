@@ -19,13 +19,13 @@ public class MenuWindow extends SimpleWindow<CuentasViewModel> {
 
     @Override
     protected void createFormPanel(Panel mainPanel) {
-        this.setTitle("¡Bienvenido!");
+        this.setTitle("ï¿½Bienvenido!");
         Panel columnasPanel = new Panel(mainPanel);
         columnasPanel.setLayout(new ColumnLayout(2));
 
-        new Button(columnasPanel).setCaption("Cargar cuentas").onClick(() -> this.cargarCuentas());
+        new Button(columnasPanel).setCaption("Cargar cuentas").onClick(this::cargarCuentas);
 
-        new Button(columnasPanel).setCaption("Consultar cuentas").onClick(() -> this.buscarCuentas());
+        new Button(columnasPanel).setCaption("Consultar cuentas").onClick(this::buscarCuentas);
 
         new FileSelector(mainPanel)
                 .setCaption("Buscar Archivo")
@@ -42,12 +42,12 @@ public class MenuWindow extends SimpleWindow<CuentasViewModel> {
         }
     }
 
-    public void mostrarAlerta(String mensaje) {
+    private void mostrarAlerta(String mensaje) {
         AlertWindow dialog = new AlertWindow(getOwner(), getModelObject(), mensaje);
         dialog.open();
     }
 
-    public void buscarCuentas() {
+    private void buscarCuentas() {
         SearchCuentasWindow dialog = new SearchCuentasWindow(getOwner(), getModelObject());
         dialog.open();
     }
