@@ -6,33 +6,15 @@ import java.math.BigDecimal;
 
 @Observable
 public class Cuenta {
-    private String empresa;
-    private String cuenta;
-    private String periodo;
+    private String nombre;
     private BigDecimal monto;
 
-    public String getEmpresa() {
-        return empresa;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setEmpresa(String empresa) {
-        this.empresa = empresa;
-    }
-
-    public String getCuenta() {
-        return cuenta;
-    }
-
-    public void setCuenta(String cuenta) {
-        this.cuenta = cuenta;
-    }
-
-    public String getPeriodo() {
-        return periodo;
-    }
-
-    public void setPeriodo(String periodo) {
-        this.periodo = periodo;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public BigDecimal getMonto() {

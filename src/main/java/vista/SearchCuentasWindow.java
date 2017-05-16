@@ -11,12 +11,12 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 import modelo.Cuenta;
-import modelo.CuentasViewModel;
+import modelo.EmpresasViewModel;
 
 @SuppressWarnings("serial")
-public class SearchCuentasWindow extends SimpleWindow<CuentasViewModel> {
+public class SearchCuentasWindow extends SimpleWindow<EmpresasViewModel> {
 
-    public SearchCuentasWindow(WindowOwner parent, CuentasViewModel model) {
+    public SearchCuentasWindow(WindowOwner parent, EmpresasViewModel model) {
         super(parent, model);
     }
 
@@ -66,6 +66,6 @@ public class SearchCuentasWindow extends SimpleWindow<CuentasViewModel> {
     }
 
     public void aplicarFiltros() {
-        getModelObject().filtrarCuentas();
+        getModelObject().filtrarEmpresas();
     }
 }

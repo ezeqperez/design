@@ -1,6 +1,6 @@
 package vista;
 
-import modelo.CuentasViewModel;
+import modelo.EmpresasViewModel;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.FileSelector;
@@ -11,10 +11,10 @@ import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.model.UserException;
 
 @SuppressWarnings("serial")
-public class MenuWindow extends SimpleWindow<CuentasViewModel> {
+public class MenuWindow extends SimpleWindow<EmpresasViewModel> {
 
-    public MenuWindow(WindowOwner owner, CuentasViewModel cuentasViewModel) {
-        super(owner, cuentasViewModel);
+    public MenuWindow(WindowOwner owner, EmpresasViewModel empresasViewModel) {
+        super(owner, empresasViewModel);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class MenuWindow extends SimpleWindow<CuentasViewModel> {
 
     private void cargarCuentas() {
         try {
-            getModelObject().cargarCuentas();
+            getModelObject().cargarEmpresas();
             mostrarAlerta("Las cuentas se cargaron correctamente :D");
         } catch (org.json.simple.parser.ParseException e) {
             throw new UserException("Hubo un problema al cargar el archivo");

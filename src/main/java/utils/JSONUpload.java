@@ -1,6 +1,6 @@
 package utils;
 
-import modelo.Cuenta;
+import modelo.Empresa;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -11,10 +11,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CuentasUpload implements CuentasUploader {
+public class JSONUpload implements IJSONUploader {
 
-    public List<Cuenta> procesarArchivo(String ruta) {
-        List<Cuenta> cuentas = new ArrayList<Cuenta>();
+    public List<Empresa> procesarArchivo(String ruta) {
+        List<Empresa> empresas = new ArrayList<Empresa>();
         // El parser es quien se encarga de cargar el archivo desde la ruta
         // especificada
         JSONParser parser = new JSONParser();
@@ -30,14 +30,14 @@ public class CuentasUpload implements CuentasUploader {
             JSONArray jsonArray = (JSONArray) obj;
             jsonArray.forEach(item -> {
                 JSONObject json = (JSONObject) item;
-                cuentas.add(jsonParser.jsonACuenta(json));
+                empresas.add(jsonParser.jsonAEmpresa(json));
             });
         } catch (IOException e) {
             throw new UserException("No se encontro el archivo");
         } catch (org.json.simple.parser.ParseException e) {
             throw new UserException("El archivo no se pudo cargar, por favor verifique que el formato sea el correcto");
         }
-        return cuentas;
+        return empresas;
     }
 
 }

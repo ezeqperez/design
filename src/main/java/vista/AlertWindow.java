@@ -6,14 +6,14 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.WindowOwner;
 
-import modelo.CuentasViewModel;
+import modelo.EmpresasViewModel;
 
 @SuppressWarnings("serial")
-public class AlertWindow extends Dialog<CuentasViewModel> {
+public class AlertWindow extends Dialog<EmpresasViewModel> {
 
     private String mensaje;
 
-    public AlertWindow(WindowOwner owner, CuentasViewModel model, String mensajeNuevo) {
+    public AlertWindow(WindowOwner owner, EmpresasViewModel model, String mensajeNuevo) {
         super(owner, model);
         this.setMensaje(mensajeNuevo);
     }
