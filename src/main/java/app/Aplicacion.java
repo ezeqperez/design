@@ -1,13 +1,9 @@
 package app;
 
-import java.util.ArrayList;
-
 import org.uqbar.arena.Application;
 import org.uqbar.arena.windows.Window;
-
-import modelo.Cuenta;
-import modelo.CuentasViewModel;
 import utils.CuentasUpload;
+import modelo.MenuViewModel;
 import vista.MenuWindow;
 
 public class Aplicacion extends Application {
@@ -18,9 +14,7 @@ public class Aplicacion extends Application {
 
     @Override
     protected Window<?> createMainWindow() {
-
-        CuentasViewModel cuentasViewModel = new CuentasViewModel(new CuentasUpload());
-        return new MenuWindow(this, cuentasViewModel);
+        final MenuViewModel menuViewModel = new MenuViewModel(new CuentasUpload());
+        return new MenuWindow(this, menuViewModel);
     }
-
 }
