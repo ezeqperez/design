@@ -1,7 +1,6 @@
 package modelo;
 
 import org.uqbar.commons.utils.Observable;
-
 import java.math.BigDecimal;
 
 @Observable

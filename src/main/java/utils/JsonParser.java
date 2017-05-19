@@ -1,9 +1,7 @@
 package utils;
 
 import java.io.IOException;
-
 import org.codehaus.jackson.map.ObjectMapper;
-
 import modelo.Cuenta;
 import org.json.simple.JSONObject;
 import org.uqbar.commons.model.UserException;
@@ -15,7 +13,7 @@ public class JsonParser {
         return mapper.writeValueAsString(cuenta);
     }
 
-    public Cuenta jsonACuenta(JSONObject json) {
+    Cuenta jsonACuenta(JSONObject json) {
         try {
             ObjectMapper mapper = new ObjectMapper();
             return mapper.readValue(json.toString(), Cuenta.class);
