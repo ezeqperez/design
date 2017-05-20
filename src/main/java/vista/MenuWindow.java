@@ -1,6 +1,7 @@
 package vista;
 
-import modelo.EmpresasViewModel;
+import modelo.dominio.Cuenta;
+import modelo.viewModel.EmpresasViewModel;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.FileSelector;
@@ -9,17 +10,23 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.model.UserException;
+import modelo.viewModel.MenuViewModel;
+import utils.IJSONUploader;
+import utils.JSONUpload;
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("serial")
-public class MenuWindow extends SimpleWindow<EmpresasViewModel> {
+public class MenuWindow extends SimpleWindow<MenuViewModel> {
+    private List<Cuenta> cuentas = new ArrayList<>();
 
-    public MenuWindow(WindowOwner owner, EmpresasViewModel empresasViewModel) {
-        super(owner, empresasViewModel);
+    public MenuWindow(WindowOwner owner, MenuViewModel menuViewModel) {
+        super(owner, menuViewModel);
     }
 
     @Override
     protected void createFormPanel(Panel mainPanel) {
-        this.setTitle("�Bienvenido!");
+        this.setTitle("Bienvenido!");
         Panel columnasPanel = new Panel(mainPanel);
         columnasPanel.setLayout(new ColumnLayout(2));
 
@@ -35,26 +42,28 @@ public class MenuWindow extends SimpleWindow<EmpresasViewModel> {
 
     private void cargarCuentas() {
         try {
-            getModelObject().cargarEmpresas();
-            mostrarAlerta("Las cuentas se cargaron correctamente :D");
+            MenuViewModel menuViewModel = new MenuViewModel(new JSONUpload());
+            cuentas = menuViewModel.cargarCuentas();
+            //mostrarAlerta("Las cuentas se cargaron correctamente :D");
         } catch (org.json.simple.parser.ParseException e) {
             throw new UserException("Hubo un problema al cargar el archivo");
         }
     }
 
-    private void mostrarAlerta(String mensaje) {
-        AlertWindow dialog = new AlertWindow(getOwner(), getModelObject(), mensaje);
+    /*private void mostrarAlerta(String mensaje) {
+        AlertWindow dialog = new AlertWindow(getOwner(), new EmpresasViewModel(getModelObject().getCuentas()), mensaje);
         dialog.open();
-    }
+    }*/
 
     private void buscarCuentas() {
-        SearchCuentasWindow dialog = new SearchCuentasWindow(getOwner(), getModelObject());
+
+        EmpresasViewModel empresaViewModel = new EmpresasViewModel(new JSONUpload());
+        SearchCuentasWindow dialog = new SearchCuentasWindow(getOwner(), empresaViewModel);
         dialog.open();
     }
 
     @Override
     protected void addActions(Panel arg0) {
-
     }
 
 }

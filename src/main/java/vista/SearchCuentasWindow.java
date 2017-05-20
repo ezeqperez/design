@@ -9,9 +9,8 @@ import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
-
-import modelo.Cuenta;
-import modelo.EmpresasViewModel;
+import modelo.dominio.Cuenta;
+import modelo.viewModel.EmpresasViewModel;
 
 @SuppressWarnings("serial")
 public class SearchCuentasWindow extends SimpleWindow<EmpresasViewModel> {
@@ -36,32 +35,32 @@ public class SearchCuentasWindow extends SimpleWindow<EmpresasViewModel> {
         new Label(mainPanel).setText("Filtrar por periodo");
         new TextBox(mainPanel).setWidth(50).bindValueToProperty("periodoFilter");
 
-        new Button(mainPanel).setCaption("Buscar Cuentas").onClick(() -> aplicarFiltros());
+        new Button(mainPanel).setCaption("Buscar Cuentas").onClick(this::aplicarFiltros);
 
-        Table<Cuenta> tabla = new Table<Cuenta>(this, Cuenta.class);
+        Table<Cuenta> tabla = new Table<>(this, Cuenta.class);
         tabla.bindItemsToProperty("cuentasFiltradas");
 
-        Column<Cuenta> empresaColumn = new Column<Cuenta>(tabla);
+        Column<Cuenta> empresaColumn = new Column<>(tabla);
         empresaColumn.setTitle("Empresa");
         empresaColumn.setFixedSize(40);
         empresaColumn.bindContentsToProperty("empresa");
 
-        Column<Cuenta> cuentaColumn = new Column<Cuenta>(tabla);
+        Column<Cuenta> cuentaColumn = new Column<>(tabla);
         cuentaColumn.setTitle("Cuenta");
         cuentaColumn.setFixedSize(40);
         cuentaColumn.bindContentsToProperty("cuenta");
 
-        Column<Cuenta> periodoColumn = new Column<Cuenta>(tabla);
+        Column<Cuenta> periodoColumn = new Column<>(tabla);
         periodoColumn.setTitle("Periodo");
         periodoColumn.setFixedSize(40);
         periodoColumn.bindContentsToProperty("periodo");
 
-        Column<Cuenta> montoColumn = new Column<Cuenta>(tabla);
+        Column<Cuenta> montoColumn = new Column<>(tabla);
         montoColumn.setTitle("Monto");
         montoColumn.setFixedSize(40);
         montoColumn.bindContentsToProperty("monto");
 
-        new Button(mainPanel).setCaption("Aceptar").onClick(() -> this.close());
+        new Button(mainPanel).setCaption("Aceptar").onClick(this::close);
 
     }
 

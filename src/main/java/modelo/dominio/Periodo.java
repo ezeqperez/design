@@ -1,10 +1,9 @@
-package modelo;
+package modelo.dominio;
+
+import modelo.dominio.Cuenta;
 
 import java.util.List;
 
-/**
- * Created by feder on 14/05/2017.
- */
 public class Periodo {
 
     private List<Cuenta> cuentas;

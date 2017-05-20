@@ -1,10 +1,8 @@
 package modelo.repositorio;
 
-import modelo.Empresa;
+import modelo.dominio.Empresa;
 import java.util.List;
-/**
- * Created by feder on 14/05/2017.
- */
+
 public class EmpresasRepository {
 
     private List<Empresa> empresas;
@@ -14,9 +12,9 @@ public class EmpresasRepository {
     }
 
     public Empresa filtrarEmpresas (String nombre) {
-        for (Empresa e : empresas) {
-            if (e.getNombre().equalsIgnoreCase(nombre)){
-                return e;
+        for (Empresa empresa : empresas) {
+            if (empresa.getNombre().equalsIgnoreCase(nombre)){
+                return empresa;
             }
         }
         return null;

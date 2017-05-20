@@ -5,8 +5,7 @@ import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.WindowOwner;
-
-import modelo.EmpresasViewModel;
+import modelo.viewModel.EmpresasViewModel;
 
 @SuppressWarnings("serial")
 public class AlertWindow extends Dialog<EmpresasViewModel> {
@@ -21,14 +20,14 @@ public class AlertWindow extends Dialog<EmpresasViewModel> {
     @Override
     protected void createFormPanel(Panel mainPanel) {
         new Label(mainPanel).setText(mensaje);
-        new Button(mainPanel).setCaption("Regresar").onClick(() -> this.close());
+        new Button(mainPanel).setCaption("Aceptar").onClick(this::close);
     }
 
     public String getMensaje() {
         return mensaje;
     }
 
-    public void setMensaje(String mensaje) {
+    private void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
 

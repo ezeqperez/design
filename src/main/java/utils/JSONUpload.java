@@ -1,11 +1,10 @@
 package utils;
 
-import modelo.Empresa;
+import modelo.dominio.Empresa;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.uqbar.commons.model.UserException;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,16 +13,9 @@ import java.util.List;
 public class JSONUpload implements IJSONUploader {
 
     public List<Empresa> procesarArchivo(String ruta) {
-        List<Empresa> empresas = new ArrayList<Empresa>();
-        // El parser es quien se encarga de cargar el archivo desde la ruta
-        // especificada
+        List<Empresa> empresas = new ArrayList<>();
         JSONParser parser = new JSONParser();
-
-        // El jsonParser va ser quien se encarga de transformar el json cargado
-        // a una cuenta,
-        // que va a ser devuelta al viewModel
         JsonParser jsonParser = new JsonParser();
-
         Object obj;
         try {
             obj = parser.parse(new FileReader(ruta));
@@ -39,5 +31,4 @@ public class JSONUpload implements IJSONUploader {
         }
         return empresas;
     }
-
 }
