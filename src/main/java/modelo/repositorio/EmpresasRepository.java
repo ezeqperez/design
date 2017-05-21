@@ -1,11 +1,13 @@
 package modelo.repositorio;
 
 import modelo.dominio.Empresa;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class EmpresasRepository {
 
-    private List<Empresa> empresas;
+    private List<Empresa> empresas = new ArrayList<>();
 
     public void agregarEmpresas(List<Empresa> empresasAAgregar) throws org.json.simple.parser.ParseException {
         empresas.addAll(empresasAAgregar);

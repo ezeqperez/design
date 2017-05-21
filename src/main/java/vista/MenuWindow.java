@@ -1,6 +1,6 @@
 package vista;
 
-import modelo.dominio.Cuenta;
+import modelo.dominio.Empresa;
 import modelo.viewModel.EmpresasViewModel;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.widgets.Button;
@@ -11,14 +11,13 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.model.UserException;
 import modelo.viewModel.MenuViewModel;
-import utils.IJSONUploader;
 import utils.JSONUpload;
 import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("serial")
 public class MenuWindow extends SimpleWindow<MenuViewModel> {
-    private List<Cuenta> cuentas = new ArrayList<>();
+    private List<Empresa> empresas = new ArrayList<>();
 
     public MenuWindow(WindowOwner owner, MenuViewModel menuViewModel) {
         super(owner, menuViewModel);
@@ -30,7 +29,7 @@ public class MenuWindow extends SimpleWindow<MenuViewModel> {
         Panel columnasPanel = new Panel(mainPanel);
         columnasPanel.setLayout(new ColumnLayout(2));
 
-        new Button(columnasPanel).setCaption("Cargar cuentas").onClick(this::cargarCuentas);
+        new Button(columnasPanel).setCaption("Cargar empresas").onClick(this::cargarEmpresas);
 
         new Button(columnasPanel).setCaption("Consultar cuentas").onClick(this::buscarCuentas);
 
@@ -40,10 +39,10 @@ public class MenuWindow extends SimpleWindow<MenuViewModel> {
         new Label(mainPanel).bindValueToProperty("ruta");
     }
 
-    private void cargarCuentas() {
+    private void cargarEmpresas() {
         try {
             MenuViewModel menuViewModel = new MenuViewModel(new JSONUpload());
-            cuentas = menuViewModel.cargarCuentas();
+            empresas = menuViewModel.cargarEmpresas();
             //mostrarAlerta("Las cuentas se cargaron correctamente :D");
         } catch (org.json.simple.parser.ParseException e) {
             throw new UserException("Hubo un problema al cargar el archivo");
@@ -56,8 +55,7 @@ public class MenuWindow extends SimpleWindow<MenuViewModel> {
     }*/
 
     private void buscarCuentas() {
-
-        EmpresasViewModel empresaViewModel = new EmpresasViewModel(new JSONUpload());
+        EmpresasViewModel empresaViewModel = new EmpresasViewModel(getModelObject().getRepoEmpresas());
         SearchCuentasWindow dialog = new SearchCuentasWindow(getOwner(), empresaViewModel);
         dialog.open();
     }

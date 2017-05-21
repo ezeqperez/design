@@ -65,6 +65,6 @@ public class SearchCuentasWindow extends SimpleWindow<EmpresasViewModel> {
     }
 
     public void aplicarFiltros() {
-        getModelObject().filtrarEmpresas();
+        getModelObject().filtrarCuentas();
     }
 }

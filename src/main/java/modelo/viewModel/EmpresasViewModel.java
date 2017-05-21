@@ -1,31 +1,39 @@
 package modelo.viewModel;
 
+import modelo.dominio.Cuenta;
 import modelo.dominio.Empresa;
 import modelo.repositorio.EmpresasRepository;
 import org.uqbar.commons.utils.Observable;
-import utils.IJSONUploader;
-import java.util.ArrayList;
+
+import java.util.List;
 
 @Observable
 public class EmpresasViewModel {
-    // Esta clase procesa las empresas que se cargan desde el archivo.
-    private IJSONUploader jsonUploader; // Dependencia
-    private EmpresasRepository repoEmpresas = new EmpresasRepository();
-    //private List<Cuenta> cuentasFiltradas; // Cuentas que cumplen el filtro de empresa y de periodo
+    private EmpresasRepository repoEmpresas;
     private String empresaFilter;
     private int periodoFilter;
+    private List<Cuenta> cuentasFiltradas;
 
-    public EmpresasViewModel(IJSONUploader empresasUploader) {
-        this.jsonUploader = empresasUploader;
-        //this.empresas = new ArrayList<Empresa>();
-        //this.cuentasFiltradas = new ArrayList<Cuenta>();
+    public EmpresasViewModel(EmpresasRepository repoEmpresas) {
+        this.repoEmpresas = repoEmpresas;
     }
 
-    public void filtrarEmpresas() {
-        repoEmpresas.filtrarEmpresas(empresaFilter);
+    public void filtrarCuentas() {
+        setCuentasFiltradas(repoEmpresas.filtrarEmpresas(empresaFilter).getPeriodo(periodoFilter).getCuentas());
     }
 
-    // Getters y setters
+    public List<Cuenta> getCuentasFiltradas() {
+        return cuentasFiltradas;
+    }
+
+    public void setCuentasFiltradas(List<Cuenta> cuentasFiltradas) {
+        this.cuentasFiltradas = cuentasFiltradas;
+    }
+
+    public String getEmpresaFilter() {
+        return empresaFilter;
+    }
+
     public void setEmpresaFilter(String empresaFilter) {
         this.empresaFilter = empresaFilter;
     }
@@ -36,6 +44,15 @@ public class EmpresasViewModel {
 
     public void setPeriodoFilter(int periodoFilter) {
         this.periodoFilter = periodoFilter;
+    }
+
+    public EmpresasRepository getRepoEmpresas() {
+        return repoEmpresas;
+
+    }
+
+    public void setRepoEmpresas(EmpresasRepository repoEmpresas) {
+        this.repoEmpresas = repoEmpresas;
     }
 
 }

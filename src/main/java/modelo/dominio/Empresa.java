@@ -34,7 +34,12 @@ public class Empresa {
     }
 
 
-
-
-
+    public Periodo getPeriodo(int periodoFilter) {
+        for (Periodo p : periodos) {
+            if (p.getPeriodo()==periodoFilter){
+                return p;
+            }
+        }
+        return null;
+    }
 }

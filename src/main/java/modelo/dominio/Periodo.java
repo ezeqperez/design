@@ -1,12 +1,11 @@
 package modelo.dominio;
 
-import modelo.dominio.Cuenta;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class Periodo {
 
-    private List<Cuenta> cuentas;
+    private List<Cuenta> cuentas = new ArrayList<>();
     private int anio;
 
     public int getPeriodo (){
