@@ -11,7 +11,7 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.model.UserException;
 import modelo.viewModel.MenuViewModel;
-import utils.JSONUpload;
+import utils.Upload;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +41,7 @@ public class MenuWindow extends SimpleWindow<MenuViewModel> {
 
     private void cargarEmpresas() {
         try {
-            MenuViewModel menuViewModel = new MenuViewModel(new JSONUpload());
+            MenuViewModel menuViewModel = new MenuViewModel(new Upload());
             empresas = menuViewModel.cargarEmpresas();
             //mostrarAlerta("Las cuentas se cargaron correctamente :D");
         } catch (org.json.simple.parser.ParseException e) {

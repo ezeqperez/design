@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JSONUpload implements IJSONUploader {
+public class Upload implements Uploader {
 
     public List<Empresa> procesarArchivo(String ruta) {
         List<Empresa> empresas = new ArrayList<>();
