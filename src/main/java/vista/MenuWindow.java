@@ -1,7 +1,7 @@
 package vista;
 
-import modelo.dominio.Empresa;
 import modelo.viewModel.EmpresasViewModel;
+import org.json.simple.parser.ParseException;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.FileSelector;
@@ -11,13 +11,9 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.model.UserException;
 import modelo.viewModel.MenuViewModel;
-import utils.Upload;
-import java.util.ArrayList;
-import java.util.List;
 
 @SuppressWarnings("serial")
 public class MenuWindow extends SimpleWindow<MenuViewModel> {
-    private List<Empresa> empresas = new ArrayList<>();
 
     public MenuWindow(WindowOwner owner, MenuViewModel menuViewModel) {
         super(owner, menuViewModel);
@@ -33,18 +29,27 @@ public class MenuWindow extends SimpleWindow<MenuViewModel> {
 
         new Button(columnasPanel).setCaption("Consultar cuentas").onClick(this::buscarCuentas);
 
+        new Button(columnasPanel).setCaption("Cargar indicadores").onClick(this::cargarIndicadores);
+
         new FileSelector(mainPanel)
                 .setCaption("Buscar Archivo")
                 .bindValueToProperty("ruta");
         new Label(mainPanel).bindValueToProperty("ruta");
     }
 
+    private void cargarIndicadores() {
+        try {
+            getModelObject().cargarIndicadores();
+        } catch (ParseException e) {
+            throw new UserException("Hubo un problema al cargar el archivo");
+        }
+    }
+
     private void cargarEmpresas() {
         try {
-            MenuViewModel menuViewModel = new MenuViewModel(new Upload());
-            empresas = menuViewModel.cargarEmpresas();
-            //mostrarAlerta("Las cuentas se cargaron correctamente :D");
-        } catch (org.json.simple.parser.ParseException e) {
+            getModelObject().cargarEmpresas();
+            //mostrarAlerta("Los empresas se cargaron correctamente :D");
+        } catch (ParseException e) {
             throw new UserException("Hubo un problema al cargar el archivo");
         }
     }

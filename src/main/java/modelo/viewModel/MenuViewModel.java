@@ -2,37 +2,35 @@ package modelo.viewModel;
 
 import modelo.dominio.Empresa;
 import modelo.repositorio.EmpresasRepository;
+import org.json.simple.parser.ParseException;
 import org.uqbar.commons.utils.Observable;
-import utils.Uploader;
-import utils.Upload;
+import utils.Empresas.EmpresasUploader;
+import utils.Empresas.EmpresasUpload;
+import utils.Indicadores.IndicadoresUpload;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Observable
 public class MenuViewModel {
     private EmpresasRepository repoEmpresas = new EmpresasRepository();
-    private Uploader iJsonUploader; // Dependencia
-    private List<Empresa> empresas = new ArrayList<>();
+    private EmpresasUploader empresasUploader; // Dependencia
     private String ruta;  //Ruta donde se va a buscar el archivo a procesar
+    private String rutaIndicadores;
 
-    public MenuViewModel(Uploader iJsonUploader) {
-        this.iJsonUploader = iJsonUploader;
+    public MenuViewModel(EmpresasUploader iJsonEmpresasUploader) {
+        this.empresasUploader = iJsonEmpresasUploader;
         this.ruta = "C:\\test.json"; //Comienza con una ruta por defecto
     }
 
-    public List<Empresa> cargarEmpresas() throws org.json.simple.parser.ParseException {
-        Upload upload = new Upload();
-        setEmpresas(upload.procesarArchivo(ruta));
-        repoEmpresas.agregarEmpresas(getEmpresas());
-        return getEmpresas();
+    public void cargarEmpresas() throws ParseException {
+        final EmpresasUpload empresasUpload = new EmpresasUpload();
+        repoEmpresas.agregarEmpresas(empresasUpload.procesarArchivo(ruta));
     }
 
-    public List<Empresa> getEmpresas() {
-        return empresas;
-    }
-
-    public void setEmpresas(List<Empresa> empresas) {
-        this.empresas = empresas;
+    public void cargarIndicadores() throws ParseException {
+        final IndicadoresUpload indicadoresUpload = new IndicadoresUpload();
+        indicadoresUpload.cargarIndicadores(rutaIndicadores);
     }
 
     public String getRuta() {
@@ -51,11 +49,12 @@ public class MenuViewModel {
         this.repoEmpresas = repoEmpresas;
     }
 
-    public Uploader getiJsonUploader() {
-        return iJsonUploader;
+    public EmpresasUploader getEmpresasUploader() {
+        return empresasUploader;
     }
 
-    public void setiJsonUploader(Uploader iJsonUploader) {
-        this.iJsonUploader = iJsonUploader;
+    public void setEmpresasUploader(EmpresasUploader iJsonEmpresasUploader) {
+        empresasUploader = iJsonEmpresasUploader;
     }
+
 }

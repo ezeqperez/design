@@ -1,20 +1,17 @@
-import modelo.Cuenta;
+package test;
+
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
-
 import org.junit.rules.ExpectedException;
 import org.uqbar.commons.model.UserException;
-import utils.CuentasUpload;
-
-import java.util.List;
 
 public class CuentasUploadTest {
     Fixture fixture = new Fixture();
 
     @Rule
     public ExpectedException expecterEx = ExpectedException.none();
-
+/*
     @Test
     public void noEncuentraElArchivo() {
         expecterEx.expect(UserException.class);
@@ -52,5 +49,5 @@ public class CuentasUploadTest {
         CuentasUpload cuentasUpload = new CuentasUpload();
         List<Cuenta> cuentasCargadas = cuentasUpload.procesarArchivo("C:\\Users\\Ezequiel\\Intellij\\Tp1\\src\\main\\resources\\jsonOk.json");
         Assert.assertEquals(cuentasCargadas.size(), 8);
-    }
+    }*/
 }

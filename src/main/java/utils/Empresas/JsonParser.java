@@ -1,4 +1,4 @@
-package utils;
+package utils.Empresas;
 
 import com.google.gson.Gson;
 import modelo.dominio.Empresa;

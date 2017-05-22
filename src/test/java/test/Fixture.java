@@ -1,13 +1,7 @@
-import modelo.Cuenta;
-import utils.CuentasUploadMock;
+package test;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * Created by Ezequiel on 24/4/2017.
- */
 public class Fixture {
     public String jsonNoArray() {
         String json = "{\n" +
@@ -77,7 +71,7 @@ public class Fixture {
                 "]";
         return json;
     }
-
+/*
     public Cuenta cuentaFacebook(String periodo) {
         Cuenta cuenta = new Cuenta();
         cuenta.setEmpresa("Facebook");
@@ -109,5 +103,5 @@ public class Fixture {
         uploadDeTresCuentas.setCuentas(this.tresCuentas());
         return uploadDeTresCuentas;
     }
-
+*/
 }

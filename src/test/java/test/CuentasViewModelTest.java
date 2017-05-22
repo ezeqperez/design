@@ -1,18 +1,10 @@
-import modelo.Cuenta;
-import modelo.CuentasViewModel;
-import org.junit.Assert;
-import org.junit.Test;
-import org.uqbar.commons.model.UserException;
-import utils.CuentasUpload;
-
-import java.util.ArrayList;
-
+package test;
 
 public class CuentasViewModelTest {
 
     Fixture fixture = new Fixture();
 
-
+/*
     @Test
     public void testProcesarTresCuentas() throws org.json.simple.parser.ParseException {
         CuentasViewModel viewModel = new CuentasViewModel(fixture.uploadDeTresCuentas());
@@ -66,5 +58,5 @@ public class CuentasViewModelTest {
         viewModel.setPeriodoFilter("2000");
         viewModel.filtrarCuentas();
         Assert.assertEquals(viewModel.getCuentasFiltradas(), new ArrayList<Cuenta>());
-    }
+    }*/
 }

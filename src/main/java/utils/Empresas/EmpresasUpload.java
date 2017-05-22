@@ -1,16 +1,17 @@
-package utils;
+package utils.Empresas;
 
 import modelo.dominio.Empresa;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.uqbar.commons.model.UserException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Upload implements Uploader {
+public class EmpresasUpload implements EmpresasUploader {
 
     public List<Empresa> procesarArchivo(String ruta) {
         List<Empresa> empresas = new ArrayList<>();
@@ -26,7 +27,7 @@ public class Upload implements Uploader {
             });
         } catch (IOException e) {
             throw new UserException("No se encontro el archivo");
-        } catch (org.json.simple.parser.ParseException e) {
+        } catch (ParseException e) {
             throw new UserException("El archivo no se pudo cargar, por favor verifique que el formato sea el correcto");
         }
         return empresas;
