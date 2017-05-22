@@ -2,8 +2,8 @@ package app;
 
 import org.uqbar.arena.Application;
 import org.uqbar.arena.windows.Window;
-import utils.CuentasUpload;
-import modelo.MenuViewModel;
+import utils.JSONUpload;
+import modelo.viewModel.MenuViewModel;
 import vista.MenuWindow;
 
 public class Aplicacion extends Application {
@@ -14,7 +14,8 @@ public class Aplicacion extends Application {
 
     @Override
     protected Window<?> createMainWindow() {
-        final MenuViewModel menuViewModel = new MenuViewModel(new CuentasUpload());
+        final MenuViewModel menuViewModel = new MenuViewModel(new JSONUpload());
         return new MenuWindow(this, menuViewModel);
     }
 }
+

@@ -1,25 +1,14 @@
 package utils;
 
-import java.io.IOException;
-import org.codehaus.jackson.map.ObjectMapper;
-import modelo.Cuenta;
+import com.google.gson.Gson;
+import modelo.dominio.Empresa;
 import org.json.simple.JSONObject;
-import org.uqbar.commons.model.UserException;
 
 public class JsonParser {
-    //Transforma una cuenta en un string
-    public String parsearCuenta(Cuenta cuenta) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.writeValueAsString(cuenta);
-    }
 
-    Cuenta jsonACuenta(JSONObject json) {
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            return mapper.readValue(json.toString(), Cuenta.class);
-        } catch (IOException e) {
-            throw new UserException("El formato del json esta corrupto, reemplaze el archivo e intente nuevamente");
-        }
+    Empresa jsonAEmpresa(JSONObject json) {
+            Gson gson = new Gson();
+            return gson.fromJson(json.toString(), Empresa.class);
     }
 
 }
