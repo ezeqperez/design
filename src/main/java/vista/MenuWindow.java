@@ -1,6 +1,7 @@
 package vista;
 
 import modelo.viewModel.EmpresasViewModel;
+import utils.Excepciones.*;
 import org.json.simple.parser.ParseException;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.widgets.Button;
@@ -38,20 +39,12 @@ public class MenuWindow extends SimpleWindow<MenuViewModel> {
     }
 
     private void cargarIndicadores() {
-        try {
             getModelObject().cargarIndicadores();
-        } catch (ParseException e) {
-            throw new UserException("Hubo un problema al cargar el archivo");
-        }
     }
 
     private void cargarEmpresas() {
-        try {
             getModelObject().cargarEmpresas();
             //mostrarAlerta("Los empresas se cargaron correctamente :D");
-        } catch (ParseException e) {
-            throw new UserException("Hubo un problema al cargar el archivo");
-        }
     }
 
     /*private void mostrarAlerta(String mensaje) {
