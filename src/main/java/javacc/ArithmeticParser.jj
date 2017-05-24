@@ -1,0 +1,34 @@
+options{ STATIC = false; JDK_VERSION = "1.8"; }
+PARSERBEGIN(ArithmeticParser)
+
+package utils.Indicadores;
+
+public class ArithmeticParser {
+
+}
+PARSER_END(ArithmeticParser)
+
+    SKIP :
+    {
+        " "
+        | "\t"
+        | "\r"
+        | "\n"
+    }
+
+  TOKEN:{
+          <EQUALS: "=">
+       |  <MULTIPLY:  "*">
+       |  <DIVIDE: "/">
+       |  <ADD: "+">
+       |  <SUBTRACT: "-">
+       |  <LPAREN: "(">
+       |  <RPAREN: ")">
+       | <INT:(["0"-"9"])> // no se si esnecesario
+    }
+
+    int parsear(){
+    }
+
+    //definif las expresiones
+}
