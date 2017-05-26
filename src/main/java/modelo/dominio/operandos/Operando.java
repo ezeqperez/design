@@ -1,4 +1,6 @@
-package modelo.dominio;
+package modelo.dominio.operandos;
+
+import modelo.dominio.Periodo;
 
 import java.math.BigDecimal;
 

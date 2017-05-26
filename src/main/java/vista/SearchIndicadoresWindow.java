@@ -27,6 +27,7 @@ public class SearchIndicadoresWindow extends SimpleWindow<SearchIndicadoresViewM
         selector.allowNull(false);
         selector.bindValueToProperty("indicador");
         selector.bindItemsToProperty("indicadores");
+        //esta mal el binding de formula y tdvia no decidi quien va a concocer al repo de indicadores
         new Label(mainPanel).bindValueToProperty("formula");
 
         new Button(mainPanel).setCaption("Volver").onClick(this::close);

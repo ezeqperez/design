@@ -1,10 +1,11 @@
 package modelo.dominio;
 
+import modelo.dominio.operandos.Operando;
 import org.uqbar.commons.utils.Observable;
 import java.math.BigDecimal;
 
 @Observable
-public class Cuenta implements Operando{
+public class Cuenta {
     private String nombre;
     private BigDecimal monto;
 
@@ -25,8 +26,4 @@ public class Cuenta implements Operando{
         this.monto = monto;
     }
 
-    @Override
-    public BigDecimal valor(Periodo periodo) {
-        return getMonto();
-    }
 }

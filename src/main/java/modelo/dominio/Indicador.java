@@ -1,11 +1,12 @@
 package modelo.dominio;
 
 import modelo.dominio.operaciones.Operacion;
+import modelo.dominio.operandos.Operando;
 import org.uqbar.commons.utils.Observable;
 import java.math.BigDecimal;
 
 @Observable
-public class Indicador implements Operando{
+public class Indicador implements Operando {
     private String nombre;
     private String formula;
     private Operando rOperando;
