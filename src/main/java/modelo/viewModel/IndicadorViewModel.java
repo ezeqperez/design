@@ -1,6 +1,7 @@
 package modelo.viewModel;
 
 import modelo.dominio.Indicador;
+import modelo.repositorios.IndicadoresRepository;
 
 public class IndicadorViewModel {
     private Indicador indicador;

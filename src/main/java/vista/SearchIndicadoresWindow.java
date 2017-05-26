@@ -10,9 +10,9 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 @SuppressWarnings("serial")
-public class SearchIndicadores extends SimpleWindow<SearchIndicadoresViewModel>{
+public class SearchIndicadoresWindow extends SimpleWindow<SearchIndicadoresViewModel>{
 
-    public SearchIndicadores(WindowOwner parent, SearchIndicadoresViewModel model) {
+    public SearchIndicadoresWindow(WindowOwner parent, SearchIndicadoresViewModel model) {
         super(parent, model);
     }
 
@@ -27,6 +27,7 @@ public class SearchIndicadores extends SimpleWindow<SearchIndicadoresViewModel>{
         selector.allowNull(false);
         selector.bindValueToProperty("indicador");
         selector.bindItemsToProperty("indicadores");
+        new Label(mainPanel).bindValueToProperty("formula");
 
         new Button(mainPanel).setCaption("Volver").onClick(this::close);
     }

@@ -28,8 +28,8 @@ public class IndicadorWindow extends SimpleWindow<IndicadorViewModel>{
         new TextBox(mainPanel).bindValueToProperty("nombre");
         new Label(mainPanel).setText("Ingrese la formula del Indicador.");
         new TextBox(mainPanel).bindValueToProperty("formula");
-        new Button(mainPanel).setCaption("Volver").onClick(this::close);
         new Button(mainPanel).setCaption("Guardar").onClick(this::guardarIndicador);
+        new Button(mainPanel).setCaption("Volver").onClick(this::close);
     }
 
     private void guardarIndicador() {

@@ -39,8 +39,8 @@ public class MenuWindow extends SimpleWindow<MenuViewModel> {
     }
 
     private void buscarIndicadores() {
-        SearchIndicadores searchIndicadores = new SearchIndicadores(this, new SearchIndicadoresViewModel());
-        searchIndicadores.open();
+        SearchIndicadoresWindow searchIndicadoresWindow = new SearchIndicadoresWindow(this, new SearchIndicadoresViewModel());
+        searchIndicadoresWindow.open();
     }
 
     private void cargarIndicadores() {

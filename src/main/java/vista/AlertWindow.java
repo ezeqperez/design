@@ -17,7 +17,7 @@ public class AlertWindow extends Dialog<AlertViewModel> {
 
     @Override
     protected void createFormPanel(Panel mainPanel) {
-        new Label(mainPanel).setText(getModelObject().getMensaje());
+        new Label(mainPanel).bindValueToProperty("mensaje");
         new Button(mainPanel).setCaption("Aceptar").onClick(this::close);
     }
 

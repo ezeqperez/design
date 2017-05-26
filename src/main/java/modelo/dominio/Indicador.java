@@ -14,19 +14,7 @@ public class Indicador implements Operando{
 
     @Override
     public BigDecimal valor(Periodo periodo) {
-        return getOperacion().operar(getlOperando().valor(periodo), getrOperando().valor(periodo));
-    }
-
-    public Operando getrOperando() {
-        return rOperando;
-    }
-
-    public Operando getlOperando() {
-        return lOperando;
-    }
-
-    public Operacion getOperacion() {
-        return operacion;
+        return operacion.operar(lOperando.valor(periodo), rOperando.valor(periodo));
     }
 
     public String getNombre() {
