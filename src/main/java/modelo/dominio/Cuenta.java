@@ -8,6 +8,7 @@ public class Cuenta {
     private String nombre;
     private BigDecimal monto;
 
+
     public String getNombre() {
         return nombre;
     }
@@ -23,4 +24,5 @@ public class Cuenta {
     public void setMonto(BigDecimal monto) {
         this.monto = monto;
     }
+
 }

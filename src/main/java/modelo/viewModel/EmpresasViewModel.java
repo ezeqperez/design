@@ -1,10 +1,8 @@
 package modelo.viewModel;
 
 import modelo.dominio.Cuenta;
-import modelo.dominio.Empresa;
-import modelo.repositorio.EmpresasRepository;
+import modelo.repositorios.EmpresasRepository;
 import org.uqbar.commons.utils.Observable;
-
 import java.util.List;
 
 @Observable
@@ -48,7 +46,6 @@ public class EmpresasViewModel {
 
     public EmpresasRepository getRepoEmpresas() {
         return repoEmpresas;
-
     }
 
     public void setRepoEmpresas(EmpresasRepository repoEmpresas) {
