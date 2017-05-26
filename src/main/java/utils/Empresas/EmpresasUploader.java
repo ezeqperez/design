@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface EmpresasUploader {
 
-    public List<Empresa> procesarArchivo(String ruta) throws org.json.simple.parser.ParseException;
+    public List<Empresa> procesarArchivo(String ruta);
 }

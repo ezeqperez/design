@@ -1,6 +1,7 @@
 package utils.Empresas;
 
 import modelo.dominio.Empresa;
+import utils.Excepciones.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -28,7 +29,7 @@ public class EmpresasUpload implements EmpresasUploader {
         } catch (IOException e) {
             throw new UserException("No se encontro el archivo");
         } catch (ParseException e) {
-            throw new UserException("El archivo no se pudo cargar, por favor verifique que el formato sea el correcto");
+            throw new ExcepcionParseo("El archivo no se pudo cargar, por favor verifique que el formato sea el correcto");
         }
         return empresas;
     }

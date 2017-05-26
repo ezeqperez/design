@@ -5,6 +5,7 @@ import modelo.repositorio.EmpresasRepository;
 import org.json.simple.parser.ParseException;
 import org.uqbar.commons.utils.Observable;
 import utils.Empresas.EmpresasUploader;
+import utils.Excepciones.ExcepcionParseo;
 import utils.Empresas.EmpresasUpload;
 import utils.Indicadores.IndicadoresUpload;
 
@@ -23,12 +24,13 @@ public class MenuViewModel {
         this.ruta = "C:\\test.json"; //Comienza con una ruta por defecto
     }
 
-    public void cargarEmpresas() throws ParseException {
-        final EmpresasUpload empresasUpload = new EmpresasUpload();
-        repoEmpresas.agregarEmpresas(empresasUpload.procesarArchivo(ruta));
+    public void cargarEmpresas(){
+    		final EmpresasUpload empresasUpload = new EmpresasUpload();
+    		repoEmpresas.agregarEmpresas(empresasUpload.procesarArchivo(ruta));
+    		throw new ExcepcionParseo("El archivo no se pudo cargar, por favor verifique que el formato sea el correcto");
     }
 
-    public void cargarIndicadores() throws ParseException {
+    public void cargarIndicadores() {
         final IndicadoresUpload indicadoresUpload = new IndicadoresUpload();
         indicadoresUpload.cargarIndicadores(rutaIndicadores);
     }

@@ -9,7 +9,7 @@ public class EmpresasRepository {
 
     private List<Empresa> empresas = new ArrayList<>();
 
-    public void agregarEmpresas(List<Empresa> empresasAAgregar) throws org.json.simple.parser.ParseException {
+    public void agregarEmpresas(List<Empresa> empresasAAgregar) {
         empresas.addAll(empresasAAgregar);
     }
 
