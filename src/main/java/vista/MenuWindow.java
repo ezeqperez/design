@@ -1,6 +1,6 @@
 package vista;
 
-import modelo.viewModel.EmpresasViewModel;
+import modelo.viewModel.*;
 import org.json.simple.parser.ParseException;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.widgets.Button;
@@ -10,7 +10,6 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.model.UserException;
-import modelo.viewModel.MenuViewModel;
 
 @SuppressWarnings("serial")
 public class MenuWindow extends SimpleWindow<MenuViewModel> {
@@ -21,7 +20,7 @@ public class MenuWindow extends SimpleWindow<MenuViewModel> {
 
     @Override
     protected void createFormPanel(Panel mainPanel) {
-        this.setTitle("Bienvenido!");
+        setTitle("Bienvenido!");
         Panel columnasPanel = new Panel(mainPanel);
         columnasPanel.setLayout(new ColumnLayout(2));
 
@@ -31,33 +30,38 @@ public class MenuWindow extends SimpleWindow<MenuViewModel> {
 
         new Button(columnasPanel).setCaption("Cargar indicadores").onClick(this::cargarIndicadores);
 
+        new Button(columnasPanel).setCaption("Consultar indicadores").onClick(this::buscarIndicadores);
+
         new FileSelector(mainPanel)
                 .setCaption("Buscar Archivo")
                 .bindValueToProperty("ruta");
         new Label(mainPanel).bindValueToProperty("ruta");
     }
 
+    private void buscarIndicadores() {
+        SearchIndicadores searchIndicadores = new SearchIndicadores(this, new SearchIndicadoresViewModel());
+        searchIndicadores.open();
+    }
+
     private void cargarIndicadores() {
-        try {
-            getModelObject().cargarIndicadores();
-        } catch (ParseException e) {
-            throw new UserException("Hubo un problema al cargar el archivo");
-        }
+        IndicadorWindow indicadorWindow = new IndicadorWindow(getOwner(), new IndicadorViewModel());
+        indicadorWindow.open();
+
     }
 
     private void cargarEmpresas() {
         try {
             getModelObject().cargarEmpresas();
-            //mostrarAlerta("Los empresas se cargaron correctamente :D");
+            mostrarAlerta("Los empresas se cargaron correctamente :D");
         } catch (ParseException e) {
             throw new UserException("Hubo un problema al cargar el archivo");
         }
     }
 
-    /*private void mostrarAlerta(String mensaje) {
-        AlertWindow dialog = new AlertWindow(getOwner(), new EmpresasViewModel(getModelObject().getCuentas()), mensaje);
+    private void mostrarAlerta(String mensaje) {
+        AlertWindow dialog = new AlertWindow(getOwner(), new AlertViewModel(mensaje));
         dialog.open();
-    }*/
+    }
 
     private void buscarCuentas() {
         EmpresasViewModel empresaViewModel = new EmpresasViewModel(getModelObject().getRepoEmpresas());

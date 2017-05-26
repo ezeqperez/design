@@ -25,7 +25,7 @@ public class SearchCuentasWindow extends SimpleWindow<EmpresasViewModel> {
 
     @Override
     protected void createFormPanel(Panel mainPanel) {
-        this.setTitle("Buscador de cuentas");
+        setTitle("Buscador de cuentas");
         Panel columnasPanel = new Panel(mainPanel);
         columnasPanel.setLayout(new ColumnLayout(2));
 

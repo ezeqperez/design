@@ -1,9 +1,10 @@
 package utils.Empresas;
 
 import modelo.dominio.Empresa;
+import org.json.simple.parser.ParseException;
 import java.util.List;
 
 public interface EmpresasUploader {
 
-    public List<Empresa> procesarArchivo(String ruta) throws org.json.simple.parser.ParseException;
+    List<Empresa> procesarArchivo(String ruta) throws ParseException;
 }
