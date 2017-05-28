@@ -20,7 +20,7 @@ public class MenuViewModel {
     public void cargarEmpresas(){
     		final EmpresasUpload empresasUpload = new EmpresasUpload();
     		repoEmpresas.agregarEmpresas(empresasUpload.procesarArchivo(ruta));
-    		throw new ExcepcionParseo("El archivo no se pudo cargar, por favor verifique que el formato sea el correcto");
+    	//	throw new ExcepcionParseo("El archivo no se pudo cargar, por favor verifique que el formato sea el correcto");
     }
 
     public String getRuta() {

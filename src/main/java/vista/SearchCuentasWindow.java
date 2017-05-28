@@ -40,20 +40,10 @@ public class SearchCuentasWindow extends SimpleWindow<EmpresasViewModel> {
         Table<Cuenta> tabla = new Table<>(this, Cuenta.class);
         tabla.bindItemsToProperty("cuentasFiltradas");
 
-        Column<Cuenta> empresaColumn = new Column<>(tabla);
-        empresaColumn.setTitle("Empresa");
-        empresaColumn.setFixedSize(40);
-        empresaColumn.bindContentsToProperty("empresa");
-
         Column<Cuenta> cuentaColumn = new Column<>(tabla);
         cuentaColumn.setTitle("Cuenta");
         cuentaColumn.setFixedSize(40);
-        cuentaColumn.bindContentsToProperty("cuenta");
-
-        Column<Cuenta> periodoColumn = new Column<>(tabla);
-        periodoColumn.setTitle("Periodo");
-        periodoColumn.setFixedSize(40);
-        periodoColumn.bindContentsToProperty("periodo");
+        cuentaColumn.bindContentsToProperty("nombre");
 
         Column<Cuenta> montoColumn = new Column<>(tabla);
         montoColumn.setTitle("Monto");
