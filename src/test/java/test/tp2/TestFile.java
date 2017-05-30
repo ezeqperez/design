@@ -9,18 +9,30 @@ import org.uqbar.commons.model.UserException;
 
 import modelo.dominio.Indicador;
 import utils.Indicadores.EscribirObjeto;
+import utils.Indicadores.LeerObjeto;
 
 
 public class TestFile {
 	
 	@Test
-    public void noEncuentraElArchivo() {
+    public void GuardarIndicador() {
 
 		EscribirObjeto obj = new EscribirObjeto();
 
 		Indicador indicador = new Indicador();
-		indicador.setNombre("wall street");
+		indicador.setNombre("indicador1");
 		obj.serializarIndicador(indicador);
+    }
+	
+	@Test
+    public void LeerIndicador() {
+
+
+		LeerObjeto obj = new LeerObjeto();
+
+		Indicador indicador = obj.deserializarObjeto("src/test/resources/test.txt");
+		Assert.assertTrue(indicador.getNombre().equals("indicador1"));
+
     }
 
 
