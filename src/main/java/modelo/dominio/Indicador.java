@@ -9,13 +9,14 @@ import java.math.BigDecimal;
 public class Indicador implements Operando {
     private String nombre;
     private String formula;
-    private Operando rOperando;
-    private Operando lOperando;
+    private Operando primerOperando;
+    private Operando segundoOperando;
+    private String simbolo; //Seguro vuele, va de momento
     private Operacion operacion;
 
     @Override
     public BigDecimal valor(Periodo periodo) {
-        return operacion.operar(lOperando.valor(periodo), rOperando.valor(periodo));
+        return operacion.operar(primerOperando.valor(periodo), segundoOperando.valor(periodo));
     }
 
     public String getNombre() {
@@ -34,15 +35,23 @@ public class Indicador implements Operando {
         this.nombre = nombre;
     }
 
-    public void setrOperando(Operando rOperando) {
-        this.rOperando = rOperando;
+    public void setPrimerOperando(Operando primerOperando) {
+        this.primerOperando = primerOperando;
     }
 
-    public void setlOperando(Operando lOperando) {
-        this.lOperando = lOperando;
+    public void setSegundoOperando(Operando segundoOperando) {
+        this.segundoOperando = segundoOperando;
     }
 
     public void setOperacion(Operacion operacion) {
         this.operacion = operacion;
+    }
+
+    public String getSimbolo() {
+        return simbolo;
+    }
+
+    public void setSimbolo(String simbolo) {
+        this.simbolo = simbolo;
     }
 }

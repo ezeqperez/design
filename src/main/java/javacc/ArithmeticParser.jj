@@ -1,34 +1,43 @@
 options{ STATIC = false; JDK_VERSION = "1.8"; }
-PARSERBEGIN(ArithmeticParser)
-
-package utils.Indicadores;
+PARSER_BEGIN(ArithmeticParser)
+package javacc;
+import java.io.StringReader;
 
 public class ArithmeticParser {
+
+    public static void main(String[] args) throws Exception {
+        ArithmeticParser parser = new ArithmeticParser( System.in ) ;
+        parser.Start() ;
+    }
 
 }
 PARSER_END(ArithmeticParser)
 
     SKIP :
-    {
-        " "
+    {     " "
         | "\t"
         | "\r"
         | "\n"
     }
 
   TOKEN:{
-          <EQUALS: "=">
+          <LPAREN: "(">
+       |  <RPAREN: ")">
        |  <MULTIPLY:  "*">
        |  <DIVIDE: "/">
        |  <ADD: "+">
        |  <SUBTRACT: "-">
-       |  <LPAREN: "(">
-       |  <RPAREN: ")">
-       | <INT:(["0"-"9"])> // no se si esnecesario
+       |  <NUMBER:(["0"-"9"])>
     }
 
-    int parsear(){
-    }
 
-    //definif las expresiones
+
+void Start():{}
+{
+    <NUMBER>
+    (
+        <ADD>
+        <NUMBER>
+    )*
+<EOF>
 }

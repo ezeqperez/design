@@ -32,7 +32,7 @@ public class IndicadorWindow extends SimpleWindow<IndicadorViewModel>{
     }
 
     private void guardarIndicador() {
-        //guardar
+        getModelObject().guardarIndicador();
         mostrarAlerta("El indicador se guardo correctamente.");
     }
 
