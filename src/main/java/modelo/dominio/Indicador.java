@@ -3,12 +3,15 @@ package modelo.dominio;
 import modelo.dominio.operaciones.Operacion;
 import modelo.dominio.operandos.Operando;
 import org.uqbar.commons.utils.Observable;
+
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Observable
-public class Indicador implements Operando {
+public class Indicador implements Operando, Serializable {
+	
     private String nombre;
     private String formula;
     private Operando primerOperando;
@@ -17,6 +20,9 @@ public class Indicador implements Operando {
     private Operacion operacion;
 
     private List<Operando> operandos = new ArrayList<Operando>(); //vamos a ver si conviene
+    
+	private static final long serialVersionUID = 1L;
+
 
     @Override
     public BigDecimal valor(Periodo periodo) {
