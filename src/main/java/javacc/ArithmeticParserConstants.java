@@ -24,6 +24,8 @@ public interface ArithmeticParserConstants {
   int SUBTRACT = 10;
   /** RegularExpression Id. */
   int NUMBER = 11;
+  /** RegularExpression Id. */
+  int CUENTA = 12;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -42,6 +44,7 @@ public interface ArithmeticParserConstants {
     "\"+\"",
     "\"-\"",
     "<NUMBER>",
+    "<CUENTA>",
   };
 
 }

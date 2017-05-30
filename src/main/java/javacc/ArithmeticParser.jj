@@ -27,17 +27,20 @@ PARSER_END(ArithmeticParser)
        |  <DIVIDE: "/">
        |  <ADD: "+">
        |  <SUBTRACT: "-">
-       |  <NUMBER:(["0"-"9"])>
+       |  <NUMBER:(["0"-"9"])+>
+       |  <CUENTA:(["a"-"z","A"-"Z", "0"-"9"])+>
     }
 
 
 
 void Start():{}
 {
-    <NUMBER>
+    <NUMBER>|<CUENTA>
     (
         <ADD>
-        <NUMBER>
+        (
+            <NUMBER>|<CUENTA>
+        )
     )*
 <EOF>
 }

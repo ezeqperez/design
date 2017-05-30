@@ -4,6 +4,8 @@ import modelo.dominio.operaciones.Operacion;
 import modelo.dominio.operandos.Operando;
 import org.uqbar.commons.utils.Observable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Observable
 public class Indicador implements Operando {
@@ -13,6 +15,8 @@ public class Indicador implements Operando {
     private Operando segundoOperando;
     private String simbolo; //Seguro vuele, va de momento
     private Operacion operacion;
+
+    private List<Operando> operandos = new ArrayList<Operando>(); //vamos a ver si conviene
 
     @Override
     public BigDecimal valor(Periodo periodo) {
@@ -53,5 +57,17 @@ public class Indicador implements Operando {
 
     public void setSimbolo(String simbolo) {
         this.simbolo = simbolo;
+    }
+
+    public List<Operando> getOperandos() {
+        return operandos;
+    }
+
+    public void setOperandos(List<Operando> operandos) {
+        this.operandos = operandos;
+    }
+
+    public void addOperandos(Operando operando){
+        this.operandos.add(operando);
     }
 }
