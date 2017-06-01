@@ -8,6 +8,8 @@ import modelo.dominio.operandos.Operando;
 import modelo.dominio.operandos.Valor;
 
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Parser que recibe un string con la informacion de
@@ -15,6 +17,8 @@ import java.io.StringReader;
  */
 public class IndicadorParser {
     private Indicador indicador = new Indicador();
+    private List<Token> tokens = new ArrayList<Token>();
+
     public Indicador generarIndicador(String nombre, String formula){
         StringReader sr = new StringReader(formula);
         ArithmeticParser arithmeticParser = new ArithmeticParser(sr);

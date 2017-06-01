@@ -1,9 +1,11 @@
 package modelo.repositorios;
 
 import modelo.dominio.Indicador;
+import org.omg.CORBA.UserException;
 import org.uqbar.commons.utils.Observable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Observable
 public class IndicadoresRepository{
@@ -39,6 +41,11 @@ public class IndicadoresRepository{
     public List<Indicador> getIndicadores() {
         return indicadores;
     }
+
+    public List<String> getIndicadoresPorNombre() {
+        return this.indicadores.stream().map(indicador -> indicador.getNombre()).collect(Collectors.toList());
+    }
+
 
     public void setIndicadores(List<Indicador> indicadores) {
         this.indicadores = indicadores;
