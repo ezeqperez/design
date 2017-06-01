@@ -4,11 +4,10 @@ import javacc.ArithmeticParser;
 import javacc.Token;
 import modelo.dominio.Indicador;
 import modelo.dominio.operandos.CuentaOperando;
+import modelo.dominio.operandos.Operando;
 import modelo.dominio.operandos.Valor;
-import org.apache.commons.lang.math.NumberUtils;
 
 import java.io.StringReader;
-import java.util.Iterator;
 
 /**
  * Parser que recibe un string con la informacion de
@@ -22,29 +21,31 @@ public class IndicadorParser {
 
         indicador.setNombre(nombre);
         indicador.setFormula(formula);
-//        Token token = arithmeticParser.getNextToken();
 
-        //Con alguna hermosa estructura como un for
+        indicador.setPrimerOperando(this.obtenerOperando(arithmeticParser.getNextToken()));
+        indicador.setSimbolo(arithmeticParser.getNextToken().toString());
+        indicador.setSegundoOperando(this.obtenerOperando(arithmeticParser.getNextToken()));
 
-        this.agregarAIndicador(arithmeticParser.getNextToken());
-        this.agregarAIndicador(arithmeticParser.getNextToken());
-        this.agregarAIndicador(arithmeticParser.getNextToken());
-        this.llenarOperandos();
         return indicador;
     }
 
-    private void agregarAIndicador(Token token) {
-        if(token.kind == 9){
-            indicador.setSimbolo(token.toString());
-        }else if(token.kind == 11){
-            indicador.addOperandos(new Valor(NumberUtils.createBigDecimal(token.toString())));
-        }else if(token.kind == 12){
-            indicador.addOperandos(new CuentaOperando(token.toString()));
+    /*
+    * Si es un numero, lo cargo como un Valor.
+    * si llega a ser una cuenta o un indicador, lo voy a guardar como Valor Compuesto,
+    * (ahora llamado CuentaOperando), lo que quiero es para luego calcular, que el valor
+    *  me sepa devolver el mismo valor que tiene (que devuelve mi parser), si llega a ser
+    *  una Cuenta, tiene que devolverme el costo de la misma, y si llega a ser un Indicador,
+    *  debe calcular los valores de todos sus operadores.
+    */
+    private Operando obtenerOperando(Token token) {
+        //Valores numericos
+        if(token.kind == 11){
+            return new Valor(token.toString());
+        //Cuentas
+        }else if(token.kind == 12) {
+            //Debo ver si esta cuenta existe
+            return new CuentaOperando(token.toString());
         }
-    }
-
-    private void llenarOperandos(){
-        indicador.setPrimerOperando(indicador.getOperandos().get(0));
-        indicador.setSegundoOperando(indicador.getOperandos().get(1));
+        return null;
     }
 }

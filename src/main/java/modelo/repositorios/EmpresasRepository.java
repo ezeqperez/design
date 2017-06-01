@@ -8,6 +8,13 @@ public class EmpresasRepository {
 
     private List<Empresa> empresas = new ArrayList<>();
 
+    private static EmpresasRepository ourInstance = new EmpresasRepository();
+
+    public static EmpresasRepository getInstance() {
+        return ourInstance;
+    }
+
+
     public void agregarEmpresas(List<Empresa> empresasAAgregar) {
         empresas.addAll(empresasAAgregar);
     }
@@ -20,5 +27,6 @@ public class EmpresasRepository {
         }
         return null;
     }
+
 
 }

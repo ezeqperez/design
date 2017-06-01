@@ -22,6 +22,8 @@ public class SearchIndicadoresWindow extends SimpleWindow<SearchIndicadoresViewM
 
     @Override
     protected void createFormPanel(Panel mainPanel) {
+
+
         new Label(mainPanel).setText("Seleccione el Indicador:");
         final Selector<Indicador> selector = new Selector<>(mainPanel);
         selector.allowNull(false);

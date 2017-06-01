@@ -34,13 +34,25 @@ PARSER_END(ArithmeticParser)
 
 
 void Start():{}
-{
-    <NUMBER>|<CUENTA>
-    (
-        <ADD>
-        (
-            <NUMBER>|<CUENTA>
-        )
-    )*
-<EOF>
-}
+
+    {
+        POPERANDO() OPERACION() SOPERANDO()
+    }
+void POPERANDO():{}
+    {
+            <NUMBER>
+        |   <CUENTA>
+    }
+void OPERACION():{}
+    {
+            <MULTIPLY>
+        |   <DIVIDE>
+        |   <ADD>
+        |   <SUBTRACT>
+    }
+void SOPERANDO():{}
+    {       LOOKAHEAD(2)
+            POPERANDO()
+        |   <NUMBER> OPERACION() SOPERANDO()
+        |   <CUENTA> OPERACION() SOPERANDO()
+    }

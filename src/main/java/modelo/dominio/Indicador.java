@@ -14,6 +14,8 @@ public class Indicador implements Operando, Serializable {
 	
     private String nombre;
     private String formula;
+
+
     private Operando primerOperando;
     private Operando segundoOperando;
     private String simbolo; //Seguro vuele, va de momento
@@ -45,8 +47,16 @@ public class Indicador implements Operando, Serializable {
         this.nombre = nombre;
     }
 
+    public Operando getPrimerOperando() {
+        return primerOperando;
+    }
+
     public void setPrimerOperando(Operando primerOperando) {
         this.primerOperando = primerOperando;
+    }
+
+    public Operando getSegundoOperando() {
+        return segundoOperando;
     }
 
     public void setSegundoOperando(Operando segundoOperando) {
