@@ -1,12 +1,12 @@
 options{ STATIC = false; JDK_VERSION = "1.8"; }
 PARSER_BEGIN(ArithmeticParser)
 package javacc;
-import modelo.dominio.Indicador;
 import modelo.dominio.operaciones.*;
 import modelo.dominio.operandos.*;
+import modelo.dominio.*;
 
 public class ArithmeticParser {
-    Indicador indicadorAdevolver = new Indicador();
+    private Indicador indicadorAdevolver = new Indicador();
     public Indicador getIndicadorAdevolver(){
         return indicadorAdevolver;
     }
@@ -46,10 +46,10 @@ void POPERANDO(Indicador indicador):{}
     }
 void OPERACION(Indicador indicador):{}
     {
-            <MULTIPLY>{ indicador.setOperacion(new Multiplicacion()); }
-        |   <DIVIDE>{ indicador.setOperacion(new Division()); }
-        |   <ADD>{ indicador.setOperacion(new Suma()); }
-        |   <SUBTRACT>{ indicador.setOperacion(new Resta()); }
+            <MULTIPLY>  { indicador.setOperacion(new Multiplicacion()); }
+        |   <DIVIDE>    { indicador.setOperacion(new Division()); }
+        |   <ADD>       { indicador.setOperacion(new Suma()); }
+        |   <SUBTRACT>  { indicador.setOperacion(new Resta()); }
     }
 void SOPERANDO(Indicador indicador):{}
     {       LOOKAHEAD(2)
