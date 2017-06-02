@@ -17,7 +17,7 @@ public class IndicadorViewModel {
 
     public void guardarIndicador(){
         IndicadorParser parser = new IndicadorParser();
-        IndicadoresRepository.getInstance().insert(parser.generarIndicador(nombre, formula));
+        parser.generarIndicador(nombre, formula);
     }
 
 

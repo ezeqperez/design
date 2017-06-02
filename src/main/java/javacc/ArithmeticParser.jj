@@ -4,9 +4,22 @@ package javacc;
 import modelo.dominio.operaciones.*;
 import modelo.dominio.operandos.*;
 import modelo.dominio.*;
+import modelo.repositorios.IndicadoresRepository;
 
 public class ArithmeticParser {
     private Indicador indicadorAdevolver = new Indicador();
+
+    public void setNombre(String nombre){
+        indicadorAdevolver.setNombre(nombre);
+    }
+
+    public void setFormula(String formula){
+        indicadorAdevolver.setFormula(formula);
+    }
+    public void guardarIndicador(){
+        IndicadoresRepository.getInstance().insert(indicadorAdevolver);
+    }
+
     public Indicador getIndicadorAdevolver(){
         return indicadorAdevolver;
     }

@@ -14,18 +14,20 @@ import java.io.StringReader;
 public class IndicadorParser {
 
     private Indicador indicador;
-    public Indicador generarIndicador(String nombre, String formula){
+    public void generarIndicador(String nombre, String formula){
         StringReader sr = new StringReader(formula);
         ArithmeticParser arithmeticParser = new ArithmeticParser(sr);
+
         try {
-            arithmeticParser.Start();
-            indicador = arithmeticParser.getIndicadorAdevolver();
+             arithmeticParser.Start();
         }catch(ParseException e){
             throw new UserException("La formula que ingreso no es valida, por favor intente de nuevo");
         }
-        indicador.setNombre(nombre);
-        indicador.setFormula(formula);
 
-        return indicador;
+
+        arithmeticParser.setNombre(nombre);
+        arithmeticParser.setFormula(formula);
+
+        arithmeticParser.guardarIndicador();
     }
 }

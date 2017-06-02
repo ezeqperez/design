@@ -16,12 +16,24 @@ public class IndicadorParserTest {
         viewModel.setNombre("Pirulo");
         viewModel.setFormula("2+4");
         viewModel.guardarIndicador();
+
+
     }
-    /*
+
     @Test
     public void devuelveIndicadorOK() {
-        //NO anda
-        Assert.assertEquals(IndicadoresRepository.getInstance().search("Pirulo").getPrimerOperando(), "");
-    }*/
+        Assert.assertEquals(IndicadoresRepository.getInstance().search("Pirulo").getNombre(), "Pirulo");
+    }
+
+    @Test
+
+    public void cargaDosIndicadores() {
+        IndicadorViewModel vm = new IndicadorViewModel();
+        vm.setNombre("Cachita");
+        vm.setFormula("2+Montaner");
+        vm.guardarIndicador();
+
+        Assert.assertEquals(IndicadoresRepository.getInstance().getIndicadores().size(), 2);
+    }
 
 }

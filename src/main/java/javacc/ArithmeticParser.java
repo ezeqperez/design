@@ -4,9 +4,22 @@ package javacc;
 import modelo.dominio.operaciones.*;
 import modelo.dominio.operandos.*;
 import modelo.dominio.*;
+import modelo.repositorios.IndicadoresRepository;
 
 public class ArithmeticParser implements ArithmeticParserConstants {
     private Indicador indicadorAdevolver = new Indicador();
+
+    public void setNombre(String nombre){
+        indicadorAdevolver.setNombre(nombre);
+    }
+
+    public void setFormula(String formula){
+        indicadorAdevolver.setFormula(formula);
+    }
+    public void guardarIndicador(){
+        IndicadoresRepository.getInstance().insert(indicadorAdevolver);
+    }
+
     public Indicador getIndicadorAdevolver(){
         return indicadorAdevolver;
     }
@@ -113,6 +126,19 @@ indicador.setSegundoOperando(new CuentaOperando(token.image));
     finally { jj_save(1, xla); }
   }
 
+  private boolean jj_3R_1()
+ {
+    if (jj_3R_2()) return true;
+    if (jj_3R_3()) return true;
+    return false;
+  }
+
+  private boolean jj_3_2()
+ {
+    if (jj_scan_token(NUMBER)) return true;
+    return false;
+  }
+
   private boolean jj_3_1()
  {
     if (jj_3R_1()) return true;
@@ -178,19 +204,6 @@ indicador.setSegundoOperando(new CuentaOperando(token.image));
   }
 
   private boolean jj_3R_4()
- {
-    if (jj_scan_token(NUMBER)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_1()
- {
-    if (jj_3R_2()) return true;
-    if (jj_3R_3()) return true;
-    return false;
-  }
-
-  private boolean jj_3_2()
  {
     if (jj_scan_token(NUMBER)) return true;
     return false;

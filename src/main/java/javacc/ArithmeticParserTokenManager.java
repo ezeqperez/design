@@ -4,6 +4,7 @@ package javacc;
 import modelo.dominio.operaciones.*;
 import modelo.dominio.operandos.*;
 import modelo.dominio.*;
+import modelo.repositorios.IndicadoresRepository;
 
 /** Token Manager. */
 @SuppressWarnings("unused")public class ArithmeticParserTokenManager implements ArithmeticParserConstants {
