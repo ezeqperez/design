@@ -14,7 +14,7 @@ import java.util.List;
 
 @Observable
 public class Indicador implements Operando, Serializable {
-<<<<<<< HEAD
+
 
 	private String nombre;
 	private String formula;
@@ -26,11 +26,7 @@ public class Indicador implements Operando, Serializable {
 	private IndicadorAplicado indicadorAplicado = new IndicadorAplicado();
 	private  List<IndicadorAplicado> listaIndicadores;
 
-=======
-	
-    private String nombre;
-    private String formula;
->>>>>>> refs/remotes/origin/master
+
 
 	private boolean estado;
 
