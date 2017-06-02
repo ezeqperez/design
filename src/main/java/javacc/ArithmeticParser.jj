@@ -1,15 +1,15 @@
 options{ STATIC = false; JDK_VERSION = "1.8"; }
 PARSER_BEGIN(ArithmeticParser)
 package javacc;
-import java.io.StringReader;
+import modelo.dominio.operaciones.*;
+import modelo.dominio.operandos.*;
+import modelo.dominio.*;
 
 public class ArithmeticParser {
-
-    public static void main(String[] args) throws Exception {
-        ArithmeticParser parser = new ArithmeticParser( System.in ) ;
-        parser.Start() ;
+    private Indicador indicadorAdevolver = new Indicador();
+    public Indicador getIndicadorAdevolver(){
+        return indicadorAdevolver;
     }
-
 }
 PARSER_END(ArithmeticParser)
 
@@ -31,28 +31,37 @@ PARSER_END(ArithmeticParser)
        |  <CUENTA:(["a"-"z","A"-"Z", "0"-"9"])+>
     }
 
-
-
 void Start():{}
-
     {
-        POPERANDO() OPERACION() SOPERANDO()
+        INDICADOR(indicadorAdevolver)
     }
-void POPERANDO():{}
+void INDICADOR(Indicador indicador):{}
     {
-            <NUMBER>
-        |   <CUENTA>
+        POPERANDO(indicador) OPERACION(indicador) SOPERANDO(indicador)
     }
-void OPERACION():{}
+void POPERANDO(Indicador indicador):{}
     {
-            <MULTIPLY>
-        |   <DIVIDE>
-        |   <ADD>
-        |   <SUBTRACT>
+            <NUMBER>{ indicador.setPrimerOperando(new Valor(token.image)); }
+        |   <CUENTA>{ indicador.setPrimerOperando(new CuentaOperando(token.image)); }
     }
-void SOPERANDO():{}
+void OPERACION(Indicador indicador):{}
+    {
+            <MULTIPLY>  { indicador.setOperacion(new Multiplicacion()); }
+        |   <DIVIDE>    { indicador.setOperacion(new Division()); }
+        |   <ADD>       { indicador.setOperacion(new Suma()); }
+        |   <SUBTRACT>  { indicador.setOperacion(new Resta()); }
+    }
+void SOPERANDO(Indicador indicador):{}
     {       LOOKAHEAD(2)
-            POPERANDO()
-        |   <NUMBER> OPERACION() SOPERANDO()
-        |   <CUENTA> OPERACION() SOPERANDO()
+            SUBINDICADOR(indicador)
+        |   LOOKAHEAD(2)
+            <NUMBER>{ indicador.setSegundoOperando(new Valor(token.image)); }
+        |   <CUENTA>{ indicador.setSegundoOperando(new CuentaOperando(token.image)); }
+    }
+void SUBINDICADOR(Indicador indicador):{
+    Indicador subIndicador = new Indicador();
+    indicador.setSegundoOperando(subIndicador);
+}
+    {
+        POPERANDO(subIndicador) OPERACION(subIndicador) SOPERANDO(subIndicador)
     }
