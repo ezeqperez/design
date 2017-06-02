@@ -10,20 +10,24 @@ public class ArithmeticParser implements ArithmeticParserConstants {
         parser.Start() ;
     }
 
-  final public void Start() throws ParseException {
-    POPERANDO();
+  final public Token Start() throws ParseException {Token t;
+    t = POPERANDO();
     OPERACION();
     SOPERANDO();
+{if ("" != null) return t;}
+    throw new Error("Missing return statement in function");
   }
 
-  final public void POPERANDO() throws ParseException {
+  final public Token POPERANDO() throws ParseException {Token t;
     switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
     case NUMBER:{
-      jj_consume_token(NUMBER);
+      t = jj_consume_token(NUMBER);
+{if ("" != null) return t;}
       break;
       }
     case CUENTA:{
-      jj_consume_token(CUENTA);
+      t = jj_consume_token(CUENTA);
+{if ("" != null) return t;}
       break;
       }
     default:
@@ -31,6 +35,7 @@ public class ArithmeticParser implements ArithmeticParserConstants {
       jj_consume_token(-1);
       throw new ParseException();
     }
+    throw new Error("Missing return statement in function");
   }
 
   final public void OPERACION() throws ParseException {
@@ -91,13 +96,25 @@ public class ArithmeticParser implements ArithmeticParserConstants {
     finally { jj_save(0, xla); }
   }
 
+  private boolean jj_3R_3()
+ {
+    if (jj_scan_token(CUENTA)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_2()
+ {
+    if (jj_scan_token(NUMBER)) return true;
+    return false;
+  }
+
   private boolean jj_3R_1()
  {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_scan_token(11)) {
+    if (jj_3R_2()) {
     jj_scanpos = xsp;
-    if (jj_scan_token(12)) return true;
+    if (jj_3R_3()) return true;
     }
     return false;
   }

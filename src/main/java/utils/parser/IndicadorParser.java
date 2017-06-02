@@ -1,11 +1,13 @@
 package utils.parser;
 
 import javacc.ArithmeticParser;
+import javacc.ParseException;
 import javacc.Token;
 import modelo.dominio.Indicador;
 import modelo.dominio.operandos.CuentaOperando;
 import modelo.dominio.operandos.Operando;
 import modelo.dominio.operandos.Valor;
+import org.uqbar.commons.model.UserException;
 
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -22,13 +24,28 @@ public class IndicadorParser {
     public Indicador generarIndicador(String nombre, String formula){
         StringReader sr = new StringReader(formula);
         ArithmeticParser arithmeticParser = new ArithmeticParser(sr);
+        try {
+            arithmeticParser.Start();
+        }catch(ParseException e){
+            throw new UserException("La formula que ingreso no es valida, por favor intente denuevo");
+        }
 
         indicador.setNombre(nombre);
         indicador.setFormula(formula);
-
+   /*
         indicador.setPrimerOperando(this.obtenerOperando(arithmeticParser.getNextToken()));
         indicador.setSimbolo(arithmeticParser.getNextToken().toString());
         indicador.setSegundoOperando(this.obtenerOperando(arithmeticParser.getNextToken()));
+    */
+        try {
+            Token sarasa = arithmeticParser.POPERANDO();
+        }catch(ParseException e){
+            throw new UserException("Sarasa");
+        }
+        indicador.setPrimerOperando(new Valor(arithmeticParser.getNextToken().toString()));
+        indicador.setSimbolo(arithmeticParser.getNextToken().toString());
+        indicador.setSegundoOperando(new Valor(arithmeticParser.getNextToken().toString()));
+
 
         return indicador;
     }

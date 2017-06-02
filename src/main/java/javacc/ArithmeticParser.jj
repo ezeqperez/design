@@ -33,15 +33,25 @@ PARSER_END(ArithmeticParser)
 
 
 
-void Start():{}
+Token Start():{
+Token t;
+}
 
     {
-        POPERANDO() OPERACION() SOPERANDO()
+        t =POPERANDO() OPERACION() SOPERANDO(){
+        return t;
+        }
     }
-void POPERANDO():{}
+Token POPERANDO():{
+    Token t;
+}
     {
-            <NUMBER>
-        |   <CUENTA>
+           t= <NUMBER>{
+           return t;
+           }
+        |   t=<CUENTA>{
+            return t;
+            }
     }
 void OPERACION():{}
     {
