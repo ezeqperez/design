@@ -4,6 +4,19 @@ package javacc;
 import java.io.StringReader;
 
 public class ArithmeticParser {
+    private Token operando1;
+    private StringBuffer operando2 = new StringBuffer();
+    private String operacion;
+
+    public Token getOperando1(){
+        return this.operando1;
+    }
+    public String getOperando2(){
+        return this.operando2.toString();
+    }
+    public String getOperacion(){
+        return this.operacion;
+    }
 
     public static void main(String[] args) throws Exception {
         ArithmeticParser parser = new ArithmeticParser( System.in ) ;
@@ -33,27 +46,26 @@ PARSER_END(ArithmeticParser)
 
 
 
-Token Start():{
-Token t;
-}
+void Start():{}
 
     {
-        t =POPERANDO() OPERACION() SOPERANDO(){
-        return t;
-        }
+        POPERANDO() OPERACION() SOPERANDO(){
     }
-Token POPERANDO():{
-    Token t;
-}
+    }
+void POPERANDO():{}
     {
-           t= <NUMBER>{
-           return t;
-           }
-        |   t=<CUENTA>{
-            return t;
-            }
+            <NUMBER>    {operando1 = token;}
+        |   <CUENTA>    {operando1 = token;}
     }
 void OPERACION():{}
+    {
+            <MULTIPLY>  {operacion = token.image;}
+        |   <DIVIDE>    {operacion = token.image;}
+        |   <ADD>       {operacion = token.image;}
+        |   <SUBTRACT>  {operacion = token.image;}
+    }
+
+void SOPERACION():{}
     {
             <MULTIPLY>
         |   <DIVIDE>
@@ -62,7 +74,16 @@ void OPERACION():{}
     }
 void SOPERANDO():{}
     {       LOOKAHEAD(2)
-            POPERANDO()
-        |   <NUMBER> OPERACION() SOPERANDO()
-        |   <CUENTA> OPERACION() SOPERANDO()
+            <NUMBER>        {operando2.append(token.image);}
+            SOPERACION()     {operando2.append(token.image);}
+            SOPERANDO()     {operando2.append(token.image);}
+            <EOF>
+
+        |   <CUENTA>        {operando2.append(token.image);}
+            SOPERACION()     {operando2.append(token.image);}
+            SOPERANDO()     {operando2.append(token.image);}
+            <EOF>
+
+        |   <NUMBER>                            {operando2.append(token.image);}
+            <EOF>
     }

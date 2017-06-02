@@ -4,30 +4,42 @@ package javacc;
 import java.io.StringReader;
 
 public class ArithmeticParser implements ArithmeticParserConstants {
+    private Token operando1;
+    private StringBuffer operando2 = new StringBuffer();
+    private String operacion;
+
+    public Token getOperando1(){
+        return this.operando1;
+    }
+    public String getOperando2(){
+        return this.operando2.toString();
+    }
+    public String getOperacion(){
+        return this.operacion;
+    }
 
     public static void main(String[] args) throws Exception {
         ArithmeticParser parser = new ArithmeticParser( System.in ) ;
         parser.Start() ;
     }
 
-  final public Token Start() throws ParseException {Token t;
-    t = POPERANDO();
+  final public void Start() throws ParseException {
+    POPERANDO();
     OPERACION();
     SOPERANDO();
-{if ("" != null) return t;}
-    throw new Error("Missing return statement in function");
+
   }
 
-  final public Token POPERANDO() throws ParseException {Token t;
+  final public void POPERANDO() throws ParseException {
     switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
     case NUMBER:{
-      t = jj_consume_token(NUMBER);
-{if ("" != null) return t;}
+      jj_consume_token(NUMBER);
+operando1 = token;
       break;
       }
     case CUENTA:{
-      t = jj_consume_token(CUENTA);
-{if ("" != null) return t;}
+      jj_consume_token(CUENTA);
+operando1 = token;
       break;
       }
     default:
@@ -35,10 +47,38 @@ public class ArithmeticParser implements ArithmeticParserConstants {
       jj_consume_token(-1);
       throw new ParseException();
     }
-    throw new Error("Missing return statement in function");
   }
 
   final public void OPERACION() throws ParseException {
+    switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
+    case MULTIPLY:{
+      jj_consume_token(MULTIPLY);
+operacion = token.image;
+      break;
+      }
+    case DIVIDE:{
+      jj_consume_token(DIVIDE);
+operacion = token.image;
+      break;
+      }
+    case ADD:{
+      jj_consume_token(ADD);
+operacion = token.image;
+      break;
+      }
+    case SUBTRACT:{
+      jj_consume_token(SUBTRACT);
+operacion = token.image;
+      break;
+      }
+    default:
+      jj_la1[1] = jj_gen;
+      jj_consume_token(-1);
+      throw new ParseException();
+    }
+  }
+
+  final public void SOPERACION() throws ParseException {
     switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
     case MULTIPLY:{
       jj_consume_token(MULTIPLY);
@@ -57,7 +97,7 @@ public class ArithmeticParser implements ArithmeticParserConstants {
       break;
       }
     default:
-      jj_la1[1] = jj_gen;
+      jj_la1[2] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -65,23 +105,33 @@ public class ArithmeticParser implements ArithmeticParserConstants {
 
   final public void SOPERANDO() throws ParseException {
     if (jj_2_1(2)) {
-      POPERANDO();
+      jj_consume_token(NUMBER);
+operando2.append(token.image);
+      SOPERACION();
+operando2.append(token.image);
+      SOPERANDO();
+operando2.append(token.image);
+      jj_consume_token(0);
     } else {
       switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
-      case NUMBER:{
-        jj_consume_token(NUMBER);
-        OPERACION();
-        SOPERANDO();
-        break;
-        }
       case CUENTA:{
         jj_consume_token(CUENTA);
-        OPERACION();
+operando2.append(token.image);
+        SOPERACION();
+operando2.append(token.image);
         SOPERANDO();
+operando2.append(token.image);
+        jj_consume_token(0);
+        break;
+        }
+      case NUMBER:{
+        jj_consume_token(NUMBER);
+operando2.append(token.image);
+        jj_consume_token(0);
         break;
         }
       default:
-        jj_la1[2] = jj_gen;
+        jj_la1[3] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -96,31 +146,26 @@ public class ArithmeticParser implements ArithmeticParserConstants {
     finally { jj_save(0, xla); }
   }
 
-  private boolean jj_3R_3()
- {
-    if (jj_scan_token(CUENTA)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_2()
- {
-    if (jj_scan_token(NUMBER)) return true;
-    return false;
-  }
-
   private boolean jj_3R_1()
  {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_3R_2()) {
+    if (jj_scan_token(7)) {
     jj_scanpos = xsp;
-    if (jj_3R_3()) return true;
+    if (jj_scan_token(8)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(9)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(10)) return true;
+    }
+    }
     }
     return false;
   }
 
   private boolean jj_3_1()
  {
+    if (jj_scan_token(NUMBER)) return true;
     if (jj_3R_1()) return true;
     return false;
   }
@@ -136,13 +181,13 @@ public class ArithmeticParser implements ArithmeticParserConstants {
   private Token jj_scanpos, jj_lastpos;
   private int jj_la;
   private int jj_gen;
-  final private int[] jj_la1 = new int[3];
+  final private int[] jj_la1 = new int[4];
   static private int[] jj_la1_0;
   static {
       jj_la1_init_0();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x1800,0x780,0x1800,};
+      jj_la1_0 = new int[] {0x1800,0x780,0x780,0x1800,};
    }
   final private JJCalls[] jj_2_rtns = new JJCalls[1];
   private boolean jj_rescan = false;
@@ -159,7 +204,7 @@ public class ArithmeticParser implements ArithmeticParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 4; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -174,7 +219,7 @@ public class ArithmeticParser implements ArithmeticParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 4; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -185,7 +230,7 @@ public class ArithmeticParser implements ArithmeticParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 4; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -196,7 +241,7 @@ public class ArithmeticParser implements ArithmeticParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 4; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -206,7 +251,7 @@ public class ArithmeticParser implements ArithmeticParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 4; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -216,7 +261,7 @@ public class ArithmeticParser implements ArithmeticParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 4; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -334,7 +379,7 @@ public class ArithmeticParser implements ArithmeticParserConstants {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 4; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {

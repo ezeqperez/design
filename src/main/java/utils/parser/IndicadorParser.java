@@ -18,6 +18,7 @@ import java.util.List;
  * el indicador, y devuelve un indicador construido.
  */
 public class IndicadorParser {
+
     private Indicador indicador = new Indicador();
     private List<Token> tokens = new ArrayList<Token>();
 
@@ -32,19 +33,11 @@ public class IndicadorParser {
 
         indicador.setNombre(nombre);
         indicador.setFormula(formula);
-   /*
-        indicador.setPrimerOperando(this.obtenerOperando(arithmeticParser.getNextToken()));
-        indicador.setSimbolo(arithmeticParser.getNextToken().toString());
-        indicador.setSegundoOperando(this.obtenerOperando(arithmeticParser.getNextToken()));
-    */
-        try {
-            Token sarasa = arithmeticParser.POPERANDO();
-        }catch(ParseException e){
-            throw new UserException("Sarasa");
-        }
-        indicador.setPrimerOperando(new Valor(arithmeticParser.getNextToken().toString()));
-        indicador.setSimbolo(arithmeticParser.getNextToken().toString());
-        indicador.setSegundoOperando(new Valor(arithmeticParser.getNextToken().toString()));
+
+        //El primerOperador está muy acoplado, recibe un token, no encuentro otra manera
+        indicador.setPrimerOperando(this.obtenerOperando(arithmeticParser.getOperando1()));
+        indicador.setSimbolo(arithmeticParser.getOperacion());
+        indicador.setSegundoOperando(new Valor(arithmeticParser.getOperando2()));
 
 
         return indicador;
