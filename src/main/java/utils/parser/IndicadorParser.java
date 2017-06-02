@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class IndicadorParser {
 
-    private Indicador indicador = new Indicador();
+    private Indicador indicador;
     private List<Token> tokens = new ArrayList<Token>();
 
     public Indicador generarIndicador(String nombre, String formula){
@@ -27,10 +27,11 @@ public class IndicadorParser {
         ArithmeticParser arithmeticParser = new ArithmeticParser(sr);
         try {
             arithmeticParser.Start();
+            indicador = arithmeticParser.getIndicadorAdevolver();
         }catch(ParseException e){
-            throw new UserException("La formula que ingreso no es valida, por favor intente denuevo");
+            throw new UserException("La formula que ingreso no es valida, por favor intente de nuevo");
         }
-
+/*
         indicador.setNombre(nombre);
         indicador.setFormula(formula);
 
@@ -39,7 +40,7 @@ public class IndicadorParser {
         indicador.setSimbolo(arithmeticParser.getOperacion());
         indicador.setSegundoOperando(new Valor(arithmeticParser.getOperando2()));
 
-
+*/
         return indicador;
     }
 

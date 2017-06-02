@@ -1,28 +1,15 @@
 options{ STATIC = false; JDK_VERSION = "1.8"; }
 PARSER_BEGIN(ArithmeticParser)
 package javacc;
-import java.io.StringReader;
+import modelo.dominio.Indicador;
+import modelo.dominio.operaciones.*;
+import modelo.dominio.operandos.*;
 
 public class ArithmeticParser {
-    private Token operando1;
-    private StringBuffer operando2 = new StringBuffer();
-    private String operacion;
-
-    public Token getOperando1(){
-        return this.operando1;
+    Indicador indicadorAdevolver = new Indicador();
+    public Indicador getIndicadorAdevolver(){
+        return indicadorAdevolver;
     }
-    public String getOperando2(){
-        return this.operando2.toString();
-    }
-    public String getOperacion(){
-        return this.operacion;
-    }
-
-    public static void main(String[] args) throws Exception {
-        ArithmeticParser parser = new ArithmeticParser( System.in ) ;
-        parser.Start() ;
-    }
-
 }
 PARSER_END(ArithmeticParser)
 
@@ -44,46 +31,37 @@ PARSER_END(ArithmeticParser)
        |  <CUENTA:(["a"-"z","A"-"Z", "0"-"9"])+>
     }
 
-
-
 void Start():{}
-
     {
-        POPERANDO() OPERACION() SOPERANDO(){
+        INDICADOR(indicadorAdevolver)
     }
-    }
-void POPERANDO():{}
+void INDICADOR(Indicador indicador):{}
     {
-            <NUMBER>    {operando1 = token;}
-        |   <CUENTA>    {operando1 = token;}
+        POPERANDO(indicador) OPERACION(indicador) SOPERANDO(indicador)
     }
-void OPERACION():{}
+void POPERANDO(Indicador indicador):{}
     {
-            <MULTIPLY>  {operacion = token.image;}
-        |   <DIVIDE>    {operacion = token.image;}
-        |   <ADD>       {operacion = token.image;}
-        |   <SUBTRACT>  {operacion = token.image;}
+            <NUMBER>{ indicador.setPrimerOperando(new Valor(token.image)); }
+        |   <CUENTA>{ indicador.setPrimerOperando(new CuentaOperando(token.image)); }
     }
-
-void SOPERACION():{}
+void OPERACION(Indicador indicador):{}
     {
-            <MULTIPLY>
-        |   <DIVIDE>
-        |   <ADD>
-        |   <SUBTRACT>
+            <MULTIPLY>{ indicador.setOperacion(new Multiplicacion()); }
+        |   <DIVIDE>{ indicador.setOperacion(new Division()); }
+        |   <ADD>{ indicador.setOperacion(new Suma()); }
+        |   <SUBTRACT>{ indicador.setOperacion(new Resta()); }
     }
-void SOPERANDO():{}
+void SOPERANDO(Indicador indicador):{}
     {       LOOKAHEAD(2)
-            <NUMBER>        {operando2.append(token.image);}
-            SOPERACION()     {operando2.append(token.image);}
-            SOPERANDO()     {operando2.append(token.image);}
-            <EOF>
-
-        |   <CUENTA>        {operando2.append(token.image);}
-            SOPERACION()     {operando2.append(token.image);}
-            SOPERANDO()     {operando2.append(token.image);}
-            <EOF>
-
-        |   <NUMBER>                            {operando2.append(token.image);}
-            <EOF>
+            SUBINDICADOR(indicador)
+        |   LOOKAHEAD(2)
+            <NUMBER>{ indicador.setSegundoOperando(new Valor(token.image)); }
+        |   <CUENTA>{ indicador.setSegundoOperando(new CuentaOperando(token.image)); }
+    }
+void SUBINDICADOR(Indicador indicador):{
+    Indicador subIndicador = new Indicador();
+    indicador.setSegundoOperando(subIndicador);
+}
+    {
+        POPERANDO(subIndicador) OPERACION(subIndicador) SOPERANDO(subIndicador)
     }

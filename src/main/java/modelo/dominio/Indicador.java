@@ -3,7 +3,6 @@ package modelo.dominio;
 import modelo.dominio.operaciones.Operacion;
 import modelo.dominio.operandos.Operando;
 import org.uqbar.commons.utils.Observable;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ public class Indicador implements Operando, Serializable {
 	
     private String nombre;
     private String formula;
-
 
     private Operando primerOperando;
     private Operando segundoOperando;
