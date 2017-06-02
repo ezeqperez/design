@@ -30,6 +30,6 @@ public class TestFile {
 		Assert.assertTrue(indicador.getNombre().equals("indicador1"));
 */
     }
-
+	
 
 }

@@ -1,7 +1,10 @@
 package modelo.viewModel;
 
 import modelo.dominio.Indicador;
+import modelo.repositorios.EmpresasRepository;
 import modelo.repositorios.IndicadoresRepository;
+import utils.Indicadores.IndicadorAplicado;
+
 import org.uqbar.commons.utils.Observable;
 
 import java.util.ArrayList;
@@ -11,57 +14,85 @@ import java.util.List;
     Revisar completo
  */
 
-
 @Observable
 public class SearchIndicadoresViewModel {
-    private IndicadoresRepository indicadoresRepository;
-    private List<Indicador> indicadores;
-    private List<String> indicadoresPorNombre;
-    private Indicador indicador;
-    private String nombreIndicador;
-    private String formula;
 
+	// private List<Indicador> indicadores;
+	// private List<String> indicadoresPorNombre;
+	// private Indicador indicador;
+	// private String nombreIndicador;
+	// private String formula;
+	private EmpresasRepository repoEmpresas;
+	private IndicadoresRepository repoIndicadores;
 
-    public List<Indicador> getIndicadores() {
-        return IndicadoresRepository.getInstance().getIndicadores();
-    }
+	private List<IndicadorAplicado> indicadoresAplicados = new ArrayList<IndicadorAplicado>();
 
-    public void setIndicadores(List<Indicador> indicadores) {
-        IndicadoresRepository.getInstance().setIndicadores(new ArrayList<Indicador>());
-    }
+	public SearchIndicadoresViewModel(IndicadoresRepository repoIn, EmpresasRepository repoEmpresa) {
+		this.repoEmpresas = repoEmpresa;
+		this.repoIndicadores = repoIn;
+	}
 
-    public List<String> getIndicadoresPorNombre() {
-        return IndicadoresRepository.getInstance().getIndicadoresPorNombre();
-    }
+	public List<IndicadorAplicado> getIndicadoresAplicados() {
+		return indicadoresAplicados;
+	}
 
-    public void setIndicadoresPorNombre(List<String> indicadores) {
-        IndicadoresRepository.getInstance().setIndicadores(new ArrayList<Indicador>());
-    }
+	public void setIndicadoresAplicados(List<IndicadorAplicado> indicadoresAplicados) {
+		this.indicadoresAplicados = indicadoresAplicados;
+	}
 
-    public Indicador getIndicador() {
-        return indicador;
-    }
+	public List<Indicador> getIndicadores() {
+		return IndicadoresRepository.getInstance().getIndicadores();
+	}
 
-    public void setIndicador(Indicador indicador) {
-        this.indicador = indicador;
-        this.formula = indicador.getFormula();
-    }
+	public void setIndicadores(List<Indicador> indicadores) {
+		IndicadoresRepository.getInstance().setIndicadores(new ArrayList<Indicador>());
+	}
 
-    public String getFormula() {
-        return formula;
-    }
+	public List<String> getIndicadoresPorNombre() {
+		return IndicadoresRepository.getInstance().getIndicadoresPorNombre();
+	}
 
-    public void setFormula(String formula) {
-        this.formula = formula;
-    }
+	public void setIndicadoresPorNombre(List<String> indicadores) {
+		IndicadoresRepository.getInstance().setIndicadores(new ArrayList<Indicador>());
+	}
 
-    public String getNombreIndicador() {
-        return nombreIndicador;
-    }
+	public void cargadIndicadores() {
 
-    public void setNombreIndicador(String nombreIndicador) {
-        this.nombreIndicador = nombreIndicador;
-        this.indicador = IndicadoresRepository.getInstance().search(nombreIndicador);
-        this.formula = indicador.getFormula();
-    }
+		IndicadoresRepository.getInstance().getIndicadores().forEach(itemIndicador -> {
+			if (itemIndicador.existeEnPeriodo(repoEmpresas.getEmpresas())) {
+				indicadoresAplicados.addAll(itemIndicador.getListaIndicadores());
+			}
+			;
+		});
+
+	}
+
+	// public Indicador getIndicador() {
+	// return indicador;
+	// }
+	//
+	// public void setIndicador(Indicador indicador) {
+	// this.indicador = indicador;
+	// this.formula = indicador.getFormula();
+	// }
+	//
+	// public String getFormula() {
+	// return formula;
+	// }
+	//
+	// public void setFormula(String formula) {
+	// this.formula = formula;
+	// }
+	//
+	// public String getNombreIndicador() {
+	// return nombreIndicador;
+	// }
+	//
+	// public void setNombreIndicador(String nombreIndicador) {
+	// this.nombreIndicador = nombreIndicador;
+	// this.indicador =
+	// IndicadoresRepository.getInstance().search(nombreIndicador);
+	// this.formula = indicador.getFormula();
+	// }
+
 }

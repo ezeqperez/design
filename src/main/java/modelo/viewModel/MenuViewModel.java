@@ -1,6 +1,11 @@
 package modelo.viewModel;
 
+import modelo.dominio.Indicador;
 import modelo.repositorios.EmpresasRepository;
+import modelo.repositorios.IndicadoresRepository;
+
+import java.util.List;
+
 import org.uqbar.commons.utils.Observable;
 import utils.Empresas.EmpresasUploader;
 import utils.Excepciones.ExcepcionParseo;
@@ -11,6 +16,7 @@ public class MenuViewModel {
     private EmpresasRepository repoEmpresas = new EmpresasRepository();
     private EmpresasUploader empresasUploader; // Dependencia
     private String ruta;  //Ruta donde se va a buscar el archivo a procesar
+    private IndicadoresRepository repoIndicadores = new IndicadoresRepository();
 
     public MenuViewModel(EmpresasUploader iJsonEmpresasUploader) {
         empresasUploader = iJsonEmpresasUploader;
@@ -46,5 +52,13 @@ public class MenuViewModel {
     public void setEmpresasUploader(EmpresasUploader iJsonEmpresasUploader) {
         empresasUploader = iJsonEmpresasUploader;
     }
+
+    
+    //TODO Todavia no usamos bien un repo creo
+    //hay que probar si funciona bien usando el getInstance y esas cosas
+    public IndicadoresRepository getRepoIndicadores(){
+    	return repoIndicadores;
+    }
+    
 
 }

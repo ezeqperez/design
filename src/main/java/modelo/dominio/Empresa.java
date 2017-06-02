@@ -33,7 +33,10 @@ public class Empresa {
         return null;
     }
 
-
+    public List<Periodo> getPeriodos(){
+    	return this.periodos;
+    }
+    
     public Periodo getPeriodo(int periodoFilter) {
         for (Periodo p : periodos) {
             if (p.getPeriodo()==periodoFilter){

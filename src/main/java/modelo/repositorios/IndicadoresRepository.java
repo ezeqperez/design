@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 @Observable
 public class IndicadoresRepository{
+	
     private List<Indicador> indicadores;
 
     private static IndicadoresRepository ourInstance = new IndicadoresRepository();

@@ -13,6 +13,10 @@ public class EmpresasRepository {
     public static EmpresasRepository getInstance() {
         return ourInstance;
     }
+    
+    public List<Empresa> getEmpresas(){
+    	return empresas;
+    }
 
 
     public void agregarEmpresas(List<Empresa> empresasAAgregar) {

@@ -1,13 +1,23 @@
 package modelo.dominio.operandos;
 
+import modelo.dominio.Cuenta;
 import modelo.dominio.Periodo;
 import java.math.BigDecimal;
 import java.util.List;
 
 public class CuentaOperando implements Operando{
     private String nombreCuenta;
+    private boolean estado;
 
-    public CuentaOperando(String nombre){
+    public String getNombreCuenta() {
+		return nombreCuenta;
+	}
+
+	public void setNombreCuenta(String nombreCuenta) {
+		this.nombreCuenta = nombreCuenta;
+	}
+
+	public CuentaOperando(String nombre){
         this.nombreCuenta= nombre;
     }
 
@@ -15,6 +25,20 @@ public class CuentaOperando implements Operando{
     //De alguna manera tambien le tengo que hacer llegar la empresa
     public BigDecimal valor(Periodo periodo){
         return periodo.getMonto(nombreCuenta);
+    }
+    
+    
+    
+    public boolean existe(List<Cuenta> cuentas){
+    	cuentas.forEach(cuentaItem -> {
+    		if(cuentaItem.getNombre().equals(nombreCuenta)){
+    			estado = true;
+    		}
+    		else{
+    			estado = false;
+    		}
+    	});
+    	return estado;
     }
 
 
