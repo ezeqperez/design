@@ -33,10 +33,10 @@ public class Periodo {
 
 	//Chequeo si los operandos estan 
 	//en los periodos
-	public boolean existenCuentas(Operando operando1, Operando operando2) {
+	/*public boolean existenCuentas(Operando operando1, Operando operando2) {
 		if (operando1.existe(this.getCuentas()) && operando2.existe(this.getCuentas()))
 			return true;
 		else
 			return false;
-	}
+	}*/
 }

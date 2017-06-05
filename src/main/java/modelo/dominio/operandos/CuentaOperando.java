@@ -2,8 +2,6 @@ package modelo.dominio.operandos;
 
 import modelo.dominio.Cuenta;
 import modelo.dominio.Periodo;
-import modelo.repositorios.EmpresasRepository;
-
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -20,7 +18,7 @@ public class CuentaOperando implements Operando{
 	}
 
 	public CuentaOperando(String nombre){
-        this.nombreCuenta= nombre;
+        nombreCuenta= nombre;
     }
 
     @Override
@@ -32,9 +30,7 @@ public class CuentaOperando implements Operando{
         //EmpresasRepository.getInstance(); -- mme aprece que tmb necesito saber la empresa..
         return periodo.getMonto(nombreCuenta);
     }
-    
-    
-    
+
     public boolean existe(List<Cuenta> cuentas){
     	cuentas.forEach(cuentaItem -> {
     		if(cuentaItem.getNombre().equals(nombreCuenta)){
@@ -47,12 +43,4 @@ public class CuentaOperando implements Operando{
     	return estado;
     }
 
-
-/*
-    Calculo aca los valores de todos los valores de las cuentas, y los sumo
-
-    public double getCostoTotal (Tarea tarea) {
-        return this.subtareas.stream().mapToDouble(subtarea -> subtarea.getCostoTotal()).sum();
-    }
-*/
 }

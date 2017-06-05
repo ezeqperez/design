@@ -19,7 +19,7 @@ public class EmpresasViewModelTest {
 	
 	EmpresasUpload empresasUpload;
 	List<Empresa> empresasCargadas = new ArrayList<Empresa>();
-	EmpresasRepository empresasRepo = new EmpresasRepository();
+	EmpresasRepository empresasRepo;
 	EmpresasViewModel viewModel;
 	
 	@Rule

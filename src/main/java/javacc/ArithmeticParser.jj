@@ -1,80 +1,65 @@
 options{ STATIC = false; JDK_VERSION = "1.8"; }
 PARSER_BEGIN(ArithmeticParser)
 package javacc;
+import modelo.dominio.operandos.Bodoque;
 import modelo.dominio.operaciones.*;
 import modelo.dominio.operandos.*;
-import modelo.dominio.*;
-import modelo.repositorios.IndicadoresRepository;
 
 public class ArithmeticParser {
-    private Indicador indicadorAdevolver = new Indicador();
-
-    public void setNombre(String nombre){
-        indicadorAdevolver.setNombre(nombre);
-    }
-
-    public void setFormula(String formula){
-        indicadorAdevolver.setFormula(formula);
-    }
-    public void guardarIndicador(){
-        IndicadoresRepository.getInstance().insert(indicadorAdevolver);
-    }
-
-    public Indicador getIndicadorAdevolver(){
-        return indicadorAdevolver;
-    }
+    Bodoque bodoqueDevolver = new Bodoque();
+    public Bodoque getBodoqueDevolver(){
+        return bodoqueDevolver;
+     }
 }
 PARSER_END(ArithmeticParser)
 
-    SKIP :
-    {     " "
-        | "\t"
-        | "\r"
-        | "\n"
-    }
+SKIP :
+      {     " "
+          | "\t"
+          | "\r"
+          | "\n"
+      }
 
-  TOKEN:{
-          <LPAREN: "(">
-       |  <RPAREN: ")">
-       |  <MULTIPLY:  "*">
-       |  <DIVIDE: "/">
-       |  <ADD: "+">
-       |  <SUBTRACT: "-">
-       |  <NUMBER:(["0"-"9"])+>
-       |  <CUENTA:(["a"-"z","A"-"Z", "0"-"9"])+>
-    }
-
-void Start():{}
-    {
-        INDICADOR(indicadorAdevolver)
-    }
-void INDICADOR(Indicador indicador):{}
-    {
-        POPERANDO(indicador) OPERACION(indicador) SOPERANDO(indicador)
-    }
-void POPERANDO(Indicador indicador):{}
-    {
-            <NUMBER>{ indicador.setPrimerOperando(new Valor(token.image)); }
-        |   <CUENTA>{ indicador.setPrimerOperando(new CuentaOperando(token.image)); }
-    }
-void OPERACION(Indicador indicador):{}
-    {
-            <MULTIPLY>  { indicador.setOperacion(new Multiplicacion()); }
-        |   <DIVIDE>    { indicador.setOperacion(new Division()); }
-        |   <ADD>       { indicador.setOperacion(new Suma()); }
-        |   <SUBTRACT>  { indicador.setOperacion(new Resta()); }
-    }
-void SOPERANDO(Indicador indicador):{}
-    {       LOOKAHEAD(2)
-            SUBINDICADOR(indicador)
+TOKEN:{
+            <LPAREN: "(">
+         |  <RPAREN: ")">
+         |  <MULTIPLY:  "*">
+         |  <DIVIDE: "/">
+         |  <ADD: "+">
+         |  <SUBTRACT: "-">
+         |  <NUMBER:(["0"-"9"])+>
+         |  <CUENTA:(["a"-"z","A"-"Z", "0"-"9"])+>
+      }
+void Start():{}{
+    BODOQUE(bodoqueDevolver)
+}
+void BODOQUE(Bodoque bodoque):{}
+     {
+        POPERANDO(bodoque) OPERACION(bodoque) SOPERANDO(bodoque)
+     }
+void POPERANDO(Bodoque bodoque):{}
+     {
+            <NUMBER>{ bodoque.setPrimerOperando(new Valor(token.image)); }
+        |   <CUENTA>{ bodoque.setPrimerOperando(new CuentaOperando(token.image)); }
+     }
+void OPERACION(Bodoque bodoque):{}
+     {
+            <MULTIPLY>{ bodoque.setOperacion(new Multiplicacion()); }
+        |   <DIVIDE>{ bodoque.setOperacion(new Division()); }
+        |   <ADD>{ bodoque.setOperacion(new Suma()); }
+        |   <SUBTRACT>{ bodoque.setOperacion(new Resta()); }
+     }
+void SOPERANDO(Bodoque bodoque):{}
+     {       LOOKAHEAD(2)
+            SUBBODOQUE(bodoque)
         |   LOOKAHEAD(2)
-            <NUMBER>{ indicador.setSegundoOperando(new Valor(token.image)); }
-        |   <CUENTA>{ indicador.setSegundoOperando(new CuentaOperando(token.image)); }
-    }
-void SUBINDICADOR(Indicador indicador):{
-    Indicador subIndicador = new Indicador();
-    indicador.setSegundoOperando(subIndicador);
+            <NUMBER>{ bodoque.setSegundoOperando(new Valor(token.image)); }
+        |   <CUENTA>{ bodoque.setSegundoOperando(new CuentaOperando(token.image)); }
+     }
+void SUBBODOQUE(Bodoque bodoque):{
+    Bodoque subBodoque = new Bodoque();
+    bodoque.setSegundoOperando(subBodoque);
 }
     {
-        POPERANDO(subIndicador) OPERACION(subIndicador) SOPERANDO(subIndicador)
+        POPERANDO(subBodoque) OPERACION(subBodoque) SOPERANDO(subBodoque)
     }

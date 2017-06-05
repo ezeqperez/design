@@ -13,10 +13,10 @@ import utils.Empresas.EmpresasUpload;
 
 @Observable
 public class MenuViewModel {
-    private EmpresasRepository repoEmpresas = new EmpresasRepository();
+    private EmpresasRepository repoEmpresas;
     private EmpresasUploader empresasUploader; // Dependencia
     private String ruta;  //Ruta donde se va a buscar el archivo a procesar
-    private IndicadoresRepository repoIndicadores = new IndicadoresRepository();
+    private IndicadoresRepository repoIndicadores;
 
     public MenuViewModel(EmpresasUploader iJsonEmpresasUploader) {
         empresasUploader = iJsonEmpresasUploader;

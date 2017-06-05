@@ -9,16 +9,18 @@ public class EmpresasRepository {
 
     private List<Empresa> empresas;
 
-    public EmpresasRepository() {
+    private EmpresasRepository() {
         empresas = new ArrayList<>();
     }
 
-    private static EmpresasRepository ourInstance = new EmpresasRepository();
+    private static EmpresasRepository ourInstance;
 
     public static EmpresasRepository getInstance() {
+        if (ourInstance == null){
+            ourInstance = new EmpresasRepository();
+        }
         return ourInstance;
     }
-    
 
     public void agregarEmpresas(List<Empresa> empresasAAgregar) {
         empresas.addAll(empresasAAgregar);
