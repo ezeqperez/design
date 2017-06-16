@@ -10,6 +10,7 @@ import org.junit.Test;
 public class IndicadorParserTest {
     private IndicadorViewModel viewModel;
     private Indicador indicador;
+    
     @Before
     public void initialize() {
         IndicadorViewModel viewModel = new IndicadorViewModel();
@@ -22,7 +23,7 @@ public class IndicadorParserTest {
 
     @Test
     public void devuelveIndicadorOK() {
-        Assert.assertEquals(IndicadoresRepository.getInstance().search("Pirulo").getNombre(), "Pirulo");
+    	Assert.assertEquals(IndicadoresRepository.getInstance().search("Pirulo").getNombre(), "Pirulo");
     }
 
     @Test

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.dominio.operandos.Operando;
+import utils.Excepciones.ExcepcionFiltroViewModel;
+import utils.Excepciones.ExcepcionPeriodoSinCuenta;
 
 public class Periodo {
 
@@ -24,7 +26,10 @@ public class Periodo {
 	}
 
 	public Cuenta findCuenta(String nombre) {
-		return cuentas.stream().filter(cuenta -> cuenta.getNombre().equals(nombre)).findFirst().orElse(null);
+		return cuentas.stream()
+				.filter(cuenta -> cuenta.getNombre().equals(nombre))
+				.findFirst()
+				.orElseThrow(() -> new ExcepcionPeriodoSinCuenta("Este período, no posee cuentas"));
 	}
 
 	public BigDecimal getMonto(String nombre) {

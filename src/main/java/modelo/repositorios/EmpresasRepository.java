@@ -21,6 +21,10 @@ public class EmpresasRepository {
         }
         return ourInstance;
     }
+    
+    public void vaciar(){
+    	empresas = new ArrayList<>();
+    }
 
     public void agregarEmpresas(List<Empresa> empresasAAgregar) {
         empresas.addAll(empresasAAgregar);

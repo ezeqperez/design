@@ -3,6 +3,8 @@ package modelo.dominio;
 import java.util.ArrayList;
 import java.util.List;
 
+import utils.Excepciones.ExcepcionFiltroViewModel;
+
 public class Empresa {
 
     private String nombre;
@@ -24,25 +26,23 @@ public class Empresa {
         this.nombre = nombre;
     }
 
+        
     public List<Cuenta> cuentasPorPeriodo (int periodo){
-        for (Periodo p : periodos) {
-            if (p.getPeriodo()==periodo){
-                return p.getCuentas();
-            }
-        }
-        return null;
+    	return periodos.stream()
+    			.filter(unPeriodo -> unPeriodo.getPeriodo() == periodo)
+    			.map(unPeriodo -> unPeriodo.getCuentas())
+    			.findAny()
+    			.orElse(null);
     }
 
     public List<Periodo> getPeriodos(){
     	return this.periodos;
     }
-    
+        
     public Periodo getPeriodo(int periodoFilter) {
-        for (Periodo p : periodos) {
-            if (p.getPeriodo()==periodoFilter){
-                return p;
-            }
-        }
-        return null;
+        return periodos.stream()
+        		.filter(periodo -> periodo.getPeriodo() == periodoFilter)
+        		.findAny()
+        		.orElseThrow(() -> new ExcepcionFiltroViewModel("No se encontro el periodo"));
     }
 }

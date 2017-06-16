@@ -2,7 +2,12 @@ package modelo.viewModel;
 
 import modelo.dominio.Cuenta;
 import modelo.repositorios.EmpresasRepository;
+
+import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
+
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Observable
@@ -17,7 +22,7 @@ public class EmpresasViewModel {
     }
 
     public void filtrarCuentas() {
-        setCuentasFiltradas(repoEmpresas.filtrarEmpresas(empresaFilter).getPeriodo(periodoFilter).getCuentas());
+    	setCuentasFiltradas(repoEmpresas.filtrarEmpresas(empresaFilter).getPeriodo(periodoFilter).getCuentas());
     }
 
     public List<Cuenta> getCuentasFiltradas() {

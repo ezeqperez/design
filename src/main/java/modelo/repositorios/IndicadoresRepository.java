@@ -29,11 +29,14 @@ public class IndicadoresRepository{
     }
 
     public Indicador search(String name) {
-        return indicadores.stream().filter(indicador -> indicador.getNombre().equalsIgnoreCase(name)).findFirst().orElse(null);
+        return indicadores.stream()
+        		.filter(indicador -> indicador.getNombre().equalsIgnoreCase(name))
+        		.findFirst()
+        		.orElse(null);
     }
 
     public void update(Indicador indicador) {
-        delete(search(indicador.getNombre()));
+        delete(this.search(indicador.getNombre()));
         insert(indicador);
     }
 

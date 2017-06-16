@@ -50,11 +50,11 @@ public class EmpresasUploadTest {
     public void cargaJsonCorrupto() {
         expecterEx.expect(ExcepcionParseo.class);
         expecterEx.expectMessage("El archivo no se pudo cargar, por favor verifique que el formato sea el correcto");
-        empresasUpload.procesarArchivo("src/test/resources/jsonMalArmado.json");
+        empresasUpload.procesarArchivo("src/test/resources/jsonCorrupto.json");
     }
 
     @Test
-    public void cargaTresEmpresas() {
+    public void cargaDosEmpresas() {
         List<Empresa> empresasCargadas = empresasUpload.procesarArchivo("src/test/resources/test.json");
         Assert.assertEquals(empresasCargadas.size(), 2);
     }

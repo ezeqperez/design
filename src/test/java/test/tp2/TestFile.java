@@ -9,7 +9,7 @@ import utils.Indicadores.EscribirObjeto;
 
 
 public class TestFile {
-	
+	/*
 	@Test
     public void GuardarIndicador() {
 
@@ -23,13 +23,13 @@ public class TestFile {
 	@Test
     public void LeerIndicador() {
 
-/*
+
 		LeerObjeto obj = new LeerObjeto();
 
 		Indicador indicador = obj.deserializarObjeto("src/test/resources/test.txt");
 		Assert.assertTrue(indicador.getNombre().equals("indicador1"));
-*/
-    }
+
+    }*/
 	
 
 }
