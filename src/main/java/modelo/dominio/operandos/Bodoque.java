@@ -1,8 +1,10 @@
 package modelo.dominio.operandos;
 
+import modelo.dominio.Cuenta;
 import modelo.dominio.Periodo;
 import modelo.dominio.operaciones.Operacion;
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Bodoque implements Operando{
 
@@ -34,5 +36,16 @@ public class Bodoque implements Operando{
     public void setOperacion(Operacion operacion) {
         this.operacion = operacion;
     }
+
+	@Override
+	public boolean existe(List<Cuenta> cuentas) {
+		return false;
+	}
+
+	@Override
+	public String nombre() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

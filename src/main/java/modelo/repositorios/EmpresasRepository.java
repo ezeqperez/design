@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class EmpresasRepository {
 
-    private List<Empresa> empresas;
+    private List<Empresa> empresas = new ArrayList<>();
 
     private EmpresasRepository() {
         empresas = new ArrayList<>();

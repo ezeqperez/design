@@ -1,8 +1,8 @@
 package test;
 
 import modelo.dominio.Indicador;
-import modelo.dominio.javacc.ArithmeticParser;
-import modelo.dominio.javacc.ParseException;
+import modelo.javacc.ArithmeticParser;
+import modelo.javacc.ParseException;
 import modelo.repositorios.IndicadoresRepository;
 import modelo.viewModel.IndicadorViewModel;
 import org.junit.Assert;

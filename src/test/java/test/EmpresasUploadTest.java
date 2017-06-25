@@ -10,6 +10,7 @@ import org.junit.rules.ExpectedException;
 import org.uqbar.commons.model.UserException;
 
 import modelo.dominio.Empresa;
+import modelo.repositorios.EmpresasRepository;
 import utils.Empresas.EmpresasUpload;
 import utils.Excepciones.ExcepcionParseo;
 
@@ -55,7 +56,7 @@ public class EmpresasUploadTest {
 
     @Test
     public void cargaDosEmpresas() {
-        List<Empresa> empresasCargadas = empresasUpload.procesarArchivo("src/test/resources/test.json");
-        Assert.assertEquals(empresasCargadas.size(), 2);
+        EmpresasRepository.getInstance().agregarEmpresas(empresasUpload.procesarArchivo("src/test/resources/test.json"));
+        Assert.assertEquals(EmpresasRepository.getInstance().getEmpresas().size(), 2);
     }
 }

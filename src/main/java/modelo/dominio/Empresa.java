@@ -21,6 +21,15 @@ public class Empresa {
         }
         return cuentas;
     }
+    
+    //???
+    public void setPeriodos(List<Periodo> p){
+    	this.periodos = p;
+    }
+    
+//    public void setPeriodo(Periodo c){
+//    	periodos.add(c);
+//    }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -36,7 +45,7 @@ public class Empresa {
     }
 
     public List<Periodo> getPeriodos(){
-    	return this.periodos;
+    	return periodos;
     }
         
     public Periodo getPeriodo(int periodoFilter) {

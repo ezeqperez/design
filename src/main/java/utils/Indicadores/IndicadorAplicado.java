@@ -11,7 +11,9 @@ public class IndicadorAplicado {
 	private int anioPeriodo;
 	private String nombreIndicador;
 	private BigDecimal valor;
-
+	private boolean existe;
+	
+	
 	public String getNombreEmpresa() {
 		return nombreEmpresa;
 	}
@@ -43,6 +45,14 @@ public class IndicadorAplicado {
 	public void setValor(BigDecimal bd) {
 		this.valor = bd;
 		
+	}
+
+	public boolean getExiste() {
+		return existe;
+	}
+
+	public void setExiste(boolean existe) {
+		this.existe = existe;
 	}
 
 }

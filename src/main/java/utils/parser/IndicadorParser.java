@@ -1,8 +1,8 @@
 package utils.parser;
 
-import javacc.ArithmeticParser;
-import javacc.ParseException;
 import modelo.dominio.Indicador;
+import modelo.javacc.ArithmeticParser;
+import modelo.javacc.ParseException;
 import modelo.repositorios.IndicadoresRepository;
 import org.uqbar.commons.model.UserException;
 
@@ -23,6 +23,7 @@ public class IndicadorParser {
              arithmeticParser.Start();
              final Indicador indicador = new Indicador();
              indicador.setBodoque(arithmeticParser.getBodoqueDevolver());
+             indicador.setNombre(nombre);
              IndicadoresRepository.getInstance().update(indicador);
         }catch(ParseException e){
             throw new UserException("La formula que ingreso no es valida, por favor intente de nuevo");

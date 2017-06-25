@@ -20,7 +20,9 @@ public class SearchIndicadoresViewModel {
 	private EmpresasRepository repoEmpresas;
 	private IndicadoresRepository repoIndicadores;
 
-	private List<IndicadorAplicado> indicadoresAplicados = new ArrayList<IndicadorAplicado>();
+	private List<IndicadorAplicado> indicadoresAplicados = new ArrayList<>();
+	private List<IndicadorAplicado> indicadoresNoAplicados = new ArrayList<IndicadorAplicado>();
+	private IndicadorAplicado indicador = new IndicadorAplicado();
 
 	public SearchIndicadoresViewModel(IndicadoresRepository repoIn, EmpresasRepository repoEmpresa) {
 		repoEmpresas = repoEmpresa;
@@ -52,14 +54,22 @@ public class SearchIndicadoresViewModel {
 	}
 
 	public void cargadIndicadores() {
-		/*
+
+		
 		IndicadoresRepository.getInstance().getIndicadores().forEach(itemIndicador -> {
-			if (itemIndicador.existeEnPeriodo(repoEmpresas.getEmpresas())) {
-				indicadoresAplicados.addAll(itemIndicador.getListaIndicadores());
-			}
-			;
+			indicadoresAplicados.addAll(itemIndicador.existeEnPeriodo(EmpresasRepository.getInstance().getEmpresas()));
+
+//			if (indicador.getExiste()) {
+//				System.out.println("indicador que se va a agregar SI existe: " + indicador.getNombreEmpresa());
+//				indicadoresAplicados.add(indicador);
+//			} else {
+//				System.out.println("indicador que se va a agregar si NO existe: " + indicador.getNombreEmpresa());
+//
+//				indicadoresNoAplicados.add(indicador);
+//			}
+
 		});
-		*/
+
 	}
 
 }

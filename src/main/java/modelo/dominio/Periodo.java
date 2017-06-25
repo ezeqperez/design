@@ -10,11 +10,16 @@ import utils.Excepciones.ExcepcionPeriodoSinCuenta;
 
 public class Periodo {
 
-	private List<Cuenta> cuentas = new ArrayList<>();
+	private List<Cuenta> cuentas;
 	private int anio;
 
 	public int getPeriodo() {
 		return anio;
+	}
+	
+	//
+	public void setAnio(int a){
+		this.anio = a;
 	}
 
 	public List<Cuenta> getCuentas() {
@@ -24,8 +29,13 @@ public class Periodo {
 	public void setCuentas(List<Cuenta> cuentas) {
 		this.cuentas = cuentas;
 	}
+	
+//	public void setCuenta(Cuenta c){
+//		cuentas.add(c);
+//	}
 
 	public Cuenta findCuenta(String nombre) {
+
 		return cuentas.stream()
 				.filter(cuenta -> cuenta.getNombre().equals(nombre))
 				.findFirst()
@@ -33,15 +43,16 @@ public class Periodo {
 	}
 
 	public BigDecimal getMonto(String nombre) {
-		return findCuenta(nombre).getMonto();
+				return findCuenta(nombre).getMonto();
 	}
 
 	//Chequeo si los operandos estan 
 	//en los periodos
-	/*public boolean existenCuentas(Operando operando1, Operando operando2) {
+	
+	public boolean existenCuentas(Operando operando1, Operando operando2) {
 		if (operando1.existe(this.getCuentas()) && operando2.existe(this.getCuentas()))
 			return true;
 		else
 			return false;
-	}*/
+	}
 }
