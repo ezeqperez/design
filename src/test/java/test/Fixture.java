@@ -1,7 +1,5 @@
 package test;
 
-import java.math.BigDecimal;
-
 public class Fixture {
     public String jsonNoArray() {
         String json = "{\n" +

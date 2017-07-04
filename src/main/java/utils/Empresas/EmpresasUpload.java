@@ -15,20 +15,20 @@ import java.util.List;
 public class EmpresasUpload implements EmpresasUploader {
 
     public List<Empresa> procesarArchivo(String ruta) {
-        List<Empresa> empresas = new ArrayList<>();
-        JSONParser parser = new JSONParser();
-        JsonParser jsonParser = new JsonParser();
-        Object obj;
+        final List<Empresa> empresas = new ArrayList<>();
+        final JSONParser parser = new JSONParser();
+        final JsonParser jsonParser = new JsonParser();
+        final Object obj;
         try {
             obj = parser.parse(new FileReader(ruta));
-            JSONArray jsonArray = (JSONArray) obj;
+            final JSONArray jsonArray = (JSONArray) obj;
             jsonArray.forEach(item -> {
-                JSONObject json = (JSONObject) item;
+                final JSONObject json = (JSONObject) item;
                 empresas.add(jsonParser.jsonAEmpresa(json));
             });
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new UserException("No se encontro el archivo");
-        } catch (ParseException e) {
+        } catch (final ParseException e) {
             throw new ExcepcionParseo("El archivo no se pudo cargar, por favor verifique que el formato sea el correcto");
         }
         return empresas;

@@ -26,7 +26,7 @@ public class SearchCuentasWindow extends SimpleWindow<EmpresasViewModel> {
     @Override
     protected void createFormPanel(Panel mainPanel) {
         setTitle("Buscador de cuentas");
-        Panel columnasPanel = new Panel(mainPanel);
+        final Panel columnasPanel = new Panel(mainPanel);
         columnasPanel.setLayout(new ColumnLayout(2));
 
         new Label(mainPanel).setText("Filtrar por empresa");
@@ -37,15 +37,15 @@ public class SearchCuentasWindow extends SimpleWindow<EmpresasViewModel> {
 
         new Button(mainPanel).setCaption("Buscar Cuentas").onClick(this::aplicarFiltros);
 
-        Table<Cuenta> tabla = new Table<>(this, Cuenta.class);
+        final Table<Cuenta> tabla = new Table<>(this, Cuenta.class);
         tabla.bindItemsToProperty("cuentasFiltradas");
 
-        Column<Cuenta> cuentaColumn = new Column<>(tabla);
+        final Column<Cuenta> cuentaColumn = new Column<>(tabla);
         cuentaColumn.setTitle("Cuenta");
         cuentaColumn.setFixedSize(40);
         cuentaColumn.bindContentsToProperty("nombre");
 
-        Column<Cuenta> montoColumn = new Column<>(tabla);
+        final Column<Cuenta> montoColumn = new Column<>(tabla);
         montoColumn.setTitle("Monto");
         montoColumn.setFixedSize(40);
         montoColumn.bindContentsToProperty("monto");

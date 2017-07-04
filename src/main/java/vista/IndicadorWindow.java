@@ -37,7 +37,6 @@ public class IndicadorWindow extends SimpleWindow<IndicadorViewModel>{
     }
 
     private void mostrarAlerta(String mensaje) {
-        AlertWindow dialog = new AlertWindow(getOwner(), new AlertViewModel(mensaje));
-        dialog.open();
+        new AlertWindow(getOwner(), new AlertViewModel(mensaje)).open();
     }
 }

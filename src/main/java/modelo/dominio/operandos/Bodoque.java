@@ -8,9 +8,9 @@ import java.util.List;
 
 public class Bodoque implements Operando{
 
-    private Operando primerOperando;
-    private Operando segundoOperando;
-    private Operacion operacion;
+    private Operando primerOperando = null;
+    private Operando segundoOperando = null;
+    private Operacion operacion = null;
 
     @Override
     public BigDecimal valor(Periodo periodo) {

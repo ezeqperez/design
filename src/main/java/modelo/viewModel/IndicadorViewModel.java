@@ -1,25 +1,23 @@
 package modelo.viewModel;
 
 import modelo.dominio.Indicador;
-import modelo.repositorios.IndicadoresRepository;
 import org.uqbar.commons.utils.Observable;
 import utils.parser.IndicadorParser;
 
 @Observable
 public class IndicadorViewModel {
     private Indicador indicador;
-    private String nombre;
-    private String formula; //La formula a analizar
+    private String nombre = null;
+    private String formula = null;
 
     public IndicadorViewModel() {
         indicador = new Indicador();
     }
 
     public void guardarIndicador(){
-        IndicadorParser parser = new IndicadorParser();
+        final IndicadorParser parser = new IndicadorParser();
         parser.generarIndicador(nombre, formula);
     }
-
 
     public Indicador getIndicador() {
         return indicador;

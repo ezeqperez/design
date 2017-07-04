@@ -16,7 +16,7 @@ public class LeerObjeto {
 
 			indicador = (Indicador) ois.readObject();
 
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			ex.printStackTrace();
 		}
 

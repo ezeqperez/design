@@ -13,7 +13,7 @@ public class EmpresasRepository {
         empresas = new ArrayList<>();
     }
 
-    private static EmpresasRepository ourInstance;
+    private static EmpresasRepository ourInstance = null;
 
     public static EmpresasRepository getInstance() {
         if (ourInstance == null){
@@ -31,7 +31,7 @@ public class EmpresasRepository {
     }
 
     public Empresa filtrarEmpresas (String nombre) {
-        for (Empresa empresa : empresas) {
+        for (final Empresa empresa : empresas) {
             if (empresa.getNombre().equalsIgnoreCase(nombre)){
                 return empresa;
             }
@@ -44,7 +44,7 @@ public class EmpresasRepository {
     }
 
     public Empresa search(String name) {
-        return empresas.stream().filter(empresa -> empresa.getNombre() == name).findFirst().orElse(null);
+        return empresas.stream().filter(empresa -> empresa.getNombre().equalsIgnoreCase(name)).findFirst().orElse(null);
     }
 
     public void update(Empresa empresa) {

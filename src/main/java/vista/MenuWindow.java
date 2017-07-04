@@ -19,7 +19,7 @@ public class MenuWindow extends SimpleWindow<MenuViewModel> {
     @Override
     protected void createFormPanel(Panel mainPanel) {
         setTitle("Bienvenido!");
-        Panel columnasPanel = new Panel(mainPanel);
+        final Panel columnasPanel = new Panel(mainPanel);
         columnasPanel.setLayout(new ColumnLayout(2));
 
         new Button(columnasPanel).setCaption("Cargar empresas").onClick(this::cargarEmpresas);
@@ -37,30 +37,32 @@ public class MenuWindow extends SimpleWindow<MenuViewModel> {
     }
 
     private void buscarIndicadores() {
-    	SearchIndicadoresViewModel indicadoresViewModel = new SearchIndicadoresViewModel(getModelObject().getRepoIndicadores(), getModelObject().getRepoEmpresas()); 
-        SearchIndicadoresWindow searchIndicadoresWindow = new SearchIndicadoresWindow(this, indicadoresViewModel);
+    	final SearchIndicadoresViewModel indicadoresViewModel = new SearchIndicadoresViewModel();
+        final SearchIndicadoresWindow searchIndicadoresWindow = new SearchIndicadoresWindow(this, indicadoresViewModel);
         searchIndicadoresWindow.open();
     }
 
     private void cargarIndicadores() {
-        IndicadorWindow indicadorWindow = new IndicadorWindow(getOwner(), new IndicadorViewModel());
+        final IndicadorWindow indicadorWindow = new IndicadorWindow(getOwner(), new IndicadorViewModel());
         indicadorWindow.open();
     }
 
     private void cargarEmpresas() {
+        try {
             getModelObject().cargarEmpresas();
             mostrarAlerta("Los empresas se cargaron correctamente :D");
-            //throw new UserException("Hubo un problema al cargar el archivo");
+        }catch(final Exception e) {
+            new AlertWindow(getOwner(), new AlertViewModel("Hubo un problema al cargar las empresas."));
+        }
     }
 
     private void mostrarAlerta(String mensaje) {
-        AlertWindow dialog = new AlertWindow(getOwner(), new AlertViewModel(mensaje));
-        dialog.open();
+        new AlertWindow(getOwner(), new AlertViewModel(mensaje)).open();
     }
 
     private void buscarCuentas() {
-        EmpresasViewModel empresaViewModel = new EmpresasViewModel(getModelObject().getRepoEmpresas());
-        SearchCuentasWindow dialog = new SearchCuentasWindow(getOwner(), empresaViewModel);
+        final EmpresasViewModel empresaViewModel = new EmpresasViewModel(getModelObject().getRepoEmpresas());
+        final SearchCuentasWindow dialog = new SearchCuentasWindow(getOwner(), empresaViewModel);
         dialog.open();
     }
 

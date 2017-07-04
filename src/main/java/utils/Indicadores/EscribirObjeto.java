@@ -1,7 +1,6 @@
 package utils.Indicadores;
 
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectOutputStream;
 import modelo.dominio.*;
 
@@ -14,7 +13,7 @@ public class EscribirObjeto {
 
 			oos.writeObject(indicador);
 
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			ex.printStackTrace();
 		}}
 	}

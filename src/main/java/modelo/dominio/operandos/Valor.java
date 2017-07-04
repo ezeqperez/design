@@ -8,10 +8,10 @@ import java.util.List;
 
 public class Valor implements Operando {
 
-    private BigDecimal valor;
+    private final BigDecimal valor;
 
     public Valor(String valor) {
-        this.valor = NumberUtils.createBigDecimal(valor);;
+        this.valor = NumberUtils.createBigDecimal(valor);
     }
 
     @Override

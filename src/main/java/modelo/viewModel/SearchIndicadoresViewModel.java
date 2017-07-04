@@ -10,23 +10,19 @@ import org.uqbar.commons.utils.Observable;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-    Revisar completo
- */
-
 @Observable
 public class SearchIndicadoresViewModel {
 
-	private EmpresasRepository repoEmpresas;
-	private IndicadoresRepository repoIndicadores;
+	private final EmpresasRepository repoEmpresas;
+	private final IndicadoresRepository repoIndicadores;
 
 	private List<IndicadorAplicado> indicadoresAplicados = new ArrayList<>();
-	private List<IndicadorAplicado> indicadoresNoAplicados = new ArrayList<IndicadorAplicado>();
+	private List<IndicadorAplicado> indicadoresNoAplicados = new ArrayList<>();
 	private IndicadorAplicado indicador = new IndicadorAplicado();
 
-	public SearchIndicadoresViewModel(IndicadoresRepository repoIn, EmpresasRepository repoEmpresa) {
-		repoEmpresas = repoEmpresa;
-		repoIndicadores = repoIn;
+	public SearchIndicadoresViewModel() {
+		repoEmpresas = EmpresasRepository.getInstance();
+		repoIndicadores = IndicadoresRepository.getInstance();;
 	}
 
 	public List<IndicadorAplicado> getIndicadoresAplicados() {
@@ -72,4 +68,11 @@ public class SearchIndicadoresViewModel {
 
 	}
 
+	public EmpresasRepository getRepoEmpresas() {
+		return repoEmpresas;
+	}
+
+	public IndicadoresRepository getRepoIndicadores() {
+		return repoIndicadores;
+	}
 }

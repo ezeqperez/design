@@ -2,20 +2,15 @@ package modelo.viewModel;
 
 import modelo.dominio.Cuenta;
 import modelo.repositorios.EmpresasRepository;
-
-import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
-
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Observable
 public class EmpresasViewModel {
     private EmpresasRepository repoEmpresas;
-    private String empresaFilter;
+    private String empresaFilter = null;
     private int periodoFilter;
-    private List<Cuenta> cuentasFiltradas;
+    private List<Cuenta> cuentasFiltradas = null;
 
     public EmpresasViewModel(EmpresasRepository repoEmpresas) {
         this.repoEmpresas = repoEmpresas;

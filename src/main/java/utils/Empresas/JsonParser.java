@@ -7,7 +7,7 @@ import org.json.simple.JSONObject;
 public class JsonParser {
 
     Empresa jsonAEmpresa(JSONObject json) {
-            Gson gson = new Gson();
+            final Gson gson = new Gson();
             return gson.fromJson(json.toString(), Empresa.class);
     }
 

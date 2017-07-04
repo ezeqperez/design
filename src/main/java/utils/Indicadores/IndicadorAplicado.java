@@ -1,16 +1,15 @@
 package utils.Indicadores;
 
 import java.math.BigDecimal;
-
 import org.uqbar.commons.utils.Observable;
 
 @Observable
 public class IndicadorAplicado {
 
-	private String nombreEmpresa;
+	private String nombreEmpresa = null;
 	private int anioPeriodo;
-	private String nombreIndicador;
-	private BigDecimal valor;
+	private String nombreIndicador = null;
+	private BigDecimal valor = null;
 	private boolean existe;
 	
 	
@@ -43,8 +42,7 @@ public class IndicadorAplicado {
 	}
 
 	public void setValor(BigDecimal bd) {
-		this.valor = bd;
-		
+		valor = bd;
 	}
 
 	public boolean getExiste() {

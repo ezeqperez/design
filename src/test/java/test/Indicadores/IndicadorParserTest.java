@@ -1,4 +1,4 @@
-package test;
+package test.Indicadores;
 
 import modelo.dominio.Indicador;
 import modelo.repositorios.IndicadoresRepository;
@@ -17,8 +17,6 @@ public class IndicadorParserTest {
         viewModel.setNombre("Pirulo");
         viewModel.setFormula("2+4");
         viewModel.guardarIndicador();
-
-
     }
 
     @Test
@@ -29,11 +27,10 @@ public class IndicadorParserTest {
     @Test
 
     public void cargaDosIndicadores() {
-        IndicadorViewModel vm = new IndicadorViewModel();
+        final IndicadorViewModel vm = new IndicadorViewModel();
         vm.setNombre("Cachita");
         vm.setFormula("2+Montaner");
         vm.guardarIndicador();
-
         Assert.assertEquals(IndicadoresRepository.getInstance().getIndicadores().size(), 2);
     }
 

@@ -11,7 +11,7 @@ public class IndicadoresRepository{
 	
     private List<Indicador> indicadores;
 
-    private static IndicadoresRepository ourInstance;
+    private static IndicadoresRepository ourInstance = null;
 
     public static IndicadoresRepository getInstance() {
         if (ourInstance == null) {
@@ -36,7 +36,7 @@ public class IndicadoresRepository{
     }
 
     public void update(Indicador indicador) {
-        delete(this.search(indicador.getNombre()));
+        delete(search(indicador.getNombre()));
         insert(indicador);
     }
 

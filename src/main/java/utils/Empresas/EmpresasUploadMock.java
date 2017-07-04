@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmpresasUploadMock implements EmpresasUploader {
-    List<Cuenta> cuentas = new ArrayList<Cuenta>();
+    List<Cuenta> cuentas = new ArrayList<>();
 
     public List<Empresa> procesarArchivo(String ruta) {
-        Cuenta cuenta1 = new Cuenta();
+        final Cuenta cuenta1 = new Cuenta();
         cuenta1.setMonto(new BigDecimal(999));
-        List<Empresa> tresCuentas = new ArrayList<>();
+        final List<Empresa> tresCuentas = new ArrayList<>();
         return tresCuentas;
     }
 
