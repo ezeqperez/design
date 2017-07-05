@@ -30,10 +30,26 @@ public class MenuWindow extends SimpleWindow<MenuViewModel> {
 
         new Button(columnasPanel).setCaption("Consultar indicadores").onClick(this::buscarIndicadores);
 
+        new Button(columnasPanel).setCaption("Cargar metodologías").onClick(this::cargarMetodologias);
+
+        new Button(columnasPanel).setCaption("Aplicar metodologías").onClick(this::aplicarMetodologias);
+
         new FileSelector(mainPanel)
                 .setCaption("Buscar Archivo")
                 .bindValueToProperty("ruta");
         new Label(mainPanel).bindValueToProperty("ruta");
+    }
+
+    private void cargarMetodologias(){
+        final MetodologiaViewModel metodologiaViewModel = new MetodologiaViewModel();
+        final MetogologiaWindow form = new MetogologiaWindow(this, metodologiaViewModel);
+        form.open();
+    }
+
+    private void aplicarMetodologias(){
+        final AplicarMetodologiaViewModel aplicarMetodologiaViewModel = new AplicarMetodologiaViewModel();
+        final AplicarMetodologiaWindow form = new AplicarMetodologiaWindow(this, aplicarMetodologiaViewModel);
+        form.open();
     }
 
     private void buscarIndicadores() {
@@ -43,7 +59,8 @@ public class MenuWindow extends SimpleWindow<MenuViewModel> {
     }
 
     private void cargarIndicadores() {
-        final IndicadorWindow indicadorWindow = new IndicadorWindow(getOwner(), new IndicadorViewModel());
+        IndicadorViewModel indicadorViewModel = new IndicadorViewModel();
+        final IndicadorWindow indicadorWindow = new IndicadorWindow(getOwner(), indicadorViewModel);
         indicadorWindow.open();
     }
 

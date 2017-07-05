@@ -24,7 +24,6 @@ public class SearchIndicadoresWindow extends SimpleWindow<SearchIndicadoresViewM
     @Override
     protected void createFormPanel(Panel mainPanel) {
 
-
         new Label(mainPanel).setText("Seleccione el Indicador:");
         
         final Table<IndicadorAplicado> tabla = new Table<>(this, IndicadorAplicado.class);
