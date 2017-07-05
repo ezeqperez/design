@@ -1,19 +1,62 @@
 package modelo.viewModel;
 
 import modelo.dominio.Empresa;
-import modelo.repositorios.EmpresasRepository;
+import modelo.dominio.Metodologia;
+import org.uqbar.commons.utils.Observable;
+import vista.MetodologiasMock.MetodologiasMock;
 
+import java.util.ArrayList;
 import java.util.List;
 
+@Observable
 public class AplicarMetodologiaViewModel {
 
+    List<Empresa> empresas;
+    Metodologia metodologia;
+    List<Metodologia> metodologias;
+    List<Empresa> empresasFiltradas;
+
+    public AplicarMetodologiaViewModel() {
+        empresas = MetodologiasMock.getEmpresas();//EmpresasRepository.getInstance().getEmpresas();
+        metodologia = new Metodologia();
+        metodologia.setNombre("Hola");
+        empresasFiltradas = new ArrayList<>();
+        metodologias = MetodologiasMock.getMetodologias(); //MetodologiasRepository.getInstance().getMetodologias();
+    }
+
     public void aplicarMetodologia(){
-        final List<Empresa> empresas = EmpresasRepository.getInstance().getEmpresas();
+        setEmpresasFiltradas(getMetodologia().aplicar(empresas));
+    }
 
-        //le pasa la lista de empresas a la meodologia seleccionada
-        //List<Empresa> empresasFiltradas = metodologiaSeleccionada.aplicar(empresas);
+    public List<Empresa> getEmpresas() {
+        return empresas;
+    }
 
-        //setear la lista de empresas que devuelve, a lo bindeado
+    public void setEmpresas(List<Empresa> empresas) {
+        this.empresas = empresas;
+    }
 
+    public Metodologia getMetodologia() {
+        return metodologia;
+    }
+
+    public void setMetodologia(Metodologia metodologia) {
+        this.metodologia = metodologia;
+    }
+
+    public List<Metodologia> getMetodologias() {
+        return metodologias;
+    }
+
+    public void setMetodologias(List<Metodologia> metodologias) {
+        this.metodologias = metodologias;
+    }
+
+    public List<Empresa> getEmpresasFiltradas() {
+        return empresasFiltradas;
+    }
+
+    public void setEmpresasFiltradas(List<Empresa> empresasFiltradas) {
+        this.empresasFiltradas = empresasFiltradas;
     }
 }

@@ -1,13 +1,16 @@
 package vista;
 
 import modelo.dominio.Empresa;
+import modelo.dominio.Metodologia;
 import modelo.viewModel.AplicarMetodologiaViewModel;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Panel;
+import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
+@SuppressWarnings("serial")
 public class AplicarMetodologiaWindow extends SimpleWindow<AplicarMetodologiaViewModel>{
 
     public AplicarMetodologiaWindow(WindowOwner parent, AplicarMetodologiaViewModel model) {
@@ -22,8 +25,12 @@ public class AplicarMetodologiaWindow extends SimpleWindow<AplicarMetodologiaVie
     @Override
     protected void createFormPanel(Panel mainPanel) {
 
-        //comboBox con metodologias
-        //http://arena.uqbar-project.org/documentation/components/selector.html
+        //En lugar de mostrar metodologias y empresas, ver este link : http://arena.uqbar-project.org/documentation/bindings/adapters.html
+
+        final Selector<Metodologia> selector = new Selector<Metodologia>(mainPanel);
+        ///selector.allowNull(false);
+        selector.bindValueToProperty("metodologia");
+        selector.bindItemsToProperty("metodologias");
 
         new Button(mainPanel).setCaption("Aplicar Metodología").onClick(this::aplicarMetodologia);
 

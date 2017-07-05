@@ -24,8 +24,8 @@ public class MetodologiasRepository {
         metodologias = new ArrayList<>();
     }
 
-    public void agregarEmpresas(List<Metodologia> empresasAAgregar) {
-        metodologias.addAll(empresasAAgregar);
+    public void agregarMetodologia(List<Metodologia> metodologiasNuevas) {
+        metodologias.addAll(metodologiasNuevas);
     }
 
     public void insert(Metodologia metodologia){
@@ -36,11 +36,11 @@ public class MetodologiasRepository {
         metodologias.remove(metodologia);
     }
 
-    public List<Metodologia> getEmpresas() {
+    public List<Metodologia> getMetodologias() {
         return metodologias;
     }
 
-    public void setEmpresas(List<Metodologia> metodologias) {
+    public void setMetodologias(List<Metodologia> metodologias) {
         this.metodologias = metodologias;
     }
 
