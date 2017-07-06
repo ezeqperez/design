@@ -30,9 +30,9 @@ public class MenuWindow extends SimpleWindow<MenuViewModel> {
 
         new Button(columnasPanel).setCaption("Consultar indicadores").onClick(this::buscarIndicadores);
 
-        new Button(columnasPanel).setCaption("Cargar metodologías").onClick(this::cargarMetodologias);
+        new Button(columnasPanel).setCaption("Cargar metodologias").onClick(this::cargarMetodologias);
 
-        new Button(columnasPanel).setCaption("Aplicar metodologías").onClick(this::aplicarMetodologias);
+        new Button(columnasPanel).setCaption("Aplicar metodologias").onClick(this::aplicarMetodologias);
 
         new FileSelector(mainPanel)
                 .setCaption("Buscar Archivo")

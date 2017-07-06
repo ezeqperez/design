@@ -9,7 +9,7 @@ import java.util.List;
 
 @Observable
 public class Metodologia {
-
+    List<Condicion> condiciones;
     String nombre = null;
     //List<Condicion> condiciones = new ArrayList<>();
 
@@ -26,4 +26,11 @@ public class Metodologia {
         this.nombre = nombre;
     }
 
+    public List<Condicion> getCondiciones() {
+        return condiciones;
+    }
+
+    public void setCondiciones(List<Condicion> condiciones) {
+        this.condiciones = condiciones;
+    }
 }

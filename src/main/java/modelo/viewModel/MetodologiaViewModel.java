@@ -1,8 +1,17 @@
 package modelo.viewModel;
 
-public class MetodologiaViewModel {
+import modelo.dominio.Metodologia;
+import modelo.dominio.builder.MetodologiaBuilder;
 
+public class MetodologiaViewModel {
+    MetodologiaBuilder builder;
+    public MetodologiaViewModel(){
+        builder = new MetodologiaBuilder();
+    }
+    public void guardarCondicion(){
+        builder.setCondicionSuma();
+    }
     public void guardarMetodologia(){
-        // .build y agregar al repo (puede agregarse al repo dentro del metodo build)
+        builder.build();
     }
 }

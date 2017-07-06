@@ -44,7 +44,7 @@ public class EmpresasViewModelTest {
     }
     
     @Test
-    public void filtrarUnaEmpresaPorAño() {
+    public void filtrarUnaEmpresaPorAnio() {
         viewModel.setPeriodoFilter(2016);
         viewModel.setEmpresaFilter("Facebook");
         viewModel.filtrarCuentas();
