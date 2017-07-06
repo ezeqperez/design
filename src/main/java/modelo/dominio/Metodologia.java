@@ -10,8 +10,11 @@ import java.util.List;
 @Observable
 public class Metodologia {
     List<Condicion> condiciones;
-    String nombre = null;
-    //List<Condicion> condiciones = new ArrayList<>();
+    String nombre;
+    public Metodologia(){}
+    public Metodologia(String nombre){
+        this.nombre = nombre;
+    }
 
     public List<Empresa> aplicar(List<Empresa> empresas){
         //TODO aplicar condiciones y bla

@@ -20,14 +20,14 @@ public class MetodologiaBuilder {
         condiciones.add(condicionSuma);
     }
 
-    public void build(){
-        Metodologia metodologia = new Metodologia();
+    public void build(String nombre){
+        Metodologia metodologia = new Metodologia(nombre);
         metodologia.setCondiciones(condiciones);
         MetodologiasRepository.getInstance().insert(metodologia);
 
         //Esto no tiene que ser así, sino crear una instancia de builder dentro del MetodologiaWindow
         //De momento lo arreglo con esta cosa horrible
-        condiciones = new ArrayList<Condicion>();
+      //  condiciones = new ArrayList<Condicion>();
     }
 
 }
