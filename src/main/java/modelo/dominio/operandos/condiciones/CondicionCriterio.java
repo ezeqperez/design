@@ -2,19 +2,11 @@ package modelo.dominio.operandos.condiciones;
 
 import modelo.dominio.Indicador;
 
-public class CondicionTipoTres implements Condicion{
-    private String operador;
+public class CondicionCriterio implements Condicion{
     private Indicador indicador;
+    private String criterio;
     private String comparador;
     private Integer valor;
-
-    public String getOperador() {
-        return operador;
-    }
-
-    public void setOperador(String operador) {
-        this.operador = operador;
-    }
 
     public Indicador getIndicador() {
         return indicador;
@@ -22,6 +14,14 @@ public class CondicionTipoTres implements Condicion{
 
     public void setIndicador(Indicador indicador) {
         this.indicador = indicador;
+    }
+
+    public String getCriterio() {
+        return criterio;
+    }
+
+    public void setCriterio(String criterio) {
+        this.criterio = criterio;
     }
 
     public String getComparador() {

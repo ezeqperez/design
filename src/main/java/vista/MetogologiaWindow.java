@@ -1,5 +1,6 @@
 package vista;
 
+import com.sun.org.apache.bcel.internal.generic.Select;
 import modelo.dominio.Empresa;
 import modelo.dominio.Indicador;
 import modelo.viewModel.AlertViewModel;
@@ -7,8 +8,6 @@ import modelo.viewModel.MetodologiaViewModel;
 import org.uqbar.arena.widgets.*;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
-import org.uqbar.lacar.ui.model.ControlBuilder;
-import org.uqbar.lacar.ui.model.bindings.Binding;
 
 public class MetogologiaWindow extends SimpleWindow<MetodologiaViewModel> {
 
@@ -24,77 +23,96 @@ public class MetogologiaWindow extends SimpleWindow<MetodologiaViewModel> {
     @Override
     protected void createFormPanel(Panel mainPanel) {
         new Label(mainPanel).setText("Ingrese el nombre de la metodologia");
-
         new TextBox(mainPanel).bindValueToProperty("nombre");
+        new Button(mainPanel).setCaption("Guardar nombre")
+                .onClick(this::guardarNombre);
 
-        final Panel condicionUno = new Panel(mainPanel);
 
-        //final Selector<Indicador> selectorIndicadorUno = new Selector<>(condicionUno);
-        //selectorIndicadorUno.bindValueToProperty("indicadorUno");
-        //selectorIndicadorUno.bindItemsToProperty("indicadores");
+        new Label(mainPanel).setText("Comparador por un numero").bindVisibleToProperty("verNumero");
+        final Selector<Indicador> indicadorComparadoConNumero = new Selector<>(mainPanel);
+        indicadorComparadoConNumero.bindValueToProperty("indicadorComparadoConNumero");
+        indicadorComparadoConNumero.bindItemsToProperty("indicadores");
+        indicadorComparadoConNumero.bindVisibleToProperty("verNumero");
+        final Selector<String> comparadorPorNumero = new Selector<>(mainPanel);
+        comparadorPorNumero.bindValueToProperty("comparadorNumero");
+        comparadorPorNumero.bindItemsToProperty("comparadores");
+        comparadorPorNumero.bindVisibleToProperty("verNumero");
+        new TextBox(mainPanel).bindValueToProperty("valorNumero");
+        new Button(mainPanel).setCaption("Guardar comparador")
+                .onClick(this::guardarComparadorPorIndicador).bindVisibleToProperty("verNumero");
 
-        final Selector<String> comparadorUno = new Selector<>(condicionUno);
-        comparadorUno.bindValueToProperty("comparadorUno");
-        comparadorUno.bindItemsToProperty("comparadores");
 
-        new TextBox(condicionUno).bindValueToProperty("valorUno");
 
-//        new Spinner(condicionUno).setWidth(200).bindValueToProperty("aniosUno");
+        new Label(mainPanel).setText("Comparador de indicadores contra empresas");
+        final Selector<Indicador> indicadorContraEmpesa = new Selector<>(mainPanel);
+        indicadorContraEmpesa.bindValueToProperty("indicadorContraEmpresa");
+        indicadorContraEmpesa.bindItemsToProperty("indicadores");
+        final Selector<String> comparadorIndicadorContraEmpesa = new Selector<>(mainPanel);
+        comparadorIndicadorContraEmpesa.bindValueToProperty("comparadorIndicadorConEmpresa");
+        comparadorIndicadorContraEmpesa.bindItemsToProperty("comparadores");
+        final Selector<Empresa> empresa = new Selector<>(mainPanel);
+        empresa.bindValueToProperty("empresaContraIndicador");
+        empresa.bindItemsToProperty("empresas");
+        new Button(mainPanel).setCaption("Guardar comparador")
+                .onClick(this::guardarIndicadorConEmpresa);
 
-        final Panel condicionDos = new Panel(mainPanel);
 
-        //final Selector<Indicador> selectorIndicadorDos = new Selector<>(condicionDos);
-        //selectorIndicadorDos.bindValueToProperty("indicadorDos");
-        //selectorIndicadorDos.bindItemsToProperty("indicadores");
 
-        final Selector<String> comparadorDos = new Selector<>(condicionDos);
-        comparadorDos.bindValueToProperty("comparadorDos");
-        comparadorDos.bindItemsToProperty("comparadores");
+        new Label(mainPanel).setText("Comparador por Criterio");
+        final Selector<String> criterio = new Selector<>(mainPanel);
+        criterio.bindValueToProperty("criterio");
+        criterio.bindItemsToProperty("criterios");
+        final Selector<Indicador> indicadorCriterio = new Selector<>(mainPanel);
+        indicadorCriterio.bindValueToProperty("indicadorCriterio");
+        indicadorCriterio.bindItemsToProperty("indicadores");
+        final Selector<String> comparadorConCriterio = new Selector<>(mainPanel);
+        comparadorConCriterio.bindValueToProperty("comparadorCriterio");
+        comparadorConCriterio.bindItemsToProperty("comparadores");
+        new TextBox(mainPanel).bindValueToProperty("valorCriterio");
+        new Button(mainPanel).setCaption("Guardar comparador")
+                .onClick(this::guardarComparadorConCriterio);
 
-        final Selector<Empresa> empresas = new Selector<>(condicionDos);
-        empresas.bindValueToProperty("empresaDos");
-        empresas.bindItemsToProperty("empresas");
 
-        final Panel condicionTres = new Panel(mainPanel);
 
-        final Selector<String> selectorOperadorTres = new Selector<>(condicionTres);
-        selectorOperadorTres.bindValueToProperty("operadorTres");
-        selectorOperadorTres.bindItemsToProperty("operadoresTres");
+        new Label(mainPanel).setText("Comparador por Crecimiento");
+        final Selector<String> comportamiento = new Selector<>(mainPanel);
+        comportamiento.bindValueToProperty("comportamiento");
+        comportamiento.bindItemsToProperty("comportamientos");
+        final Selector<Indicador> indicadorComportamiento = new Selector<>(mainPanel);
+        indicadorComportamiento.bindValueToProperty("indicadorComportamiento");
+        indicadorComportamiento.bindItemsToProperty("indicadores");
+        final Selector<String> comparadorComportamiento = new Selector<>(mainPanel);
+        comparadorComportamiento.bindValueToProperty("comparadorComportamiento");
+        comparadorComportamiento.bindItemsToProperty("comparadores");
+        new TextBox(mainPanel).bindValueToProperty("valorComportamiento");
+        new Button(mainPanel).setCaption("Guardar comparador")
+                .onClick(this::guardarComparadorCrecimiento);
 
-        //final Selector<Indicador> selectorIndicadorTres = new Selector<>(condicionTres);
-        //selectorIndicadorTres.bindValueToProperty("indicadorTres");
-        //selectorIndicadorTres.bindItemsToProperty("indicadores");
-
-        final Selector<String> comparadorTres = new Selector<>(condicionTres);
-        comparadorTres.bindValueToProperty("comparadorTres");
-        comparadorTres.bindItemsToProperty("comparadores");
-
-        new TextBox(condicionTres).bindValueToProperty("valorTres");
-
-        final Panel condicionCuatro = new Panel(mainPanel);
-
-        //final Selector<Indicador> selectorIndicadorCuatro = new Selector<>(condicionCuatro);
-        //selectorIndicadorCuatro.bindValueToProperty("indicadorCuatro");
-        //selectorIndicadorCuatro.bindItemsToProperty("indicadores");
-
-        final Selector<String> selectorComportamientoCuatro = new Selector<>(condicionCuatro);
-        selectorComportamientoCuatro.bindValueToProperty("comportamientoCuatro");
-        selectorComportamientoCuatro.bindItemsToProperty("comportamientos");
-
-        new TextBox(condicionCuatro).bindValueToProperty("periodoCuatro");
-
-        //Y por ultimo bis, faltan los test, pero no se si son necesarios para esta parte.. va a estar mockeado
-        //Y por ultimo bis bis, falta generar una abstraccion para no repetir codigo en las vistas que tengan tablas
-
-//        new Button(mainPanel).setCaption("Agregar Condicion")
-//                .onClick(this::guardarCondicion);
 
         new Button(mainPanel).setCaption("Guardar").onClick(this::guardarMetodologia);
         new Button(mainPanel).setCaption("Volver").onClick(this::close);
     }
 
-    private void guardarCondicion(){
-        getModelObject().guardarCondicion();
+    private void guardarNombre() {
+        getModelObject().guardarNombre();
+    }
+
+    private void guardarComparadorCrecimiento() {
+        getModelObject().setComparadorCrecimiento();
+    }
+
+    private void guardarComparadorConCriterio() {
+        getModelObject().setComparadoConCriterio();
+    }
+
+    private void guardarIndicadorConEmpresa() {
+        getModelObject().setIndicadorConEmpresa();
+        cartelCargaOk();
+    }
+
+    private void guardarComparadorPorIndicador() {
+        getModelObject().guardarComparadorPorIndicador();
+        cartelCargaOk();
     }
 
     private void guardarMetodologia(){
@@ -103,7 +121,11 @@ public class MetogologiaWindow extends SimpleWindow<MetodologiaViewModel> {
         this.close();
     }
 
-    //todo: Alerta, codigo repetido con las otras ventanas, no pueden compartir todas una misma interfaz?  -Juli: qué flasheas?!
+
+    private void cartelCargaOk() {
+        mostrarAlerta("Condicion cargada correctamente");
+    }
+
     private void mostrarAlerta(String mensaje) {
         new AlertWindow(getOwner(), new AlertViewModel(mensaje)).open();
     }

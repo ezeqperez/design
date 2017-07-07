@@ -2,10 +2,19 @@ package modelo.dominio.operandos.condiciones;
 
 import modelo.dominio.Indicador;
 
-public class CondicionTipoDos implements Condicion{
+public class CondicionNumerica implements Condicion{
+    private String operador;
     private Indicador indicador;
     private String comparador;
-    private String empresa; //mepa que no hace falta guardar tooodo el objeto empresa, con guardar el nombre y buscarlo por él en el repo ..
+    private Integer valor;
+
+    public String getOperador() {
+        return operador;
+    }
+
+    public void setOperador(String operador) {
+        this.operador = operador;
+    }
 
     public Indicador getIndicador() {
         return indicador;
@@ -23,11 +32,11 @@ public class CondicionTipoDos implements Condicion{
         this.comparador = comparador;
     }
 
-    public String getEmpresa() {
-        return empresa;
+    public Integer getValor() {
+        return valor;
     }
 
-    public void setEmpresa(String empresa) {
-        this.empresa = empresa;
+    public void setValor(Integer valor) {
+        this.valor = valor;
     }
 }

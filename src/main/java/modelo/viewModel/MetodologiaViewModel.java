@@ -3,8 +3,6 @@ package modelo.viewModel;
 import modelo.dominio.Empresa;
 import modelo.dominio.Indicador;
 import modelo.dominio.builder.MetodologiaBuilder;
-import modelo.repositorios.EmpresasRepository;
-import modelo.repositorios.IndicadoresRepository;
 import org.uqbar.commons.utils.Observable;
 import vista.MetodologiasMock.MetodologiasMock;
 
@@ -17,18 +15,75 @@ public class MetodologiaViewModel {
     private List<Indicador> indicadores;
     private List<Empresa> empresas;
     private String nombre;
+    private String comparadorIndicadores;
+
+    private Indicador indicadorComparadoConNumero;
+    private String comparadorNumero;
+    private Integer valorNumero;
+
+    private Indicador indicadorContraEmpresa;
+    private String comparadorIndicadorConEmpresa;
+    private Empresa empresaContraIndicador;
+
+    private String criterio;
+    private Indicador indicadorCriterio;
+    private String comparadorCriterio;
+    private Integer valorCriterio;
+
+    private String comportamiento;
+    private Indicador indicadorComportamiento;
+    private String comparadorComportamiento;
+    private Integer valorComportamiento;
+
+    private boolean verCrecimiento = true;
+    private boolean verNumero = true;
+    private boolean verEmpresa = true;
+    private boolean VerCriterio = true;
 
     public MetodologiaViewModel(){
         builder = new MetodologiaBuilder();
-        indicadores = IndicadoresRepository.getInstance().getIndicadores();
+        indicadores = MetodologiasMock.getIndicadores();
         empresas = MetodologiasMock.getEmpresas();//EmpresasRepository.getInstance().getEmpresas();
     }
-    public void guardarCondicion(){
-        builder.setCondicionSuma();
-    }
+
 
     public void guardarMetodologia(){
         builder.build();
+    }
+
+    public void guardarNombre() {
+        builder.setNombre(nombre);
+    }
+    public void setComparadoConCriterio() {
+        builder.setCondicionConCriterio(criterio, indicadorCriterio, comparadorCriterio, valorCriterio);
+    }
+
+    public void guardarComparadorPorIndicador() {
+        builder.setCondicionNumero(indicadorComparadoConNumero, comparadorNumero, valorNumero);
+        verNumero = false;
+    }
+
+    public void setIndicadorConEmpresa() {
+        builder.setCondicionIndicadorEmpresa(indicadorContraEmpresa, comparadorIndicadorConEmpresa, empresaContraIndicador);
+    }
+
+    public void setComparadorCrecimiento() {
+        builder.setCondicionCrecimiento(comportamiento, indicadorComportamiento, comparadorComportamiento, valorComportamiento);
+    }
+
+    public List<String> getCriterios(){
+        final List<String> operadores = new ArrayList<>();
+        operadores.add("Promedio");
+        operadores.add("Mediana");
+        operadores.add("Sumatoria");
+        return operadores;
+    }
+
+    public List<String> getComportamientos(){
+        final List<String> comportamientos = new ArrayList<>();
+        comportamientos.add("Creciente");
+        comportamientos.add("Decreciente");
+        return comportamientos;
     }
 
     public void setNombre(String nombre) {
@@ -48,119 +103,163 @@ public class MetodologiaViewModel {
         return empresas;
     }
 
-    public void setIndicadorUno(Indicador indicador){
-
+    public String getComparadorIndicadores() {
+        return comparadorIndicadores;
     }
 
-    public Indicador getIndicadorUno(){
-        Indicador indicador = new Indicador();
-        indicador.setNombre("IndicadorPrueba");
-        return indicador;
+    public void setComparadorIndicadores(String comparadorIndicadores) {
+        this.comparadorIndicadores = comparadorIndicadores;
     }
 
-    public void setComparadorUno(String comparador){
-
+    public List<Indicador> getIndicadores() {
+        return indicadores;
     }
 
-    public String getComparadorUno(){
-        return "<";
+    public void setIndicadores(List<Indicador> indicadores) {
+        this.indicadores = indicadores;
     }
 
-    public Integer getValorUno(){
-        return 0; //aca se lo tiene que pedir al builder..
+    public Indicador getIndicadorComparadoConNumero() {
+        return indicadorComparadoConNumero;
     }
 
-    public void setValorUno(Integer valor){
-
+    public void setIndicadorComparadoConNumero(Indicador indicadorComparadoConNumero) {
+        this.indicadorComparadoConNumero = indicadorComparadoConNumero;
     }
 
-    public void setAniosUno(Integer anios){}
-
-    public void setIndicadorDos(Indicador indicador){
-
+    public String getComparadorNumero() {
+        return comparadorNumero;
     }
 
-    public void setComparadorDos(String comparador){
-
+    public void setComparadorNumero(String comparadorNumero) {
+        this.comparadorNumero = comparadorNumero;
     }
 
-    public String getComparadorDos(){
-        return "<";
+    public Integer getValorNumero() {
+        return valorNumero;
     }
 
-    public void setEmpresaDos(Empresa empresa){}
-
-    public Empresa getEmpresaDos(){
-        return MetodologiasMock.getEmpresas().get(0);
+    public void setValorNumero(Integer valorNumero) {
+        this.valorNumero = valorNumero;
     }
 
-    public List<String> getOperadoresTres(){
-        final List<String> operadores = new ArrayList<>();
-        operadores.add("Promedio");
-        operadores.add("Mediana");
-        operadores.add("Sumatoria");
-        return operadores;
+    public Indicador getIndicadorContraEmpresa() {
+        return indicadorContraEmpresa;
     }
 
-    public void setOperadorTres(String operador){}
-
-    public String getOperadorTres(){
-        return "Mediana";
+    public void setIndicadorContraEmpresa(Indicador indicadorContraEmpresa) {
+        this.indicadorContraEmpresa = indicadorContraEmpresa;
     }
 
-    public void setIndicadorTres(Indicador indicador){
-
+    public String getComparadorIndicadorConEmpresa() {
+        return comparadorIndicadorConEmpresa;
     }
 
-    public Indicador getIndicadorTres(){
-        Indicador indicador = new Indicador();
-        indicador.setNombre("IndicadorPrueba");
-        return indicador;
+    public void setComparadorIndicadorConEmpresa(String comparadorIndicadorConEmpresa) {
+        this.comparadorIndicadorConEmpresa = comparadorIndicadorConEmpresa;
     }
 
-    public void setComparadorTres(String comparador){
-
+    public Empresa getEmpresaContraIndicador() {
+        return empresaContraIndicador;
     }
 
-    public String getComparadorTres(){
-        return "<";
+    public void setEmpresaContraIndicador(Empresa empresaContraIndicador) {
+        this.empresaContraIndicador = empresaContraIndicador;
     }
 
-    public Integer getValorTres(){
-        return 0; //aca se lo tiene que pedir al builder..
+    public String getCriterio() {
+        return criterio;
     }
 
-    public void setValorTres(Integer valor){
-
+    public void setCriterio(String criterio) {
+        this.criterio = criterio;
     }
 
-    public void setIndicadorCuatro(Indicador indicador){
-
+    public Indicador getIndicadorCriterio() {
+        return indicadorCriterio;
     }
 
-    public Indicador getIndicadorCuatro(){
-        Indicador indicador = new Indicador();
-        indicador.setNombre("IndicadorPrueba");
-        return indicador;
+    public void setIndicadorCriterio(Indicador indicadorCriterio) {
+        this.indicadorCriterio = indicadorCriterio;
     }
 
-    public List<String> getComportamientos(){
-        final List<String> comportamientos = new ArrayList<>();
-        comportamientos.add("Creciente");
-        comportamientos.add("Decreciente");
-        return comportamientos;
+    public String getComparadorCriterio() {
+        return comparadorCriterio;
     }
 
-    public void setComportamientoCuatro(String comportamiento){}
-
-    public String getComportamientoCuatro(){
-        return "Creciente"; //aca tmb se lo deberia pedir al builder
+    public void setComparadorCriterio(String comparadorCriterio) {
+        this.comparadorCriterio = comparadorCriterio;
     }
 
-    public void setPeriodoCuatro(Integer periodo){}
-
-    public Integer getPeriodoCuatro(){
-        return 1900; //aca se lo tiene que pedir al builder..
+    public Integer getValorCriterio() {
+        return valorCriterio;
     }
 
+    public void setValorCriterio(Integer valorCriterio) {
+        this.valorCriterio = valorCriterio;
+    }
+
+    public String getComportamiento() {
+        return comportamiento;
+    }
+
+    public void setComportamiento(String comportamiento) {
+        this.comportamiento = comportamiento;
+    }
+
+    public Indicador getIndicadorComportamiento() {
+        return indicadorComportamiento;
+    }
+
+    public void setIndicadorComportamiento(Indicador indicadorComportamiento) {
+        this.indicadorComportamiento = indicadorComportamiento;
+    }
+
+    public String getComparadorComportamiento() {
+        return comparadorComportamiento;
+    }
+
+    public void setComparadorComportamiento(String comparadorComportamiento) {
+        this.comparadorComportamiento = comparadorComportamiento;
+    }
+
+    public Integer getValorComportamiento() {
+        return valorComportamiento;
+    }
+
+    public void setValorComportamiento(Integer valorComportamiento) {
+        this.valorComportamiento = valorComportamiento;
+    }
+
+    public boolean isVerCrecimiento() {
+        return verCrecimiento;
+    }
+
+    public void setVerCrecimiento(boolean verCrecimiento) {
+        this.verCrecimiento = verCrecimiento;
+    }
+
+    public boolean isVerNumero() {
+        return verNumero;
+    }
+
+    public void setVerNumero(boolean verNumero) {
+        this.verNumero = verNumero;
+    }
+
+    public boolean isVerEmpresa() {
+        return verEmpresa;
+    }
+
+    public void setVerEmpresa(boolean verEmpresa) {
+        this.verEmpresa = verEmpresa;
+    }
+
+    public boolean isVerCriterio() {
+        return VerCriterio;
+    }
+
+    public void setVerCriterio(boolean verCriterio) {
+        VerCriterio = verCriterio;
+    }
 }

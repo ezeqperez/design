@@ -1,6 +1,7 @@
 package vista.MetodologiasMock;
 
 import modelo.dominio.Empresa;
+import modelo.dominio.Indicador;
 import modelo.dominio.Metodologia;
 
 import java.util.ArrayList;
@@ -56,6 +57,20 @@ public class MetodologiasMock {
         empresas.add(gitHub);
 
         return empresas;
+    }
+
+    public static List<Indicador> getIndicadores(){
+
+        final List<Indicador> indicadores = new ArrayList<>();
+        final Indicador roe = new Indicador();
+        roe.setNombre("ROE");
+        indicadores.add(roe);
+
+        final Indicador proporcionDeuda = new Indicador();
+        roe.setNombre("Proporcion de deuda");
+        indicadores.add(proporcionDeuda);
+
+        return indicadores;
     }
 
 }
