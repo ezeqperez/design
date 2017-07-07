@@ -16,7 +16,7 @@ public class MetodologiaBuilder {
     public void setCondicionSuma(){
         Condicion condicionSuma = new CondicionSuma();
         //Tiene sentido esto? la suma digo
-        condicionSuma.setCondicion(new Suma());
+        //condicionSuma.setCondicion(new Suma());
         condiciones.add(condicionSuma);
     }
 

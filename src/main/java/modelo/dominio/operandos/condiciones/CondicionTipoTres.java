@@ -2,7 +2,7 @@ package modelo.dominio.operandos.condiciones;
 
 import modelo.dominio.Indicador;
 
-public class CondicionTipoTres {
+public class CondicionTipoTres implements Condicion{
     private String operador;
     private Indicador indicador;
     private String comparador;

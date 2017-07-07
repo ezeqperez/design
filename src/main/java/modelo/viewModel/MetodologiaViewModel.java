@@ -47,7 +47,7 @@ public class MetodologiaViewModel {
 
     }
     public void sestValorUno(Integer valor){}
-    public void aniosUno(Integer anios){}
+    public void setAniosUno(Integer anios){}
 
     public void setIndicadorDos(Indicador indicador){
 

@@ -2,7 +2,7 @@ package modelo.dominio.operandos.condiciones;
 
 import modelo.dominio.Indicador;
 
-public class CondicioinTipoCuatro {
+public class CondicioinTipoCuatro implements Condicion{
     private Indicador indicador;
     private String comportamiento;
     private Integer periodo;
