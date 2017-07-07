@@ -1,7 +1,6 @@
 package modelo.dominio.builder;
 
 import modelo.dominio.Metodologia;
-import modelo.dominio.operaciones.Operacion;
 import modelo.dominio.operaciones.Suma;
 import modelo.dominio.operandos.condiciones.Condicion;
 import modelo.dominio.operandos.condiciones.CondicionSuma;
@@ -12,22 +11,28 @@ import java.util.List;
 
 public class MetodologiaBuilder {
     List<Condicion> condiciones = new ArrayList<Condicion>();
+    String nombre;
 
     public void setCondicionSuma(){
         Condicion condicionSuma = new CondicionSuma();
-        //Tiene sentido esto?
+        //Tiene sentido esto? la suma digo
         condicionSuma.setCondicion(new Suma());
         condiciones.add(condicionSuma);
     }
 
-    public void build(String nombre){
-        Metodologia metodologia = new Metodologia(nombre);
+
+    public void build(){
+        Metodologia metodologia = new Metodologia();
+        metodologia.setNombre(nombre);
         metodologia.setCondiciones(condiciones);
         MetodologiasRepository.getInstance().insert(metodologia);
-
-        //Esto no tiene que ser así, sino crear una instancia de builder dentro del MetodologiaWindow
-        //De momento lo arreglo con esta cosa horrible
-      //  condiciones = new ArrayList<Condicion>();
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 }
