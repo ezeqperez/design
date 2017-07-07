@@ -1,19 +1,25 @@
 package modelo.viewModel;
 
+import modelo.dominio.Empresa;
+import modelo.dominio.Indicador;
 import modelo.dominio.builder.MetodologiaBuilder;
-import org.uqbar.commons.model.UserException;
+import modelo.repositorios.EmpresasRepository;
+import modelo.repositorios.IndicadoresRepository;
 import org.uqbar.commons.utils.Observable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Observable
 public class MetodologiaViewModel {
-    MetodologiaBuilder builder;
-    String nombre="";
-    //La unica forma que pude modificar los botones en MetodologiaWindow
-    Boolean primeraPantalla = true;
-    Boolean segundaPantalla = false;
+    private MetodologiaBuilder builder;
+    private List<Indicador> indicadores;
+    private List<Empresa> empresas;
 
     public MetodologiaViewModel(){
         builder = new MetodologiaBuilder();
+        indicadores = IndicadoresRepository.getInstance().getIndicadores();
+        empresas = EmpresasRepository.getInstance().getEmpresas();
     }
     public void guardarCondicion(){
         builder.setCondicionSuma();
@@ -23,42 +29,69 @@ public class MetodologiaViewModel {
         builder.build();
     }
 
-    public void guardarNombre() {
-        //No me acuerdo como chequear por null
-        if(nombre.isEmpty() || nombre == null){
-            throw new UserException("Ingrese un nombre valido");
-        }else{
-            builder.setNombre(nombre);
-            habilitarSegundaPantalla();
-        }
-    }
-
-    private void habilitarSegundaPantalla() {
-        primeraPantalla = false;
-        segundaPantalla = true;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        builder.setNombre(nombre);
     }
 
-    public Boolean getSegundaPantalla() {
-        return segundaPantalla;
+    public List<String> getComparadores(){
+        final List<String> comparadores = new ArrayList<>();
+        comparadores.add("<");
+        comparadores.add(">");
+        return comparadores;
     }
 
-    public void setSegundaPantalla(Boolean segundaPantalla) {
-        this.segundaPantalla = segundaPantalla;
+    public void setIndicadorUno(Indicador indicador){
+
+    }
+    public void setComparadorUno(String comparador){
+
+    }
+    public void sestValorUno(Integer valor){}
+    public void aniosUno(Integer anios){}
+
+    public void setIndicadorDos(Indicador indicador){
+
     }
 
-    public Boolean getPrimeraPantalla() {
-        return primeraPantalla;
+    public void setComparadorDos(String comparador){
+
     }
 
-    public void setPrimeraPantalla(Boolean primeraPantalla) {
-        this.primeraPantalla = primeraPantalla;
+    public void setEmpresaDos(Empresa empresa){}
+
+    public List<String> getOperadoresTres(){
+        final List<String> operadores = new ArrayList<>();
+        operadores.add("Promedio");
+        operadores.add("Mediana");
+        operadores.add("Sumatoria");
+        return operadores;
     }
+
+    public void setIndicadorTres(Indicador indicador){
+
+    }
+
+    public void setComparadorTres(String comparador){
+
+    }
+
+    public void setValorTres(Integer valor){
+
+    }
+
+    public void setIndicadorCuatro(Indicador indicador){
+
+    }
+
+    public List<String> getComportamientoCuatro(){
+        final List<String> comportamientos = new ArrayList<>();
+        comportamientos.add("Creciente");
+        comportamientos.add("Decreciente");
+        return comportamientos;
+    }
+
+    public void setComportamientoCuatro(String comportamiento){}
+
+    public void setPeriodoCuatro(Integer periodo){}
+
 }

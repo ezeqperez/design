@@ -2,9 +2,6 @@ package modelo.dominio.operandos.condiciones;
 
 import modelo.dominio.operaciones.Operacion;
 
-/**
- * Created by Ezequiel on 5/7/2017.
- */
 public class CondicionSuma implements Condicion {
     //Despues veo la mejor manera de modelarlo
     Operacion condicion;

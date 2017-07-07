@@ -27,7 +27,7 @@ public class AplicarMetodologiaWindow extends SimpleWindow<AplicarMetodologiaVie
 
         //En lugar de mostrar metodologias y empresas, ver este link : http://arena.uqbar-project.org/documentation/bindings/adapters.html
 
-        final Selector<Metodologia> selector = new Selector<Metodologia>(mainPanel);
+        final Selector<Metodologia> selector = new Selector<>(mainPanel);
         ///selector.allowNull(false);
         selector.bindValueToProperty("metodologia");
         selector.bindItemsToProperty("metodologias");

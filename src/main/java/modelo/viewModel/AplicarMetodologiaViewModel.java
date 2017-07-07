@@ -11,10 +11,10 @@ import java.util.List;
 @Observable
 public class AplicarMetodologiaViewModel {
 
-    List<Empresa> empresas;
-    Metodologia metodologia;
-    List<Metodologia> metodologias;
-    List<Empresa> empresasFiltradas;
+    private List<Empresa> empresas;
+    private Metodologia metodologia;
+    private List<Metodologia> metodologias;
+    private List<Empresa> empresasFiltradas;
 
     public AplicarMetodologiaViewModel() {
         empresas = MetodologiasMock.getEmpresas();//EmpresasRepository.getInstance().getEmpresas();

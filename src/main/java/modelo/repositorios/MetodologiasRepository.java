@@ -24,7 +24,7 @@ public class MetodologiasRepository {
         metodologias = new ArrayList<>();
     }
 
-    public void agregarMetodologia(List<Metodologia> metodologiasNuevas) {
+    public void agregarMetodologias(List<Metodologia> metodologiasNuevas) {
         metodologias.addAll(metodologiasNuevas);
     }
 
