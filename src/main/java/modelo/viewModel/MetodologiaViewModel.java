@@ -17,28 +17,7 @@ public class MetodologiaViewModel {
     private String nombre;
     private String comparadorIndicadores;
 
-    private Indicador indicadorComparadoConNumero;
-    private String comparadorNumero;
-    private Integer valorNumero;
-
-    private Indicador indicadorContraEmpresa;
-    private String comparadorIndicadorConEmpresa;
-    private Empresa empresaContraIndicador;
-
-    private String criterio;
-    private Indicador indicadorCriterio;
-    private String comparadorCriterio;
-    private Integer valorCriterio;
-
-    private String comportamiento;
-    private Indicador indicadorComportamiento;
-    private String comparadorComportamiento;
-    private Integer valorComportamiento;
-
-    private boolean verCrecimiento = true;
-    private boolean verNumero = true;
-    private boolean verEmpresa = true;
-    private boolean VerCriterio = true;
+    private boolean tocarBoton;
 
     public MetodologiaViewModel(){
         builder = new MetodologiaBuilder();
@@ -55,20 +34,19 @@ public class MetodologiaViewModel {
         builder.setNombre(nombre);
     }
     public void setComparadoConCriterio() {
-        builder.setCondicionConCriterio(criterio, indicadorCriterio, comparadorCriterio, valorCriterio);
+        builder.setCondicionConCriterio();
     }
 
     public void guardarComparadorPorIndicador() {
-        builder.setCondicionNumero(indicadorComparadoConNumero, comparadorNumero, valorNumero);
-        verNumero = false;
+        builder.setCondicionNumero();
     }
 
     public void setIndicadorConEmpresa() {
-        builder.setCondicionIndicadorEmpresa(indicadorContraEmpresa, comparadorIndicadorConEmpresa, empresaContraIndicador);
+        builder.setCondicionIndicadorEmpresa();
     }
 
     public void setComparadorCrecimiento() {
-        builder.setCondicionCrecimiento(comportamiento, indicadorComportamiento, comparadorComportamiento, valorComportamiento);
+        builder.setCondicionCrecimiento();
     }
 
     public List<String> getCriterios(){
@@ -120,146 +98,115 @@ public class MetodologiaViewModel {
     }
 
     public Indicador getIndicadorComparadoConNumero() {
-        return indicadorComparadoConNumero;
+        return builder.getIndicadorComparadoConNumero();
     }
 
     public void setIndicadorComparadoConNumero(Indicador indicadorComparadoConNumero) {
-        this.indicadorComparadoConNumero = indicadorComparadoConNumero;
+        builder.setIndicadorComparadoConNumero(indicadorComparadoConNumero);
     }
 
     public String getComparadorNumero() {
-        return comparadorNumero;
+        return builder.getComparadorNumero();
     }
 
     public void setComparadorNumero(String comparadorNumero) {
-        this.comparadorNumero = comparadorNumero;
+        builder.setComparadorNumero(comparadorNumero);
     }
 
     public Integer getValorNumero() {
-        return valorNumero;
+        return builder.getValorNumero();
     }
 
     public void setValorNumero(Integer valorNumero) {
-        this.valorNumero = valorNumero;
+        builder.setValorNumero(valorNumero);
     }
 
     public Indicador getIndicadorContraEmpresa() {
-        return indicadorContraEmpresa;
+        return builder.getIndicadorContraEmpresa();
     }
 
     public void setIndicadorContraEmpresa(Indicador indicadorContraEmpresa) {
-        this.indicadorContraEmpresa = indicadorContraEmpresa;
+        builder.setIndicadorContraEmpresa(indicadorContraEmpresa);
     }
 
     public String getComparadorIndicadorConEmpresa() {
-        return comparadorIndicadorConEmpresa;
+        return builder.getComparadorIndicadorConEmpresa();
     }
 
     public void setComparadorIndicadorConEmpresa(String comparadorIndicadorConEmpresa) {
-        this.comparadorIndicadorConEmpresa = comparadorIndicadorConEmpresa;
+        builder.setComparadorIndicadorConEmpresa(comparadorIndicadorConEmpresa);
     }
 
     public Empresa getEmpresaContraIndicador() {
-        return empresaContraIndicador;
+        return builder.getEmpresaContraIndicador();
     }
 
     public void setEmpresaContraIndicador(Empresa empresaContraIndicador) {
-        this.empresaContraIndicador = empresaContraIndicador;
+        builder.setEmpresaContraIndicador(empresaContraIndicador);
     }
 
     public String getCriterio() {
-        return criterio;
+        return builder.getCriterio();
     }
 
     public void setCriterio(String criterio) {
-        this.criterio = criterio;
+        builder.setCriterio(criterio);
     }
 
     public Indicador getIndicadorCriterio() {
-        return indicadorCriterio;
+        return builder.getIndicadorCriterio();
     }
 
     public void setIndicadorCriterio(Indicador indicadorCriterio) {
-        this.indicadorCriterio = indicadorCriterio;
+        builder.setIndicadorCriterio(indicadorCriterio);
     }
 
     public String getComparadorCriterio() {
-        return comparadorCriterio;
+        return builder.getComparadorCriterio();
     }
 
     public void setComparadorCriterio(String comparadorCriterio) {
-        this.comparadorCriterio = comparadorCriterio;
+        builder.setComparadorCriterio(comparadorCriterio);
     }
 
     public Integer getValorCriterio() {
-        return valorCriterio;
+        return builder.getValorCriterio();
     }
 
     public void setValorCriterio(Integer valorCriterio) {
-        this.valorCriterio = valorCriterio;
+        builder.setValorCriterio(valorCriterio);
     }
 
     public String getComportamiento() {
-        return comportamiento;
+        return builder.getComportamiento();
     }
 
     public void setComportamiento(String comportamiento) {
-        this.comportamiento = comportamiento;
+        builder.setComportamiento(comportamiento);
     }
 
     public Indicador getIndicadorComportamiento() {
-        return indicadorComportamiento;
+        return builder.getIndicadorComportamiento();
     }
 
     public void setIndicadorComportamiento(Indicador indicadorComportamiento) {
-        this.indicadorComportamiento = indicadorComportamiento;
+        builder.setIndicadorComportamiento(indicadorComportamiento);
     }
 
     public String getComparadorComportamiento() {
-        return comparadorComportamiento;
+        return builder.getComparadorComportamiento();
     }
 
     public void setComparadorComportamiento(String comparadorComportamiento) {
-        this.comparadorComportamiento = comparadorComportamiento;
+        builder.setComparadorComportamiento(comparadorComportamiento);
     }
 
     public Integer getValorComportamiento() {
-        return valorComportamiento;
+        return builder.getValorComportamiento();
     }
 
     public void setValorComportamiento(Integer valorComportamiento) {
-        this.valorComportamiento = valorComportamiento;
+        builder.setValorComportamiento(valorComportamiento);
     }
 
-    public boolean isVerCrecimiento() {
-        return verCrecimiento;
-    }
-
-    public void setVerCrecimiento(boolean verCrecimiento) {
-        this.verCrecimiento = verCrecimiento;
-    }
-
-    public boolean isVerNumero() {
-        return verNumero;
-    }
-
-    public void setVerNumero(boolean verNumero) {
-        this.verNumero = verNumero;
-    }
-
-    public boolean isVerEmpresa() {
-        return verEmpresa;
-    }
-
-    public void setVerEmpresa(boolean verEmpresa) {
-        this.verEmpresa = verEmpresa;
-    }
-
-    public boolean isVerCriterio() {
-        return VerCriterio;
-    }
-
-    public void setVerCriterio(boolean verCriterio) {
-        VerCriterio = verCriterio;
-    }
 }

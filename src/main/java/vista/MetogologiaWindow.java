@@ -1,6 +1,5 @@
 package vista;
 
-import com.sun.org.apache.bcel.internal.generic.Select;
 import modelo.dominio.Empresa;
 import modelo.dominio.Indicador;
 import modelo.viewModel.AlertViewModel;
@@ -28,18 +27,16 @@ public class MetogologiaWindow extends SimpleWindow<MetodologiaViewModel> {
                 .onClick(this::guardarNombre);
 
 
-        new Label(mainPanel).setText("Comparador por un numero").bindVisibleToProperty("verNumero");
+        new Label(mainPanel).setText("Comparador por un numero");
         final Selector<Indicador> indicadorComparadoConNumero = new Selector<>(mainPanel);
         indicadorComparadoConNumero.bindValueToProperty("indicadorComparadoConNumero");
         indicadorComparadoConNumero.bindItemsToProperty("indicadores");
-        indicadorComparadoConNumero.bindVisibleToProperty("verNumero");
         final Selector<String> comparadorPorNumero = new Selector<>(mainPanel);
         comparadorPorNumero.bindValueToProperty("comparadorNumero");
         comparadorPorNumero.bindItemsToProperty("comparadores");
-        comparadorPorNumero.bindVisibleToProperty("verNumero");
         new TextBox(mainPanel).bindValueToProperty("valorNumero");
         new Button(mainPanel).setCaption("Guardar comparador")
-                .onClick(this::guardarComparadorPorIndicador).bindVisibleToProperty("verNumero");
+                .onClick(this::guardarComparadorPorIndicador);
 
 
 
@@ -89,20 +86,23 @@ public class MetogologiaWindow extends SimpleWindow<MetodologiaViewModel> {
                 .onClick(this::guardarComparadorCrecimiento);
 
 
-        new Button(mainPanel).setCaption("Guardar").onClick(this::guardarMetodologia);
+        new Button(mainPanel).setCaption("Guardar Metodología").onClick(this::guardarMetodologia).disableOnError();
         new Button(mainPanel).setCaption("Volver").onClick(this::close);
     }
 
     private void guardarNombre() {
         getModelObject().guardarNombre();
+        mostrarAlerta("Nombre cargado correctamente");
     }
 
     private void guardarComparadorCrecimiento() {
         getModelObject().setComparadorCrecimiento();
+        cartelCargaOk();
     }
 
     private void guardarComparadorConCriterio() {
         getModelObject().setComparadoConCriterio();
+        cartelCargaOk();
     }
 
     private void guardarIndicadorConEmpresa() {

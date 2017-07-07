@@ -27,24 +27,6 @@ public class MetodologiasMock {
         return empresas;
     }
 
-    public static List<Metodologia> getMetodologias(){
-
-        final List<Metodologia> metodologias = new ArrayList<>();
-        final Metodologia metodologiaUno = new Metodologia();
-        metodologiaUno.setNombre("Meto Uno");
-        metodologias.add(metodologiaUno);
-
-        final Metodologia metodologiaDos = new Metodologia();
-        metodologiaDos.setNombre("Meto Dos");
-        metodologias.add(metodologiaDos);
-
-        final Metodologia metodologiaTres = new Metodologia();
-        metodologiaTres.setNombre("Meto Tres");
-        metodologias.add(metodologiaTres);
-
-        return metodologias;
-    }
-
     public static List<Empresa> getEmpresasFiltradas(){
 
         final List<Empresa> empresas = new ArrayList<>();
@@ -71,6 +53,20 @@ public class MetodologiasMock {
         indicadores.add(proporcionDeuda);
 
         return indicadores;
+    }
+
+    public static List<Metodologia> getMetodologias(){
+        final Metodologia metoUno = new Metodologia();
+        metoUno.setNombre("Warren");
+        final Metodologia metoDos = new Metodologia();
+        metoDos.setNombre("Mejor Empresa");
+        final Metodologia metoTres = new Metodologia();
+        metoTres.setNombre("Empresa Pior");
+        final List<Metodologia> metodologias = new ArrayList<>();
+        metodologias.add(metoUno);
+        metodologias.add(metoDos);
+        metodologias.add(metoTres);
+        return metodologias;
     }
 
 }
