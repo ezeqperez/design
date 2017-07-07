@@ -29,9 +29,9 @@ public class MetogologiaWindow extends SimpleWindow<MetodologiaViewModel> {
 
         final Panel condicionUno = new Panel(mainPanel);
 
-        final Selector<Indicador> selectorIndicadorUno = new Selector<>(condicionUno);
-        selectorIndicadorUno.bindValueToProperty("indicadorUno");
-        selectorIndicadorUno.bindItemsToProperty("indicadores");
+        //final Selector<Indicador> selectorIndicadorUno = new Selector<>(condicionUno);
+        //selectorIndicadorUno.bindValueToProperty("indicadorUno");
+        //selectorIndicadorUno.bindItemsToProperty("indicadores");
 
         final Selector<String> comparadorUno = new Selector<>(condicionUno);
         comparadorUno.bindValueToProperty("comparadorUno");
@@ -39,15 +39,13 @@ public class MetogologiaWindow extends SimpleWindow<MetodologiaViewModel> {
 
         new TextBox(condicionUno).bindValueToProperty("valorUno");
 
-        new Spinner(condicionUno)
-                .setWidth(200)
-                .bindValueToProperty("aniosUno");
+//        new Spinner(condicionUno).setWidth(200).bindValueToProperty("aniosUno");
 
         final Panel condicionDos = new Panel(mainPanel);
 
-        final Selector<Indicador> selectorIndicadorDos = new Selector<>(condicionDos);
-        selectorIndicadorDos.bindValueToProperty("indicadorDos");
-        selectorIndicadorDos.bindItemsToProperty("indicadores");
+        //final Selector<Indicador> selectorIndicadorDos = new Selector<>(condicionDos);
+        //selectorIndicadorDos.bindValueToProperty("indicadorDos");
+        //selectorIndicadorDos.bindItemsToProperty("indicadores");
 
         final Selector<String> comparadorDos = new Selector<>(condicionDos);
         comparadorDos.bindValueToProperty("comparadorDos");
@@ -63,9 +61,9 @@ public class MetogologiaWindow extends SimpleWindow<MetodologiaViewModel> {
         selectorOperadorTres.bindValueToProperty("operadorTres");
         selectorOperadorTres.bindItemsToProperty("operadoresTres");
 
-        final Selector<Indicador> selectorIndicadorTres = new Selector<>(condicionTres);
-        selectorIndicadorTres.bindValueToProperty("indicadorTres");
-        selectorIndicadorTres.bindItemsToProperty("indicadores");
+        //final Selector<Indicador> selectorIndicadorTres = new Selector<>(condicionTres);
+        //selectorIndicadorTres.bindValueToProperty("indicadorTres");
+        //selectorIndicadorTres.bindItemsToProperty("indicadores");
 
         final Selector<String> comparadorTres = new Selector<>(condicionTres);
         comparadorTres.bindValueToProperty("comparadorTres");
@@ -75,9 +73,9 @@ public class MetogologiaWindow extends SimpleWindow<MetodologiaViewModel> {
 
         final Panel condicionCuatro = new Panel(mainPanel);
 
-        final Selector<Indicador> selectorIndicadorCuatro = new Selector<>(condicionCuatro);
-        selectorIndicadorCuatro.bindValueToProperty("indicadorCuatro");
-        selectorIndicadorCuatro.bindItemsToProperty("indicadores");
+        //final Selector<Indicador> selectorIndicadorCuatro = new Selector<>(condicionCuatro);
+        //selectorIndicadorCuatro.bindValueToProperty("indicadorCuatro");
+        //selectorIndicadorCuatro.bindItemsToProperty("indicadores");
 
         final Selector<String> selectorComportamientoCuatro = new Selector<>(condicionCuatro);
         selectorComportamientoCuatro.bindValueToProperty("comportamientoCuatro");

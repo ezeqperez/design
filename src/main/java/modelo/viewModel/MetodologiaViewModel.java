@@ -6,6 +6,7 @@ import modelo.dominio.builder.MetodologiaBuilder;
 import modelo.repositorios.EmpresasRepository;
 import modelo.repositorios.IndicadoresRepository;
 import org.uqbar.commons.utils.Observable;
+import vista.MetodologiasMock.MetodologiasMock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +16,12 @@ public class MetodologiaViewModel {
     private MetodologiaBuilder builder;
     private List<Indicador> indicadores;
     private List<Empresa> empresas;
+    private String nombre;
 
     public MetodologiaViewModel(){
         builder = new MetodologiaBuilder();
         indicadores = IndicadoresRepository.getInstance().getIndicadores();
-        empresas = EmpresasRepository.getInstance().getEmpresas();
+        empresas = MetodologiasMock.getEmpresas();//EmpresasRepository.getInstance().getEmpresas();
     }
     public void guardarCondicion(){
         builder.setCondicionSuma();
@@ -33,6 +35,8 @@ public class MetodologiaViewModel {
         builder.setNombre(nombre);
     }
 
+    public String getNombre(){return nombre;}
+
     public List<String> getComparadores(){
         final List<String> comparadores = new ArrayList<>();
         comparadores.add("<");
@@ -40,13 +44,36 @@ public class MetodologiaViewModel {
         return comparadores;
     }
 
+    public List<Empresa> getEmpresas(){
+        return empresas;
+    }
+
     public void setIndicadorUno(Indicador indicador){
 
     }
+
+    public Indicador getIndicadorUno(){
+        Indicador indicador = new Indicador();
+        indicador.setNombre("IndicadorPrueba");
+        return indicador;
+    }
+
     public void setComparadorUno(String comparador){
 
     }
-    public void sestValorUno(Integer valor){}
+
+    public String getComparadorUno(){
+        return "<";
+    }
+
+    public Integer getValorUno(){
+        return 0; //aca se lo tiene que pedir al builder..
+    }
+
+    public void setValorUno(Integer valor){
+
+    }
+
     public void setAniosUno(Integer anios){}
 
     public void setIndicadorDos(Indicador indicador){
@@ -57,7 +84,15 @@ public class MetodologiaViewModel {
 
     }
 
+    public String getComparadorDos(){
+        return "<";
+    }
+
     public void setEmpresaDos(Empresa empresa){}
+
+    public Empresa getEmpresaDos(){
+        return MetodologiasMock.getEmpresas().get(0);
+    }
 
     public List<String> getOperadoresTres(){
         final List<String> operadores = new ArrayList<>();
@@ -67,12 +102,32 @@ public class MetodologiaViewModel {
         return operadores;
     }
 
+    public void setOperadorTres(String operador){}
+
+    public String getOperadorTres(){
+        return "Mediana";
+    }
+
     public void setIndicadorTres(Indicador indicador){
 
     }
 
+    public Indicador getIndicadorTres(){
+        Indicador indicador = new Indicador();
+        indicador.setNombre("IndicadorPrueba");
+        return indicador;
+    }
+
     public void setComparadorTres(String comparador){
 
+    }
+
+    public String getComparadorTres(){
+        return "<";
+    }
+
+    public Integer getValorTres(){
+        return 0; //aca se lo tiene que pedir al builder..
     }
 
     public void setValorTres(Integer valor){
@@ -83,7 +138,13 @@ public class MetodologiaViewModel {
 
     }
 
-    public List<String> getComportamientoCuatro(){
+    public Indicador getIndicadorCuatro(){
+        Indicador indicador = new Indicador();
+        indicador.setNombre("IndicadorPrueba");
+        return indicador;
+    }
+
+    public List<String> getComportamientos(){
         final List<String> comportamientos = new ArrayList<>();
         comportamientos.add("Creciente");
         comportamientos.add("Decreciente");
@@ -92,6 +153,14 @@ public class MetodologiaViewModel {
 
     public void setComportamientoCuatro(String comportamiento){}
 
+    public String getComportamientoCuatro(){
+        return "Creciente"; //aca tmb se lo deberia pedir al builder
+    }
+
     public void setPeriodoCuatro(Integer periodo){}
+
+    public Integer getPeriodoCuatro(){
+        return 1900; //aca se lo tiene que pedir al builder..
+    }
 
 }
